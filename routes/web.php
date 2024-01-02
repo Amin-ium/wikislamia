@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HadeethController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuranController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,5 +39,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs.blogsPage');
+Route::get('/quran', [QuranController::class, 'index'])->name('quran.quranPage');
+Route::get('/hadeeth', [HadeethController::class, 'index'])->name('hadeeth.hadeethPage');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.contactPage');
+Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage');
+
+
+
+
 
 require __DIR__.'/auth.php';

@@ -13,7 +13,14 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <div className='h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird'>
+                {/* linear-gradient(270deg, #ffb978 0%, #ff922d 100%) */}
+
+        <App {...props} />
+        </div>
+        );
+
     },
     progress: {
         color: '#4B5563',

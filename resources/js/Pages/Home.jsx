@@ -1,14 +1,15 @@
 import Navbare from '@/Components/Navbare/Navbare'
+import LayoutApp from '@/Layout/LayoutApp'
+import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
 import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-        <Navbare />
-        <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-    </div>
+    <>
+        <LayoutApp>
+            <SectionSearchBare />
+        </LayoutApp>
+    </>
   )
 }
 
