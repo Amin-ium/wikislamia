@@ -7,7 +7,7 @@ import CardsBanner from '@/Components/CardsBanner'
 const SectionSearchBare = () => {
   return (
     <>
-       <div className='w-[90%] mx-auto flex flex-col justify-center mt-10 homeBg '>
+       <div className='w-[90%] mx-auto flex flex-col justify-center mt-10 homeBg  '>
         <img className='w-[300px] h-[150px] mx-auto' src={headImg} alt="" />
         <CheckedRadio />
         <SearchbarEng />

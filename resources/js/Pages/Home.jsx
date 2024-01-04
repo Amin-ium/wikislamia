@@ -6,9 +6,13 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-        <LayoutApp>
-            <SectionSearchBare />
+
+
+    <LayoutApp>
+            <SectionSearchBare className='' />
+
         </LayoutApp>
+
     </>
   )
 }

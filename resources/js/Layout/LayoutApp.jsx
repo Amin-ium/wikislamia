@@ -13,10 +13,12 @@ const LayoutApp = ({user, children}) => {
   return (
   <React.Fragment>
 
-    <Navbare />
-  <main >
+<Navbare  />
+  <main className='pt-[100px]'>
     {children}
   </main>
+
+
 
 
     </React.Fragment>

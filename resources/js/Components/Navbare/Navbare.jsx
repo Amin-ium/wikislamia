@@ -1,154 +1,319 @@
-import { Link } from '@inertiajs/react'
-import React, { useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { AiOutlineClose } from "react-icons/ai";
+import React, { useEffect, useLayoutEffect } from "react";
+import { Link, usePage } from "@inertiajs/inertia-react";
+import Dropdown from "@/Components/Dropdown";
+import { FaMoon, FaSun, FaAlignJustify } from "react-icons/fa";
 import logoLight from "../../../../public/assets/publicImages/logoLight.png";
-import Dropdown from '../Dropdown';
-const Navbare = () => {
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-      const navLinks = [
-        { href: "/home", label: "Home" },
-        { href: "/blogs", label: "Blogs" },
-        { href: "/quran", label: "Quran" },
-        { href: "/hadeeth", label: "Hadeeth" },
-        { href: "/about", label: "About" },
-        { href: "/contact", label: "Contact" },
-      ];
+import Alpine from "alpinejs";
+import { useState } from "react";
+import { useRef } from "react";
+import { useContext } from "react";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
-  return (
+const Navbare = (children) => {
+    const [toggleMenu, setToggleMenu] = useState(false);
 
-    <>
-    <header className=" z-10  text-navTextLight border-b-[1px] 	 border-gray-300">
-      <nav className="w-[90%]  mx-auto flex justify-between md:align-middle items-center max-container">
-        {/* logo */}
-        <Link href="/" className="">
-          <img className='w-[160px] h-[80px]' src={logoLight} alt="" />
-        </Link>
+    // const [logo, setLogo] = useState(logoLight);
+    // const [isSticky, setIsSticky] = useState(false);
+    const [isDropOpen, setIisDropOpen] = useState(false);
+    // const [isActiveHome, setIsActiveHome] = useState(false);
+    // const [isActiveAbout, setIisActiveAbout] = useState(false);
+    // const [isActiveQuran, setIisActiveQuran] = useState(false);
+    // const [isActiveContact, setIisActiveContact] = useState(false);
+    // const [isActiveHadeeth, setIsActiveHadeeth] = useState(false);
+    // const [isActiveBlogs, setIisActiveBlogs] = useState("");
+    // const [activeLink, setActiveLink] = useState("");
+    // const [stickyColor, setStickyColor] = useState("");
 
-            {/* navigation links */}
-        <ul className="flex float-start gap-7  max-lg:hidden ">
-          {navLinks.map((item) => (
-            <li key={item.label}>
-              <Link
-                href={item.href}
-                className="font-montserrat leading-normal text-lg text-slate-gray"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {/* authentication  */}
-        <div className="flex gap-5 text-sm   align-middle font-medium max-lg:hidden ">
-          <Link className='bg-lightBg text-darkText text-center flex align-middle items-center  px-1 rounded' href="/"><span>Sign-up</span></Link>
-
-          <Link className='bg-darkText text-lightText text-center  flex align-middle items-center  px-1 rounded' href="/"><span>Sign-in</span></Link>
-        </div>
+    const { toggle, darkMode } = useContext(DarkModeContext);
 
 
-         {/* Dropdown */}
-        <Dropdown>
-            <Dropdown.Trigger>
-                <span className="inline-flex rounded-md">
-                    <button
-                        type="button"
-                        className="inline-flex items-center px-1 py-1 border border-gray-100 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                    >
-                        {/* {
-                            auth
-                                .user
-                                .name
-                        } */}
 
-                        admin
+    // const headerRef = useRef(null);
 
-                        <svg
-                            className="ml-2 -mr-0.5 h-4 w-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
-                </span>
-            </Dropdown.Trigger>
-            {/* {auth.user.is_admin ? (
-                <Dropdown.Content>
-                    <Dropdown.Link href="/profile">
-                        Profile
-                    </Dropdown.Link>
-                    <Dropdown.Link href="/dashboard">
-                        Dashboard
-                    </Dropdown.Link>
-                    <Dropdown.Link href="/dashboard/admin-dashboard">
-                        Admin
-                        Dashboard
-                    </Dropdown.Link>
-                </Dropdown.Content>
-            ) : ( */}
-                <Dropdown.Content>
-                    <Dropdown.Link href="/profile">
-                        Profile
-                    </Dropdown.Link>
-                    <Dropdown.Link href="/dashboard">
-                        Dashboard
-                    </Dropdown.Link>
-                </Dropdown.Content>
-            {/* )} */}
-        </Dropdown>
+    // const activeLink = "";
 
+    // window.addEventListener("scroll", () => {
+    //     if (window.scrollY > 0) {
+    //         setIsSticky(true);
+    //         setStickyColor("gray-900");
+    //         setLogo(logoDark);
+    //     } else {
+    //         setLogo(logoLight);
+    //         setIsSticky(false);
+    //         setStickyColor("gray-100");
+    //     }
+    // });
 
-        {/* toggle bars */}
-        <div
-          className="hidden max-lg:block cursor-pointer"
-          onClick={() => {
-            setIsMenuOpen(!isMenuOpen);
-          }}
-        >
-          <RxHamburgerMenu className="text-4xl" />
-        </div>
-      </nav>
-    </header>
-    {/* mobile header */}
-    {isMenuOpen && (
-      <div>
-        <nav className="fixed top-0 right-0 left-0 bottom-0 lg:bottom-auto bg-slate-100  ">
-          <div
-            className="hidden max-lg:block fixed right-0  px-8 py-4 cursor-pointer"
-            onClick={() => {
-              setIsMenuOpen(!isMenuOpen);
-            }}
-          >
-            <AiOutlineClose className="text-4xl" />
-          </div>
-          <ul className=" lg:hidden flex flex-col items-center justify-center h-full ">
-            {navLinks.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="font-montserrat leading-normal text-lg text-slate-gray"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    )}
-  </>
-
-      );
+    const toggleDropDown = () => {
+        if (!isDropOpen) {
+            setIisDropOpen(true);
+            console.log("opend");
+        } else {
+            console.log("closed");
+            setIisDropOpen(false);
+        }
     };
 
+    // useEffect(() => {
+    //     function activeLinkFunction() {
+    //         if (window.location.pathname === "/") {
+    //             setIsActiveHome(true);
+    //             setActiveLink("red-400");
 
+    //         } else if (window.location.pathname === "/blogs") {
+    //             setIisActiveBlogs(true);
+    //             setActiveLink("red-400");
 
+    //         } else if (window.location.pathname === "/quran") {
+    //             setIisActiveQuran(true);
+    //             setActiveLink("red-400");
 
+    //         } else if (window.location.pathname === "/about") {
+    //             setIisActiveAbout(true);
+    //             setActiveLink("red-400");
 
-export default Navbare
+    //         } else if (window.location.pathname === "/contact") {
+    //             setIisActiveContact(true);
+    //             setActiveLink("red-400");
+
+    //         }else if (window.location.pathname === "/hadeeth") {
+    //             setIsActiveHadeeth(true);
+    //             setActiveLink("red-400");
+
+    //         } else {
+
+    //         }
+    //     }
+
+    //     activeLinkFunction();
+    // }, []);
+
+    // if( window.innerWidth > 960) {
+    //   // setLogo(logoDark)
+    //   // header.classList.remove('sticky');
+    //   const  header = document.getElementById('myHeader');
+    //   header.classList.replace('bg-gray-500', 'bg-transparent');
+    //   // alert('window great then 960');
+    // }else{
+    //   const  header = document.getElementById('myHeader');
+    //   header.classList.remove('bg-transparent', 'bg-gray-500');
+    //   // alert('window less then 960');
+    // }
+
+    Alpine.data("myComponent", () => ({
+        handleClick,
+    }));
+    console.log(toggleMenu);
+    // const { auth } = usePage().props;
+
+    return (
+        <header
+            // ref={headerRef}
+            id=""
+            className={` z-15 px-3  max-w-full `}
+            x-data="{navbarOpen: false}"
+        >
+            <nav className="">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex mx-auto justify-between container  gap-5">
+                        {/* Primary menu and logo */}
+                        <div className="flex items-center  gap-5 ">
+                            {/* logo */}
+                            <div>
+                                <Link
+                                    href="/"
+                                    className=" flex items-center"
+                                >
+                                    <img
+                                        className={`w-[70%] h-[70%]  lg:w-[50%] lg:h-[50%]  `}
+                                        src={logoLight}
+                                        alt=""
+                                    />
+                                </Link>
+                            </div>
+                            {/* primary */}
+                            {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
+                            <div className={`  navLinks text-lightText  hidden lg:flex gap-4 `}>
+                                <Link
+                                    id="link"
+                                    href="/"
+                                    className={`   hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+
+                                    HOME
+                                </Link>
+                                <Link
+                                    id="link"
+                                    href="/blogs"
+                                    className={` hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+                                    BLOGS
+                                </Link>
+                                <Link
+                                    id="link"
+                                    href="/quran"
+                                    className={`  hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+                                    QURAN
+                                </Link>
+
+                                <Link
+                                    id="link"
+                                    href="/about"
+                                    className={`   hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+                                    ABOUT
+                                </Link>
+                                <Link
+                                    id="link"
+                                    href="/hadeeth"
+                                    className={` hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+                                    HADEETH
+                                </Link>
+                                <Link
+                                    id="link"
+                                    href="/contact"
+                                    className={`   hover:bg-orangeBg hover:text-darkBg px-1 rounded  `}
+                                >
+                                    CONTACT
+                                </Link>
+                            </div>
+                        </div>
+                        {/* secondary */}
+                        <div className="flex flex-row   gap-2 items-center">
+                            <div className="flex xs:flex items-center gap-10">
+                                <div className="flex flex-row-reverse gap-3">
+                                    {/* {auth.user ? ( */}
+
+                                        {/* <div className="flex items-center gap-2">
+                                            <div className="text-white">
+                                                <Link
+                                                    className="w-auto text-xs text-white border hover:text-red-700 hover:bg-gray-50 duration-300 hover:border-red-700  bg-red-700 px-1 rounded"
+                                                    href="/logout"
+                                                    as="button"
+                                                    method="POST"
+                                                >
+                                                    Logout
+                                                </Link>
+                                            </div> */}
+                                            <Dropdown>
+                                                        <Dropdown.Trigger>
+                                                            <span className="inline-flex rounded-md">
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex items-center px-1 py-1 border border-gray-100 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                                >
+                                                                    {/* {
+                                                                        auth
+                                                                            .user
+                                                                            .name
+                                                                    } */}
+                                                                    admin
+
+                                                                    <svg
+                                                                        className="ml-2 -mr-0.5 h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 20 20"
+                                                                        fill="currentColor"
+                                                                    >
+                                                                        <path
+                                                                            fillRule="evenodd"
+                                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                            clipRule="evenodd"
+                                                                        />
+                                                                    </svg>
+                                                                </button>
+                                                            </span>
+                                                        </Dropdown.Trigger>
+                                                        {/* {auth.user.is_admin ? ( */}
+                                                            <Dropdown.Content>
+                                                                <Dropdown.Link href="/profile">
+                                                                    Profile
+                                                                </Dropdown.Link>
+                                                                <Dropdown.Link href="/dashboard">
+                                                                    Dashboard
+                                                                </Dropdown.Link>
+                                                                <Dropdown.Link href="/dashboard/admin-dashboard">
+                                                                    Admin
+                                                                    Dashboard
+                                                                </Dropdown.Link>
+                                                            </Dropdown.Content>
+                                                        {/* ) : ( */}
+                                                            {/* <Dropdown.Content>
+                                                                <Dropdown.Link href="/profile">
+                                                                    Profile
+                                                                </Dropdown.Link>
+                                                                <Dropdown.Link href="/dashboard">
+                                                                    Dashboard
+                                                                </Dropdown.Link>
+                                                            </Dropdown.Content>
+                                                        )} */}
+                                                    </Dropdown>
+                                        {/* </div> */}
+                                    {/* ) : ( */}
+
+                                        <div className="flex items-center gap-3 text-lightText">
+                                            <Link
+                                                className={` loginBtn text-xs border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                                href="/register"
+                                            >
+                                                Regiter
+                                            </Link>
+                                            <Link
+                                                className={` signUpBtn border border-lightText rounded-lg   text-xs  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                                href="/login"
+                                            >
+                                                Login
+                                            </Link>
+                                        </div>
+                                    {/* )} */}
+                                </div>
+                            </div>
+                            {/* Mobile navigation toggle */}
+
+                            <div className="moon   lg:flex items-center ml-3">
+                                <FaSun
+                                    onClick={toggle}
+                                    className={`text-yellow-500 h-4 w-4`}
+                                />
+
+                            </div>
+                            <div className="lg:hidden flex items-center">
+                                <button
+                                    className={` menuBtn`}
+                                    onClick={() => setToggleMenu(!toggleMenu)}
+                                >
+                                    <FaAlignJustify className="h-4 w-4" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* mobile navigation */}
+                <div
+                    className={`fixed bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-full h-screen  z-51   overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
+                    ${
+                        !toggleMenu ? "h-0" : "h-full"
+                    }`}
+                >
+                    <div className="px-8 pt-5">
+                        <div className="flex flex-col gap-8 font-bold text-center tracking-wider">
+                            <Link href="#" className=" ">
+                                Home
+                            </Link>
+                            <Link href="/blogs">BLOGS</Link>
+                            <Link href="/quran">QURAN</Link>
+                            <Link href="/about">ABOUT</Link>
+                            <Link href="/hadeeth">HADEETH</Link>
+                            <Link href="contact">CONTACT</Link>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    );
+};
+
+export default Navbare;

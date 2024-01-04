@@ -59,16 +59,16 @@ const SearchbarEng = () => {
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
             <form
-                className="z-17 "
+                className=" relative z-14   "
                 x-data="{dropDownOpen: false}"
             >
-                <div class="relative flex flex-col justify-center">
-                    <div className="relative flex flex-row w-full lg:w-[70%] mx-auto ">
+                <div class="z-14  flex flex-col justify-center">
+                    <div className="relative z-14   flex flex-row w-full lg:w-[70%] mx-auto ">
                         <input
                             type="text"
-                            className=" block rounded-l-lg p-2.5 w-[90%] md:w-[80%] mx-auto  text-sm text-gray-900
+                            className="relative z-14   rounded-l-lg md:p-2.5 w-[90%] md:w-[80%] mx-auto  text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 z-30 "
+                               border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
                             placeholder="Search by Word or Verse"
                             // value={value}
                             // onChange={onChange}
@@ -86,12 +86,16 @@ const SearchbarEng = () => {
                         {/* {value ? (
                              <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 absolute top-[8px] right-[30px] md:right-[10px] z-40' />
                         ) : ( */}
-                            <FaSearch size={24}  className='text-gray-500 absolute top-[8px] right-[130px] md:right-[100px] z-40' />
+                            {/* <FaSearch size={24}  className='text-gray-500 relative top-[8px] right-[130px] md:right-[100px]  ' /> */}
                         {/* )} */}
+                        <div className="absolute z-14 right-[30px] top-[5px]">
+                        <FaSearch size={24}  className='  text-gray-500  ' />
+                        </div>
 
                     </div>
 
-                    <div className={`  absolute z-20  flex flex-col    max-h-[200px]  overflow-y-scroll rounded top-[43px]  w-[90%] md:w-[100%] lg:w-[70%] transform -translate-x-1/2 left-1/2 `}>
+
+                    <div className={`     flex flex-col   max-h-[200px]  overflow-y-scroll rounded top-[43px]  w-[90%] md:w-[100%] lg:w-[70%] `}>
                         {/* {verses && verses.filter(item => {
                             const searchTerm = value.toLowerCase();
                             const englishContent = item.englishContent.toLowerCase();
@@ -103,7 +107,7 @@ const SearchbarEng = () => {
                         ))} */}
                     </div>
 
-                    <div className="absolute z-19   top-[80px] left-1/2 -translate-x-1/2">
+                    <div className="    top-[80px] left-1/2 -translate-x-1/2">
                     {/* {checked === 'eng'  ? ( */}
 
                         <div className="  flex justify-center md:flex-row gap-3 md:justify-center">
