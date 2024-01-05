@@ -59,14 +59,14 @@ const SearchbarEng = () => {
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
             <form
-                className=" relative z-14   "
+                className="  "
                 x-data="{dropDownOpen: false}"
             >
-                <div class="z-14  flex flex-col justify-center">
-                    <div className="relative z-14   flex flex-row w-full lg:w-[70%] mx-auto ">
+                <div class="relative  flex flex-col justify-center">
+                    <div className="   flex flex-row w-full md:w-[70%] lg:w-[70%] justify-center sm:justify-center md:justify-center lg:justify-center mx-auto ">
                         <input
                             type="text"
-                            className="relative z-14   rounded-l-lg md:p-2.5 w-[90%] md:w-[80%] mx-auto  text-sm text-gray-900
+                            className="absolute z-auto sm:bg-blue md:bg-green-500 lg:bg-red-500  rounded-l-lg md:p-2.5 w-[90%] md:w-[80%] lg:w-[70%] md:justify-center text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
                                border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
                             placeholder="Search by Word or Verse"
@@ -88,7 +88,7 @@ const SearchbarEng = () => {
                         ) : ( */}
                             {/* <FaSearch size={24}  className='text-gray-500 relative top-[8px] right-[130px] md:right-[100px]  ' /> */}
                         {/* )} */}
-                        <div className="absolute z-14 right-[30px] top-[5px]">
+                        <div className="absolute z-14 right-[30px] top-[5px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] lg:right-[195px] lg:top-[10px]">
                         <FaSearch size={24}  className='  text-gray-500  ' />
                         </div>
 

@@ -1,3 +1,4 @@
+import LayoutApp from '@/Layout/LayoutApp'
 import React from 'react'
 
 const BlogsPage = () => {

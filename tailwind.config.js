@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+// import f from './public/assets/publicImages/coverBg.svg'
 
 
 /** @type {import('tailwindcss').Config} */
@@ -44,9 +45,10 @@ export default {
                 quranTextFont:["Marhey", "sans-serif"],
 
             },
+
             backgrounds: {
 
-
+                'bgCover': "url('public/assets/publicImages/coverBg.svg)"
                 // 'darkBg' : "bg-[linear-gradient(180deg,#FFFFFF_0%,#000000_100%)]  ",
                 // 'contactBg' : "url('https://almaghribalarabi.com/fr/wp-content/uploads/2022/12/islam.jpg')",
                 // 'quranBg' : "url('https://t3.ftcdn.net/jpg/02/73/80/00/240_F_273800094_Brds0M9mVOQNNxB6mFTrpWXaZbB9FWvH.jpg')",
@@ -85,6 +87,7 @@ export default {
                 // Add other dark mode colors here
                 },
             },
+
         },
     },
 

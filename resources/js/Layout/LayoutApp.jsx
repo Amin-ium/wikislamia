@@ -14,7 +14,7 @@ const LayoutApp = ({user, children}) => {
   <React.Fragment>
 
 <Navbare  />
-  <main className='pt-[100px]'>
+  <main >
     {children}
   </main>
 

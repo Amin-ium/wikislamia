@@ -1,14 +1,11 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React,{ useState, useEffect, useContext } from "react";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import Dropdown from "@/Components/Dropdown";
 import { FaMoon, FaSun, FaAlignJustify } from "react-icons/fa";
 import logoLight from "../../../../public/assets/publicImages/logoLight.png";
-
 import Alpine from "alpinejs";
-import { useState } from "react";
-import { useRef } from "react";
-import { useContext } from "react";
 import { DarkModeContext } from "@/Context/DarkModeContext";
+// import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
 const Navbare = (children) => {
     const [toggleMenu, setToggleMenu] = useState(false);
@@ -104,6 +101,10 @@ const Navbare = (children) => {
     Alpine.data("myComponent", () => ({
         handleClick,
     }));
+
+    const setMobileMenu = () => {
+        setToggleMenu(!toggleMenu)
+    }
     console.log(toggleMenu);
     // const { auth } = usePage().props;
 
@@ -111,22 +112,22 @@ const Navbare = (children) => {
         <header
             // ref={headerRef}
             id=""
-            className={` z-15 px-3  max-w-full `}
+            className={`relative z-29 px-3  max-w-full `}
             x-data="{navbarOpen: false}"
         >
-            <nav className="">
+            <nav className="z-15">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex mx-auto justify-between container  gap-5">
+                    <div className="flex w-[90%] lg:w-[90%] md:w-[90%] mx-auto justify-between   gap-5">
                         {/* Primary menu and logo */}
                         <div className="flex items-center  gap-5 ">
                             {/* logo */}
-                            <div>
+                            <div className="shrink-0">
                                 <Link
                                     href="/"
-                                    className=" flex items-center"
+                                    className=" flex items-center "
                                 >
                                     <img
-                                        className={`w-[70%] h-[70%]  lg:w-[50%] lg:h-[50%]  `}
+                                        className={`w-[40%] h-[40%]  xs:w-[90%] xs:h-[90%] sm:w-[90%] sm:h-[90%] md:w-[50%] md:h-[50%]  lg:w-[50%] lg:h-[50%] xl:w-[50%] xl:h-[50%]  `}
                                         src={logoLight}
                                         alt=""
                                     />
@@ -273,29 +274,31 @@ const Navbare = (children) => {
                             </div>
                             {/* Mobile navigation toggle */}
 
-                            <div className="moon   lg:flex items-center ml-3">
+                            <div className=" z-11  lg:flex items-center ml-3">
                                 <FaSun
                                     onClick={toggle}
                                     className={`text-yellow-500 h-4 w-4`}
                                 />
 
                             </div>
-                            <div className="lg:hidden flex items-center">
+                            <div className="text-lightText lg:hidden flex items-center">
                                 <button
                                     className={` menuBtn`}
-                                    onClick={() => setToggleMenu(!toggleMenu)}
+                                    onClick={setMobileMenu}
                                 >
-                                    <FaAlignJustify className="h-4 w-4" />
+                                    <FaAlignJustify className=" h-5 w-5" />
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* mobile navigation */}
-                <div
-                    className={`fixed bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-full h-screen  z-51   overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
+
+            </nav>
+             {/* mobile navigation */}
+             <div
+                    className={`fixed z-10 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
                     ${
-                        !toggleMenu ? "h-0" : "h-full"
+                        !toggleMenu ? "h-0" : "h-screen"
                     }`}
                 >
                     <div className="px-8 pt-5">
@@ -311,7 +314,6 @@ const Navbare = (children) => {
                         </div>
                     </div>
                 </div>
-            </nav>
         </header>
     );
 };

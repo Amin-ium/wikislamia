@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+.bgCover {
+    background-image: hidden;
+}
+
 .dropMenu {
     overflow-y: hidden;
 }
@@ -28,5 +32,8 @@ body{
 }
 
 .homeBg{
-    background-image: '../../public/assets/publicImages/coverBg.svg';
+    background-image: url('../../public/assets/publicImages/coverBg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
