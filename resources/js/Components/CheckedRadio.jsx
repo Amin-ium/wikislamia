@@ -7,13 +7,7 @@ const CheckedRadio = () => {
 
 console.log(check);
 
-    useEffect(() => {
-        if(window.location.pathname ==='/quran' ) {
-            setCheck('eng')
-        }else if(window.location.pathname ==='/hadeeth' ) {
-            setCheck('eng')
-        }
-    }, []);
+
   return (
     <>
     <form className='md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center'  x-data='{dropDownOpen: false}'>

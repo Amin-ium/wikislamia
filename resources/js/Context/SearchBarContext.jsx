@@ -9,7 +9,7 @@ export const SearchContext = ({ children }) => {
   const storedCheck = localStorage.getItem("check");
 
   // Set the parsedCheck to the stored value or default to 'eng' if null
-  const parsedCheck = storedCheck || 'eng' || 'ar' || 'fr' || '';
+  const parsedCheck = storedCheck || 'eng' || 'ar' || 'fr' ;
 
   // State to hold the language preference
   const [check, setCheck] = useState(parsedCheck);
