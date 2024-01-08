@@ -12,13 +12,13 @@ const LayoutApp = ({user, children}) => {
 
   return (
   <React.Fragment>
-
+<div className='homeBg w-full'>
 <Navbare  />
   <main >
     {children}
   </main>
 
-
+  </div>
 
 
     </React.Fragment>

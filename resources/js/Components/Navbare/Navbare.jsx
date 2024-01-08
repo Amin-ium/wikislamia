@@ -16,13 +16,13 @@ const Navbare = (children) => {
     const [user, setUser] = useState(false);
     // const [isSticky, setIsSticky] = useState(false);
     const [isDropOpen, setIisDropOpen] = useState(false);
-    // const [isActiveHome, setIsActiveHome] = useState(false);
-    // const [isActiveAbout, setIisActiveAbout] = useState(false);
-    // const [isActiveQuran, setIisActiveQuran] = useState(false);
-    // const [isActiveContact, setIisActiveContact] = useState(false);
-    // const [isActiveHadeeth, setIsActiveHadeeth] = useState(false);
-    // const [isActiveBlogs, setIisActiveBlogs] = useState("");
-    // const [activeLink, setActiveLink] = useState("");
+    const [isActive, setIsActive] = useState(false);
+    const [isActiveAbout, setIisActiveAbout] = useState(false);
+    const [isActiveQuran, setIisActiveQuran] = useState(false);
+    const [isActiveContact, setIisActiveContact] = useState(false);
+    const [isActiveHadeeth, setIsActiveHadeeth] = useState(false);
+    const [isActiveBlogs, setIisActiveBlogs] = useState("");
+    const [activeLink, setActiveLink] = useState("");
     const [currentCheck, setCurrentCheck] =  useState(check);
 
      useEffect(() => {
@@ -48,7 +48,8 @@ const links = [
     { englishLink: 'Contact Us', frenchLink: 'Contact', arabicLink: 'إتصل بنا', href: '/contact' },
   ]
 
-
+const active = 'font-bold border-b-2 border-lightText text-lightText  hover:bg-purple-800 hover:text-darkBg px-2 rounded'
+const normal = 'font-normal text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded'
 
 
 console.log(currentCheck);
@@ -95,7 +96,7 @@ console.log(currentCheck);
         valueContainer: (provided, state) => ({
           ...provided,
           height: '20px',
-          padding: '0 6px',
+          padding: '0 6px 6px 6px',
           width: '60px',
         }),
 
@@ -109,10 +110,12 @@ console.log(currentCheck);
 
 
 
+
         }),
         indicatorsContainer: (provided, state) => ({
           ...provided,
           height: '20px',
+
 
         }),
 
@@ -134,31 +137,31 @@ console.log(currentCheck);
     // useEffect(() => {
     //     function activeLinkFunction() {
     //         if (window.location.pathname === "/") {
-    //             setIsActiveHome(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         } else if (window.location.pathname === "/blogs") {
-    //             setIisActiveBlogs(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         } else if (window.location.pathname === "/quran") {
-    //             setIisActiveQuran(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         } else if (window.location.pathname === "/about") {
-    //             setIisActiveAbout(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         } else if (window.location.pathname === "/contact") {
-    //             setIisActiveContact(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         }else if (window.location.pathname === "/hadeeth") {
-    //             setIsActiveHadeeth(true);
+    //             setIsActive(true);
     //             setActiveLink("red-400");
 
     //         } else {
-
+    //             setIsActive(false);
     //         }
     //     }
 
@@ -206,7 +209,7 @@ console.log(currentCheck);
                                     className=" flex items-center "
                                 >
                                     <img
-                                        className={`w-[40%] h-[40%]  xs:w-[90%] xs:h-[90%] sm:w-[90%] sm:h-[90%] md:w-[50%] md:h-[50%]  lg:w-[40%] lg:h-[40%] xl:w-[40%] xl:h-[40%]  `}
+                                        className={`w-[40%] h-[40%]  xs:w-[90%] xs:h-[90%]  md:w-[50%] md:h-[50%]  lg:w-[50%] lg:h-[50%] xl:w-[50%] xl:h-[50%]  `}
                                         src={logoLight}
                                         alt=""
                                     />
@@ -219,8 +222,9 @@ console.log(currentCheck);
                                 check === 'eng' ? (
                                     <Link
                                     id="link"
+
                                     href={link.href}
-                                    className={` text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded  `}
+                                    className={ window.location.pathname === link.href ? active : normal}
                                 >
 
                                     {link.englishLink}
