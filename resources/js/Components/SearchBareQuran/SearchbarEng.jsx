@@ -66,7 +66,7 @@ const SearchbarEng = () => {
                     <div className="   flex flex-row w-full md:w-[70%] lg:w-[70%] justify-center sm:justify-center md:justify-center lg:justify-center mx-auto ">
                         <input
                             type="text"
-                            className="absolute z-auto sm:bg-blue md:bg-green-500 lg:bg-red-500  rounded-l-lg md:p-2.5 w-[90%] md:w-[80%] lg:w-[70%] md:justify-center text-sm text-gray-900
+                            className="absolute z-auto sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg md:p-2.5 w-[90%] md:w-[80%] lg:w-[70%] md:justify-center text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
                                border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
                             placeholder="Search by Word or Verse"

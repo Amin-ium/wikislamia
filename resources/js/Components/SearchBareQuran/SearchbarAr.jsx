@@ -8,7 +8,7 @@ import {
     DarkModeContext,
     DarkModeContextProvider,
 } from "@/context/DarkModeContext";
-import QuranDef from "../../Pages/Quran/QuranDef";
+// import QuranDef from "../../Pages/Quran/QuranDef";
 
 const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
     const { darkMode } = useContext(DarkModeContext);

@@ -5,7 +5,7 @@ import { FaGlobe, FaSearch, FaTimes } from "react-icons/fa";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
 import { DarkModeContext, DarkModeContextProvider } from "@/context/DarkModeContext";
-import QuranDef from "@/Pages/Quran/QuranDef";
+
 
 const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
 

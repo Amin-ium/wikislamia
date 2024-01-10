@@ -216,17 +216,17 @@ const Navbare = (children) => {
         <header
             // ref={headerRef}
             id=""
-            className={`relative z-29 lg:w-[90%]  lg:max-w-[90%] lg:h-[80px]  `}
+            className={`relative z-29 w-[95%] mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]  lg:max-w-[90%] lg:h-[80px] py-3 lg:mx-auto`}
             x-data="{navbarOpen: false}"
         >
             <nav className="z-15 ">
                 {/* Primary menu and logo */}
-                <div className="flex lg:flex-row lg:justify-around lg:align-middle lg:items-center ">
+                <div className="flex lg:flex-row justify-between sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center ">
                     {/* logo */}
                     <div className=" ">
                         <Link href="/" className=" ">
                             <img
-                                className={`w-[40%] h-[40%]  xs:w-[90%] xs:h-[90%]  md:w-[50%] md:h-[50%]  lg:w-[50px] lg:h-[50px] xl:w-[250px] xl:h-[80px]  `}
+                                className={`w-[180px] h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
                                 src={logoLight}
                                 alt=""
                             />
@@ -234,7 +234,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`  navLinks text-lightText  hidden lg:flex gap-4  `}
+                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-4  `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -255,7 +255,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={` text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded  `}
+                                        className={
+                                            window.location.pathname ===
+                                            link.href
+                                                ? active
+                                                : normal
+                                        }
                                     >
                                         {link.frenchLink}
                                     </Link>
@@ -263,7 +268,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={` text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded  `}
+                                        className={
+                                            window.location.pathname ===
+                                            link.href
+                                                ? active
+                                                : normal
+                                        }
                                     >
                                         {link.arabicLink}
                                     </Link>
@@ -271,29 +281,18 @@ const Navbare = (children) => {
                             )}
                     </div>
 
-                    <div className="flex  flex-row   gap-2 align-middle lg:items-center">
+                    <div className="flex  flex-row   gap-2 align-middle lg:items-center ">
                         <div className="flex xs:flex items-center gap-10">
-                            <div className="flex flex-row-reverse gap-3">
+                            <div className=" flex flex-row-reverse gap-3 ">
                                 {/* {auth.user ? ( */}
-
-                                {/* <div className="flex items-center gap-2">
-                                            <div className="text-white">
-                                                <Link
-                                                    className="w-auto text-xs text-white border hover:text-red-700 hover:bg-gray-50 duration-300 hover:border-red-700  bg-red-700 px-1 rounded"
-                                                    href="/logout"
-                                                    as="button"
-                                                    method="POST"
-                                                >
-                                                    Logout
-                                                </Link>
-                                            </div> */}
                                 {user ? (
+                                    <div   className='relative z-32'>
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-1 py-1 border border-gray-100 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-1 py-1 border border-gray-100 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 "
                                                 >
                                                     {/* {
                                                                  auth
@@ -339,6 +338,7 @@ const Navbare = (children) => {
                                                      </Dropdown.Content>
                                                  )} */}
                                     </Dropdown>
+                                    </div>
                                 ) : null}
 
                                 {/* </div> */}
@@ -375,7 +375,7 @@ const Navbare = (children) => {
                         </div>
                         {/* Mobile navigation toggle */}
 
-                        <div className=" z-11  flex items-center lg:items-center gap-2 mt-1 ml-3">
+                        <div className="  flex items-center lg:items-center gap-2 mt-1 ml-3">
                             <FaSun
                                 onClick={toggle}
                                 className={`text-yellow-500 h-4 w-4 `}
@@ -390,7 +390,7 @@ const Navbare = (children) => {
                                 myHeight="10px"
                                 myFontSize="12px"
                                 styles={customStyles}
-                                className=" -mt-1"
+                                className="relative -mt-1 z-32 "
                             />
                         </div>
 
@@ -408,19 +408,54 @@ const Navbare = (children) => {
 
                 {/* mobile navigation */}
                 <div
-                    className={`fixed z-10 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
+                    className={`fixed z-30 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
                     ${!toggleMenu ? "h-0" : "h-screen"}`}
                 >
                     <div className="px-8 pt-5">
                         <div className="flex flex-col gap-8 font-bold text-center tracking-wider">
-                            <Link href="#" className=" ">
-                                Home
-                            </Link>
-                            <Link href="/blogs">BLOGS</Link>
-                            <Link href="/quran">QURAN</Link>
-                            <Link href="/about">ABOUT</Link>
-                            <Link href="/hadeeth">HADEETH</Link>
-                            <Link href="contact">CONTACT</Link>
+                        {links &&
+                            links.map((link, i) =>
+                                check === "eng" ? (
+                                    <Link
+                                        id="link"
+                                        href={link.href}
+                                        className={
+                                            window.location.pathname ===
+                                            link.href
+                                                ? active
+                                                : normal
+                                        }
+                                    >
+                                        {link.englishLink}
+                                    </Link>
+                                ) : check === "fr" ? (
+                                    <Link
+                                        id="link"
+                                        href={link.href}
+                                        className={
+                                            window.location.pathname ===
+                                            link.href
+                                                ? active
+                                                : normal
+                                        }
+                                    >
+                                        {link.frenchLink}
+                                    </Link>
+                                ) : check === "ar" ? (
+                                    <Link
+                                        id="link"
+                                        href={link.href}
+                                        className={
+                                            window.location.pathname ===
+                                            link.href
+                                                ? active
+                                                : normal
+                                        }
+                                    >
+                                        {link.arabicLink}
+                                    </Link>
+                                ) : null
+                            )}
                         </div>
                     </div>
                 </div>
