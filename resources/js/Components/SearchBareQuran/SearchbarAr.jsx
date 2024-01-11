@@ -37,10 +37,10 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
             <DarkModeContextProvider>
                 <form className=" " x-data="{dropDownOpen: false}">
                     <div class="relative flex flex-col justify-center ">
-                        <div className="relative flex flex-row w-full lg:w-[70%] mx-auto">
+                        <div className=" flex flex-row w-full lg:w-[70%] mx-auto">
                             <input
                                 type="text"
-                                className=" block rounded-l-lg p-2.5 w-[90%] md:w-[100%] mx-auto z-20 text-sm text-gray-900
+                                className=" bsolute z-auto rounded-l-lg md:p-2.5 w-[90%] md:w-[100%] mx-auto  text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
                                border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="إبحث عن كلمة او آية"
@@ -48,11 +48,15 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
                                 onChange={onChange}
                                 style={{ textAlign: "right" }}
                             />
-                            {value ? (
-                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 absolute top-[8px] right-[30px] md:right-[10px] z-40' />
+                            <div className="absolute z-14 right-[290px] top-[8px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] lg:right-[195px] lg:top-[10px]">
+                        {/* {value ? (
+                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 ' />
                         ) : (
-                            <FaSearch size={24}  className='text-gray-500 absolute top-[8px] left-[30px] md:left-[10px] z-40' />
-                        )}
+                            <FaSearch size={24}  className='text-gray-500 ' />
+                        )} */}
+                        <FaSearch size={24}  className='  text-gray-500  ' />
+
+                        </div>
                         </div>
 
                         <div
@@ -89,7 +93,7 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
                                         </Link>
                                     ))}
                         </div>
-                        <div className="absolute z-19 top-[80px] left-1/2 -translate-x-1/2">
+                        <div className="absolute z-14 top-[80px] left-1/2 -translate-x-1/2">
                     {checked === 'ar'  ? (
 
                         <div className="">

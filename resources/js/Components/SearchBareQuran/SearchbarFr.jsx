@@ -42,7 +42,7 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
                 x-data="{dropDownOpen: false}"
             >
                 <div class="relative flex flex-col justify-center">
-                    <div className="relative flex flex-row w-full lg:w-[70%] mx-auto ">
+                    <div className=" flex flex-row w-full lg:w-[70%] mx-auto ">
                         <input
                             type="text"
                             className=" block rounded-l-lg p-2.5 w-[90%] md:w-[100%] mx-auto z-20 text-sm text-gray-900
@@ -53,11 +53,15 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
                             onChange={onChange}
                             style={{ textAlign: "left" }}
                         />
-                        {value ? (
-                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 absolute top-[8px] right-[30px] md:right-[10px] z-40' />
+                        <div className="absolute z-14 right-[30px] top-[5px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] lg:right-[195px] lg:top-[10px]">
+                        {/* {value ? (
+                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 ' />
                         ) : (
-                            <FaSearch size={24}  className='text-gray-500 absolute top-[8px] right-[30px] md:right-[10px] z-40' />
-                        )}
+                            <FaSearch size={24}  className='text-gray-500 ' />
+                        )} */}
+                        <FaSearch size={24}  className='  text-gray-500  ' />
+
+                        </div>
                     </div>
 
                     <div className={`${darkMode ? 'bg-darkBg text-lightText' : 'bg-lightBg text-darkText'}  absolute z-20  flex flex-col    max-h-[197px]  overflow-y-scroll rounded-lg top-[43px]    w-[90%] md:w-[100%] lg:w-[70%] transform -translate-x-1/2 left-1/2`}>
@@ -72,7 +76,7 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
                         ))}
                     </div>
 
-                    <div className="absolute z-19 top-[80px] left-1/2 -translate-x-1/2">
+                    <div className="absolute z-14 top-[80px] left-1/2 -translate-x-1/2">
                     {checked === 'fr'  ? (
 
                         <div className="">

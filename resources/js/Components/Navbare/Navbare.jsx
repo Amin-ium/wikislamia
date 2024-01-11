@@ -216,17 +216,17 @@ const Navbare = (children) => {
         <header
             // ref={headerRef}
             id=""
-            className={`relative z-29 w-[95%] mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]  lg:max-w-[90%] lg:h-[80px] py-3 lg:mx-auto`}
+            className={`relative z-29 w-[100%] h-[65px]  md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%] lg:h-[80px]  bg-gray-500 `}
             x-data="{navbarOpen: false}"
         >
             <nav className="z-15 ">
                 {/* Primary menu and logo */}
-                <div className="flex lg:flex-row justify-between sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center ">
+                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[90%] mx-auto lg:mx-auto gap-1">
                     {/* logo */}
                     <div className=" ">
                         <Link href="/" className=" ">
                             <img
-                                className={`w-[180px] h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
+                                className={`w-[180px] h-[65px] min-w-[100px] min-h-[35px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
                                 src={logoLight}
                                 alt=""
                             />
@@ -234,7 +234,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-4  `}
+                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-1  `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -281,9 +281,9 @@ const Navbare = (children) => {
                             )}
                     </div>
 
-                    <div className="flex  flex-row   gap-2 align-middle lg:items-center ">
+                    <div className="flex  flex-row   gap-3 align-middle lg:items-center ">
                         <div className="flex xs:flex items-center gap-10">
-                            <div className=" flex flex-row-reverse gap-3 ">
+                            <div className=" flex flex-row-reverse gap-2 ">
                                 {/* {auth.user ? ( */}
                                 {user ? (
                                     <div   className='relative z-32'>
@@ -344,9 +344,9 @@ const Navbare = (children) => {
                                 {/* </div> */}
                                 {/* ) : ( */}
 
-                                <div className="flex items-center gap-3 text-lightText">
+                                <div className="flex items-center gap-1 text-lightText">
                                     <Link
-                                        className={` loginBtn text-xs border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                        className={` loginBtn text-[10px] border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
                                         href="/register"
                                     >
                                         {check === "eng"
@@ -358,7 +358,7 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                     <Link
-                                        className={` signUpBtn border border-lightText rounded-lg   text-xs  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                        className={` signUpBtn border border-lightText rounded-lg   text-[10px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
                                         href="/login"
                                     >
                                         {check === "eng"
@@ -375,7 +375,7 @@ const Navbare = (children) => {
                         </div>
                         {/* Mobile navigation toggle */}
 
-                        <div className="  flex items-center lg:items-center gap-2 mt-1 ml-3">
+                        <div className="  flex items-center lg:items-center gap-1 mt-1 ml-1">
                             <FaSun
                                 onClick={toggle}
                                 className={`text-yellow-500 h-4 w-4 `}
