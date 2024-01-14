@@ -12,7 +12,7 @@ export const SearchContext = ({ children }) => {
   const parsedCheck = storedCheck || 'eng' || 'ar' || 'fr' ;
 
   // State to hold the language preference
-  const [check, setCheck] = useState(parsedCheck);
+  const [check, setCheck] = useState('eng');
 
   // Update localStorage when 'check' changes
   useEffect(() => {

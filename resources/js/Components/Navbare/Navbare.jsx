@@ -154,7 +154,7 @@ const Navbare = (children) => {
         setCheck(value.value);
     };
 
-    console.log(check);
+
 
     // useEffect(() => {
     //     function activeLinkFunction() {
@@ -390,7 +390,8 @@ const Navbare = (children) => {
                                 myHeight="10px"
                                 myFontSize="12px"
                                 styles={customStyles}
-                                className="relative -mt-1 z-32 "
+                                className="relative -mt-1 z-32"
+
                             />
                         </div>
 
