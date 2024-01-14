@@ -1,46 +1,58 @@
-// app.jsx
-
 import './bootstrap';
 import '../css/app.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { render } from 'react-dom';
 import { createInertiaApp } from '@inertiajs/inertia-react';
 
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { DarkModeContextProvider } from './Context/DarkModeContext';
 import { SearchContext } from './Context/SearchBarContext';
+import { ToggleMenuContextProvider } from './Context/ToggleMenuContext';
+import { ToggleMenuContext } from './Context/ToggleMenuContext';
 
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Wikislamia';
 
-
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const body = window.document.getElementById('body');
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
   resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx')),
   setup({ el, App, props }) {
     // Wrap the Inertia app with DarkModeContextProvider
-    const Component = (
-        <DarkModeContextProvider>
-            <SearchContext>
-            <div className='h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird'>
-        <App {...props} />
-        </div>
-        </SearchContext>
-        </DarkModeContextProvider>
-    );
+    const Component = () => {
+      // Using ToggleMenuContext with useContext hook
 
-    // root.render(
-    //     <div className='h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird'>
-    //         {/* linear-gradient(270deg, #ffb978 0%, #ff922d 100%) */}
-    //         <DarkModeContextProvider>
-    // <App {...props} />
-    // </DarkModeContextProvider>
-    // </div>
-    // );
+
+      return (
+        <ToggleMenuContextProvider>
+          <DarkModeContextProvider>
+            <SearchContext>
+              {/* Move useContext inside the ToggleMenuContextProvider */}
+              <ToggleMenuContext.Consumer>
+              {({ toggleMenu, toggleMenuFun }) => {
+                console.log('toggleMenu:', toggleMenu); // Add this line to log the value
+                if(toggleMenu && window.innerWidth < 1024 ) {
+                    body.style.overflow = "hidden";
+                }else if(toggleMenu && window.innerWidth > 1024) {
+                    body.style.overflow = "hidden";
+                }else{
+                    body.style.overflow = "auto";
+                }
+
+                return (
+                  <div className={` h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird `}>
+                    <App {...props} />
+                  </div>
+                );
+              }}
+              </ToggleMenuContext.Consumer>
+            </SearchContext>
+          </DarkModeContextProvider>
+        </ToggleMenuContextProvider>
+      );
+    };
 
     // Use ReactDOM to render the component
-    render(Component, el);
+    render(<Component />, el);
   },
 });
-
-

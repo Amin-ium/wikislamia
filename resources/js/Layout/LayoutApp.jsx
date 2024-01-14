@@ -14,7 +14,7 @@ const LayoutApp = ({user, children}) => {
   <React.Fragment>
 <div className='homeBg w-full'>
 <Navbare  />
-  <main >
+  <main className=''>
     {children}
   </main>
 

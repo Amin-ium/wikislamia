@@ -9,7 +9,7 @@ const Home = () => {
 
 
     <LayoutApp>
-            <SectionSearchBare className='' />
+            <SectionSearchBare />
 
         </LayoutApp>
 

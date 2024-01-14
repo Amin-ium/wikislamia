@@ -8,12 +8,14 @@ import logoDark from "../../../../public/assets/publicImages/logoDark.svg";
 import Alpine from "alpinejs";
 import Select from "react-select";
 import { DarkModeContext } from "@/Context/DarkModeContext";
+import { ToggleMenuContext } from "@/Context/ToggleMenuContext";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
 const Navbare = (children) => {
-    const [toggleMenu, setToggleMenu] = useState(false);
+    const {toggleMenu, toggleMenuFun} = useContext(ToggleMenuContext);
     const { check, setCheck } = useSearchBarContext();
+    const { toggle, darkMode } = useContext(DarkModeContext);
 
     const [user, setUser] = useState(false);
     // const [isSticky, setIsSticky] = useState(false);
@@ -31,7 +33,7 @@ const Navbare = (children) => {
         console.log(currentCheck);
     }, [currentCheck]);
 
-    const { toggle, darkMode } = useContext(DarkModeContext);
+
 
     const options = [
         { value: "eng", label: "eng" },
@@ -83,7 +85,7 @@ const Navbare = (children) => {
     const normal =
         "font-normal text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded";
 
-    console.log(currentCheck);
+    // console.log(currentCheck);
 
     // const headerRef = useRef(null);
 
@@ -153,6 +155,7 @@ const Navbare = (children) => {
     const updateValue = (value) => {
         setCheck(value.value);
     };
+    // console.log(ToggleMenuContext);
 
 
 
@@ -207,16 +210,16 @@ const Navbare = (children) => {
     }));
 
     const setMobileMenu = () => {
-        setToggleMenu(!toggleMenu);
+        toggleMenuFun()
     };
-    console.log(toggleMenu);
+    // console.log(toggleMenu);
     // const { auth } = usePage().props;
 
     return (
         <header
             // ref={headerRef}
             id=""
-            className={`relative z-29 w-[100%] h-[65px]  md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%] lg:h-[80px]  bg-gray-500 `}
+            className={`relative z-29 w-[100%] h-[65px]  md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%] lg:h-[80px]  border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 `}
             x-data="{navbarOpen: false}"
         >
             <nav className="z-15 ">
@@ -226,7 +229,7 @@ const Navbare = (children) => {
                     <div className=" ">
                         <Link href="/" className=" ">
                             <img
-                                className={`w-[180px] h-[65px] min-w-[100px] min-h-[35px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
+                                className={`w-[180px] h-[65px] min-w-[180px] min-h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px] py-1 `}
                                 src={logoLight}
                                 alt=""
                             />
