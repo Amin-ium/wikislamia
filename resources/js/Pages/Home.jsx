@@ -8,10 +8,10 @@ const Home = () => {
     <>
 
 
-    <LayoutApp>
+    {/* <LayoutApp> */}
             <SectionSearchBare />
 
-        </LayoutApp>
+        {/* </LayoutApp> */}
 
     </>
   )

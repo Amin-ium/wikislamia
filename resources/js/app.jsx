@@ -40,7 +40,7 @@ createInertiaApp({
                 }
 
                 return (
-                  <div className={` h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird `}>
+                  <div className={` h-full  `}>
                     <App {...props} />
                   </div>
                 );

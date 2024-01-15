@@ -31,9 +31,9 @@ body{
     box-sizing: border-box;
 }
 
-.homeBg{
+/* .homeBg{
     background-image: url('../../public/assets/publicImages/coverBg.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
+} */
