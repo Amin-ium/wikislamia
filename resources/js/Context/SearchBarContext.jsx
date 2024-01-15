@@ -21,6 +21,7 @@ export const SearchContext = ({ children }) => {
 
   return (
     <SearchBarContext.Provider value={{ check, setCheck }}>
+
       {children}
     </SearchBarContext.Provider>
   );
