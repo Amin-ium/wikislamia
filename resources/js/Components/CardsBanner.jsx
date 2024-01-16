@@ -12,7 +12,7 @@ const CardsBanner = () => {
             <div className='w-full flex flex-row justify-between xl:w-[90%] xl:mx-auto lg:w-[80%] lg:mx-auto'>
                 <div className='w-1/2 flex flex-col lg:justify-center xl:justify-center mx-auto '>
                     <img src={logoLight} alt="" className={`${check === 'ar' ? '' : ''} w-[90%] h-[90%]   md:w-[50%] md:h-[50%]  lg:w-[70%] lg:h-[70%] lg:ms-[50px] `} />
-                    <h3 className='text-xs md:text-xl text-lightText -mt-[35px] ms-[80px] w-full lg:ms-[190px] lg:-mt-[60px] xl:-mt-[50px] xl:ms-[200px] '>
+                    <h3 className='text-xs md:text-xl text-lightText -mt-[35px] ms-[80px] w-full lg:ms-[190px] lg:-mt-[60px] xl:-mt-[50px] xl:ms-[250px] '>
                         {check === 'eng' ? "Identity&Path Of Life" :
                         check === 'fr' ? "Identité&Chemin De Vie" :
                         check === 'ar' ? "هوية ومسار الحياة" : null}

@@ -237,7 +237,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-1  `}
+                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -245,12 +245,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
-                                            window.location.pathname ===
+                                        className={`
+                                            ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal
-                                        }
+                                                : normal} xl:text-xl
+                                                `}
                                     >
                                         {link.englishLink}
                                     </Link>
@@ -258,12 +258,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
-                                            window.location.pathname ===
+                                        className={`
+                                            ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal
-                                        }
+                                                : normal} xl:text-xl
+                                                `}
                                     >
                                         {link.frenchLink}
                                     </Link>
@@ -271,12 +271,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
-                                            window.location.pathname ===
+                                        className={`
+                                            ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal
-                                        }
+                                                : normal} xl:text-xl
+                                                `}
                                     >
                                         {link.arabicLink}
                                     </Link>
@@ -349,7 +349,7 @@ const Navbare = (children) => {
 
                                 <div className="flex items-center gap-1 text-lightText">
                                     <Link
-                                        className={` loginBtn text-[10px] border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                        className={` loginBtn text-[10px] lg:text-[14px] xl:text-[14px] border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
                                         href="/register"
                                     >
                                         {check === "eng"
@@ -361,7 +361,7 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                     <Link
-                                        className={` signUpBtn border border-lightText rounded-lg   text-[10px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                        className={` signUpBtn border border-lightText rounded-lg   text-[10px] lg:text-[14px]  xl:text-[14px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
                                         href="/login"
                                     >
                                         {check === "eng"
