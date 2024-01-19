@@ -48,12 +48,12 @@ export default {
 
             backgrounds: {
 
-                'bgCover': "url('public/assets/publicImages/coverBg.svg)"
+                'bgCover': "url('public/assets/publicImages/coverBg.svg)",
                 // 'darkBg' : "bg-[linear-gradient(180deg,#FFFFFF_0%,#000000_100%)]  ",
                 // 'contactBg' : "url('https://almaghribalarabi.com/fr/wp-content/uploads/2022/12/islam.jpg')",
                 // 'quranBg' : "url('https://t3.ftcdn.net/jpg/02/73/80/00/240_F_273800094_Brds0M9mVOQNNxB6mFTrpWXaZbB9FWvH.jpg')",
                 // 'aboutBg' : "url('https://almaghribalarabi.com/fr/wp-content/uploads/2022/12/islam.jpg')",
-                // 'hadeetBg' : "url('https://almaghribalarabi.com/fr/wp-content/uploads/2022/12/islam.jpg')",
+                'lightBg' : "",
 
               },
             //   linear-gradient(to right bottom, rgba(0deg,_rgba(198,_198,_198,_0.15)_0%, rgba(198,_198,_198,_0.15)_100%), linear-gradient(90deg,_#0A0D23_0.2%,_#3D1236_43.25%,_#030720_99.79%)

@@ -1,9 +1,12 @@
 import Navbare from '@/Components/Navbare/Navbare'
+import { DarkModeContext } from '@/Context/DarkModeContext'
 import LayoutApp from '@/Layout/LayoutApp'
 import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
-import React from 'react'
+import React, { useContext } from 'react'
 
 const Home = () => {
+
+
   return (
     <>
 

@@ -17,7 +17,7 @@ const Navbare = (children) => {
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
 
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState(true);
     // const [isSticky, setIsSticky] = useState(false);
     const [isDropOpen, setIisDropOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -114,6 +114,7 @@ const Navbare = (children) => {
     };
 
     const customStyles = {
+        menu: provided => ({ ...provided, zIndex: 9999 }),
         control: (provided, state) => ({
             ...provided,
             background: "#fff",
@@ -122,21 +123,25 @@ const Navbare = (children) => {
             minHeight: "20px",
             height: "20px",
             width: "60px",
+
             minWidth: "hi",
             boxShadow: state.isFocused ? null : null,
         }),
+        menuPortal: base => ({ ...base, zIndex: 32 }),
 
         valueContainer: (provided, state) => ({
             ...provided,
             height: "20px",
             padding: "0 6px 6px 6px",
             width: "60px",
+
         }),
 
         input: (provided, state) => ({
             ...provided,
             margin: "-10px",
             width: "60px",
+
         }),
         indicatorSeparator: (state) => ({
             display: "none",
@@ -144,6 +149,7 @@ const Navbare = (children) => {
         indicatorsContainer: (provided, state) => ({
             ...provided,
             height: "20px",
+
         }),
 
         placeholder: (provided, state) => ({
@@ -219,25 +225,25 @@ const Navbare = (children) => {
         <header
             // ref={headerRef}
             id=""
-            className={`relative z-29 w-[100%] h-[65px]  md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%] lg:h-[80px]  border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 `}
+            className={`relative z-31 w-[100%]   md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
             x-data="{navbarOpen: false}"
         >
-            <nav className="z-15 ">
+            <nav className="z-31 ">
                 {/* Primary menu and logo */}
-                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[90%] mx-auto lg:mx-auto gap-1">
+                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[90%] mx-auto lg:mx-auto gap-1  ">
                     {/* logo */}
                     <div className=" ">
                         <Link href="/" className=" ">
                             <img
-                                className={`w-[180px] h-[65px] min-w-[180px] min-h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px] py-1 `}
-                                src={logoLight}
+                                className={`w-[180px] h-[65px] min-w-[180px] min-h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
+                                src={darkMode ? logoLight : logoDark}
                                 alt=""
                             />
                         </Link>
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`  navLinks text-lightText  hidden lg:flex lg:gap-2 gap-1   `}
+                    <div className={`    hidden lg:flex lg:gap-2 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -249,7 +255,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal} xl:text-xl
+                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'} lg:text-lg xl:text-xl
                                                 `}
                                     >
                                         {link.englishLink}
@@ -262,7 +268,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal} xl:text-xl
+                                                : normal}  lg:text-lg xl:text-xl
                                                 `}
                                     >
                                         {link.frenchLink}
@@ -275,7 +281,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal} xl:text-xl
+                                                : normal}  lg:text-lg xl:text-xl
                                                 `}
                                     >
                                         {link.arabicLink}
@@ -346,10 +352,28 @@ const Navbare = (children) => {
 
                                 {/* </div> */}
                                 {/* ) : ( */}
+                                {user ? (
+                                      <div className="flex items-center gap-1 text-white">
 
-                                <div className="flex items-center gap-1 text-lightText">
+                                      <Link
+                                          className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border bg-red-500 border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                          href="/register"
+                                      >
+                                          {check === "eng"
+                                              ? "Logout"
+                                              : check === "ar"
+                                              ? "الخروج"
+                                              : check === "fr"
+                                              ? "Déconnexion"
+                                              : null}
+                                      </Link>
+
+                                  </div>
+                                ) : (
+                                    <div className="flex items-center gap-1  text-lightText">
+
                                     <Link
-                                        className={` loginBtn text-[10px] lg:text-[14px] xl:text-[14px] border border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                        className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border border-lightText  rounded-lg font-medium  hover:opacity-70 px-1`}
                                         href="/register"
                                     >
                                         {check === "eng"
@@ -361,7 +385,7 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                     <Link
-                                        className={` signUpBtn border border-lightText rounded-lg   text-[10px] lg:text-[14px]  xl:text-[14px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                        className={` signUpBtn border border-lightText rounded-lg  text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
                                         href="/login"
                                     >
                                         {check === "eng"
@@ -373,16 +397,27 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                 </div>
+                                )}
+
                                 {/* )} */}
                             </div>
                         </div>
                         {/* Mobile navigation toggle */}
 
-                        <div className="  flex items-center lg:items-center gap-1 mt-1 ml-1">
-                            <FaSun
+                        <div className="  flex items-center lg:items-center gap-3 mt-1 ml-1 ">
+                            {darkMode ? (
+                                <FaSun
                                 onClick={toggle}
                                 className={`text-yellow-500 h-4 w-4 `}
                             />
+                            ) : (
+                                <FaMoon
+                                onClick={toggle}
+                                className={`text-darkText h-4 w-4 `}
+                            />
+                            )}
+
+                            <div className=" ">
                             <Select
                                 defaultValue={{
                                     value: currentCheck,
@@ -395,7 +430,10 @@ const Navbare = (children) => {
                                 styles={customStyles}
                                 className="relative -mt-1 z-32"
 
+
                             />
+                            </div>
+
                         </div>
 
                         <div className="text-lightText lg:hidden flex items-center">
@@ -412,23 +450,23 @@ const Navbare = (children) => {
 
                 {/* mobile navigation */}
                 <div
-                    className={`fixed z-30 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
+                    className={`fixed z-30 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700 mt-3
                     ${!toggleMenu ? "h-0" : "h-screen"}`}
                 >
-                    <div className="px-8 pt-5">
-                        <div className="flex flex-col gap-8 font-bold text-center tracking-wider">
+                    <div className=" ">
+                        <div className="flex flex-col  font-bold text-center tracking-wider">
                         {links &&
                             links.map((link, i) =>
                                 check === "eng" ? (
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
+                                        className={`${
                                             window.location.pathname ===
                                             link.href
                                                 ? active
                                                 : normal
-                                        }
+                                        } border-b-0  py-5`}
                                     >
                                         {link.englishLink}
                                     </Link>
@@ -436,12 +474,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
+                                        className={`${
                                             window.location.pathname ===
                                             link.href
                                                 ? active
                                                 : normal
-                                        }
+                                        } border-b-0  py-5`}
                                     >
                                         {link.frenchLink}
                                     </Link>
@@ -449,12 +487,12 @@ const Navbare = (children) => {
                                     <Link
                                         id="link"
                                         href={link.href}
-                                        className={
+                                        className={`${
                                             window.location.pathname ===
                                             link.href
                                                 ? active
                                                 : normal
-                                        }
+                                        } border-b-0  py-5`}
                                     >
                                         {link.arabicLink}
                                     </Link>
