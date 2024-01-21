@@ -45,6 +45,10 @@ export default {
                 quranTextFont:["Marhey", "sans-serif"],
 
             },
+            fontSize: {
+                clamp: "clamp(1rem, 1.5rem, 2rem)",
+
+            },
 
             backgrounds: {
 
