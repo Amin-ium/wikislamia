@@ -17,7 +17,8 @@ const SectionSearchBare = () => {
 console.log(check);
   return (
     <>
-        <div className='w-[100%]  h-auto pb-[100px] '>
+    <div className='w-[100%] h-auto homeBg '>
+        <div className='w-[100%]   pb-[100px] '>
        <div className=' relative z-9 w-[90%]  mx-auto flex flex-col justify-center  pt-[140px] lg:pt-[10px] '>
         <img className={`${darkMode ? "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] lg:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px] lg:-mt-0 mx-auto"
         : "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] xl:w-[500px] lg:h-[200px] xl:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px]  lg:-mt-0 mx-auto"} `}
@@ -26,6 +27,7 @@ console.log(check);
         {check === 'ar' ? <SearchbarAr /> : check === 'eng' ? <SearchbarEng /> : check === 'fr' ? <Searchbarfr /> : null}
 
         <CardsBanner />
+        </div>
         </div>
         </div>
     </>

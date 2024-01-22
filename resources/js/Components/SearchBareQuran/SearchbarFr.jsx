@@ -42,26 +42,20 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
                 x-data="{dropDownOpen: false}"
             >
                 <div class="relative flex flex-col justify-center">
-                    <div className=" flex flex-row w-full lg:w-[70%] mx-auto ">
-                        <input
+                <div className="relative h-[45px] w-[100%] sm:h-[45px] sm:w-[100%] md:h-[45px] md:w-[100%] lg:h-[45px]  xl:h-[45px] max-w-[750px] sm:max-w-[750px] md:max-w-[750px] lg:max-w-[850px] xl:max-w-[850px] lg:w-[100%] xl:w-[100%] mx-auto">
+                    <input
                             type="text"
-                            className=" block rounded-l-lg p-2.5 w-[90%] md:w-[100%] mx-auto z-20 text-sm text-gray-900
+                            className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[100%] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-xl placeholder:text-lightText "
                             placeholder="Chercher avec Mot ou Verset"
                             value={value}
                             onChange={onChange}
                             style={{ textAlign: "left" }}
                         />
-                        <div className="absolute z-14 right-[30px] top-[5px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] lg:right-[195px] lg:top-[10px]">
-                        {/* {value ? (
-                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 ' />
-                        ) : (
-                            <FaSearch size={24}  className='text-gray-500 ' />
-                        )} */}
-                        <FaSearch size={24}  className='  text-gray-500  ' />
-
-                        </div>
+                        <span class="absolute right-[10px] top-[10px] sm:right-[10px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px] flex md:items-center  lg:items-center xl:items-center md:justify-center lg:justify-center xl:justify-center text-gray-100  ">
+                                <FaSearch size={28}  className='  text-gray-100  z-14 ' />
+                            </span>
                     </div>
 
                     <div className={`${darkMode ? 'bg-darkBg text-lightText' : 'bg-lightBg text-darkText'}  absolute z-20  flex flex-col    max-h-[197px]  overflow-y-scroll rounded-lg top-[43px]    w-[90%] md:w-[100%] lg:w-[70%] transform -translate-x-1/2 left-1/2`}>

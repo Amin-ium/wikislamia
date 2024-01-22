@@ -12,7 +12,7 @@ const LayoutApp = ({user, children}) => {
 
   return (
   <React.Fragment>
-<div className='homeBg w-full overflow-y-hidden'>
+<div className=' w-full overflow-y-hidden'>
 <Navbare  />
   <main className='overflow-y-hidden'>
     {children}

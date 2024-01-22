@@ -64,15 +64,21 @@ export default {
 
             colors: {
                 // darkBg: "#222831",
-                navTextDark: "#282828",
+                navTextDark: "#00081F",
                 navTextLight: "#F1F1F1",
+                titleTextDark: "#00081F",
+                titleTextLight: "#F1F1F1",
+                subTitleTextDark: "#484848",
+                subTitleTextLight: "#cecece",
+
+
 
                 grayBg: "#393e46",
                 orangeBg: "#FF8C00",
                 lightBg: "#f2f2f2",
                 bodyColor: "#212428",
                 lightText: "#c4cfde",
-                darkText: "#393e46",
+                darkText: "#00081F",
                 boxBg: "linear-gradient(145deg, #1e2024, #23272b)",
                 designColor: "#FF8C00",
                 primary: "#1f3e72",

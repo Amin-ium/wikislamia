@@ -228,9 +228,9 @@ const Navbare = (children) => {
             className={`relative z-31 w-[100%]   md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
             x-data="{navbarOpen: false}"
         >
-            <nav className="z-31 ">
+            <nav className=" z-31 ">
                 {/* Primary menu and logo */}
-                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[90%] mx-auto lg:mx-auto gap-1  ">
+                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[95%] mx-auto lg:mx-auto gap-1  ">
                     {/* logo */}
                     <div className=" ">
                         <Link href="/" className=" ">
@@ -243,7 +243,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`    hidden lg:flex lg:gap-2 gap-1   `}
+                    <div className={`    hidden lg:flex lg:gap-2 md:gap-1 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -268,7 +268,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal}  lg:text-lg xl:text-xl
+                                                : normal}  ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}  lg:text-lg xl:text-xl
                                                 `}
                                     >
                                         {link.frenchLink}
@@ -281,7 +281,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal}  lg:text-lg xl:text-xl
+                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}   lg:text-lg xl:text-xl
                                                 `}
                                     >
                                         {link.arabicLink}
@@ -290,7 +290,7 @@ const Navbare = (children) => {
                             )}
                     </div>
 
-                    <div className="flex  flex-row   gap-3 align-middle lg:items-center ">
+                    <div className="flex  flex-row   gap-2 align-middle lg:items-center ">
                         <div className="flex xs:flex items-center gap-10">
                             <div className=" flex flex-row-reverse gap-2 ">
                                 {/* {auth.user ? ( */}
@@ -413,7 +413,7 @@ const Navbare = (children) => {
                             ) : (
                                 <FaMoon
                                 onClick={toggle}
-                                className={`text-darkText h-4 w-4 `}
+                                className={`text-navTextDark h-4 w-4 `}
                             />
                             )}
 
@@ -441,7 +441,7 @@ const Navbare = (children) => {
                                 className={` menuBtn`}
                                 onClick={setMobileMenu}
                             >
-                                <FaAlignJustify className=" h-5 w-5" />
+                                <FaAlignJustify className={`${darkMode ? "text-navTextLight" : "text-navTextDark"} h-5 w-5`} />
                             </button>
                         </div>
                     </div>

@@ -37,26 +37,20 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
             <DarkModeContextProvider>
                 <form className=" " x-data="{dropDownOpen: false}">
                     <div class="relative flex flex-col justify-center ">
-                        <div className=" flex flex-row w-full lg:w-[70%] mx-auto">
-                            <input
-                                type="text"
-                                className=" bsolute z-auto rounded-l-lg md:p-2.5 w-[90%] md:w-[100%] mx-auto  text-sm text-gray-900
+                    <div className="relative h-[45px] w-[100%] sm:h-[45px] sm:w-[100%] md:h-[45px] md:w-[100%] lg:h-[45px]  xl:h-[45px] max-w-[750px] sm:max-w-[750px] md:max-w-[750px] lg:max-w-[850px] xl:max-w-[850px] lg:w-[100%] xl:w-[100%] mx-auto">
+                    <input
+                            type="text"
+                            className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[100%] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-xl placeholder:text-lightText "
                                 placeholder="إبحث عن كلمة او آية"
                                 value={value}
                                 onChange={onChange}
                                 style={{ textAlign: "right" }}
                             />
-                            <div className="absolute z-14 right-[290px] top-[8px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] lg:right-[195px] lg:top-[10px]">
-                        {/* {value ? (
-                             <FaTimes size={24} onClick={() => setValue('')} className='text-gray-500 ' />
-                        ) : (
-                            <FaSearch size={24}  className='text-gray-500 ' />
-                        )} */}
-                        <FaSearch size={24}  className='  text-gray-500  ' />
-
-                        </div>
+                            <span class="absolute right-[10px] top-[10px] sm:left-[10px] sm:top-[10px] md:left-[10px] md:top-[10px] lg:left-[10px] lg:top-[10px] xl:left-[10px] xl:top-[10px] flex   text-gray-100  ">
+                                <FaSearch size={28}  className='  text-gray-100  z-14 ' />
+                            </span>
                         </div>
 
                         <div
