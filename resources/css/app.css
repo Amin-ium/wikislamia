@@ -35,6 +35,10 @@ body{
     background: #f5e1fa; background-image: radial-gradient(at 21.0% 42.0%, #fcfdff 0px, transparent 50%),radial-gradient(at 5.0% 47.0%, #c4e7f5 0px, transparent 50%),radial-gradient(at 5.0% 86.0%, #fffffc 0px, transparent 50%),radial-gradient(at 76.0% 45.0%, #e6fae3 0px, transparent 50%),radial-gradient(at 73.0% 7.0%, #f7e7e6 0px, transparent 50%)
 }
 
+.bgGradient{
+    background: linear-gradient(180deg, rgba(54, 54, 54, 0.00) 0%, rgba(54, 54, 54, 0.53) 22.92%, #363636 100%);
+}
+
 .homeBg{
     background-image: url('../../public/assets/publicImages/coverBg.svg');
     background-size: cover;

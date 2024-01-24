@@ -23,10 +23,11 @@ const SectionBlogs = () => {
 console.log(check);
   return (
     <>
-        <div className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[80%] mx-auto  h-auto   pt-[50px] `}>
+        <div className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
+            <div className='w-[90%] xl:w-[80%] mx-auto'>
             <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting" />
-            <img src={illustration1} alt="" className='absolute z-8 -right-[70px] top-5' />
-            <div className='relative grid grid-cols-4 gap-8 mt-10 z-10'>
+            <img src={illustration1} alt="" className='absolute z-8 -right-[30px] top-[70px]  xl:right-[80px] xl:top-[70px]' />
+            <div className='relative grid grid-cols-1  xl:grid-cols-4 gap-8 mt-10 z-10'>
                 <PostCard username="Admin" src={user} title="What Is Islam" />
                 <PostCard username="Admin" src={user} title="What Is Islam"  />
                 <PostCard username="Admin" src={user} title="What Is Islam"  />
@@ -36,7 +37,9 @@ console.log(check);
                 <PostCard username="Admin" src={user} title="What Is Islam"  />
                 <PostCard username="Admin" src={user} title="What Is Islam"  />
             </div>
-            <img src={illustration2} alt="" className='absolute bottom-0 -left-[120px]z-8' />
+            <img src={illustration2} alt="" className='absolute -bottom-[150px] xl:-bottom-[150px] -left-[50px]  xl:left-0 z-8' />
+            </div>
+
 
 
 

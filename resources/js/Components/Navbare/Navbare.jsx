@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import Dropdown from "@/Components/Dropdown";
 import { FaMoon, FaSun, FaAlignJustify } from "react-icons/fa";
@@ -29,9 +29,9 @@ const Navbare = (children) => {
     const [activeLink, setActiveLink] = useState("");
     const [currentCheck, setCurrentCheck] = useState(check);
 
-    useEffect(() => {
-        console.log(currentCheck);
-    }, [currentCheck]);
+    // useEffect(() => {
+    //     setCurrentCheck(check)
+    // }, [check]);
 
 
 
@@ -112,6 +112,17 @@ const Navbare = (children) => {
             setIisDropOpen(false);
         }
     };
+
+    const defaultValues = useMemo(() => {
+        if(check === 'ar')
+            return 'ar' // update pointer
+        else if(check === 'fr')
+            return 'fr' // update pointer
+        else if(check === 'eng')
+            return 'eng' // update pointer
+        else return 'eng'
+
+     }, [check])
 
     const customStyles = {
         menu: provided => ({ ...provided, zIndex: 9999 }),
@@ -225,7 +236,7 @@ const Navbare = (children) => {
         <header
             // ref={headerRef}
             id=""
-            className={`relative z-31 w-[100%]   md:w-[100%] lg:w-[100%] xl:w-[100%]  lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
+            className={`${darkMode ? "bg-[#291336]" : "bg-[#EDD7ED]"} relative z-31 w-[100%]    md:w-[100%] lg:w-[100%] xl:w-[100%]   lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
             x-data="{navbarOpen: false}"
         >
             <nav className=" z-31 ">
@@ -419,9 +430,15 @@ const Navbare = (children) => {
 
                             <div className=" ">
                             <Select
+
+                                // defaultValue={{
+
+                                //     label: check === 'ar' ? 'ar' : check === 'fr' ? 'fr' : check === 'eng' ? 'eng' : check,
+                                //     value: check === 'ar' ? 'ar' : check === 'fr' ? 'fr' : check === 'eng' ? 'eng' : check
+                                // }}
                                 defaultValue={{
-                                    value: currentCheck,
-                                    label: currentCheck,
+                                    label: defaultValues,
+                                    value: defaultValues
                                 }}
                                 onChange={updateValue}
                                 options={options}

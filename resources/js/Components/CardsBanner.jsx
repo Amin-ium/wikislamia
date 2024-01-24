@@ -17,9 +17,9 @@ const CardsBanner = () => {
   return (
     <>
         <div className=' flex flex-col w-[90%] mx-auto '>
-            <div className='w-full flex flex-row  xl:w-[80%]  lg:w-[80%] lg:mx-auto   mt-[50px] '>
+            <div className='w-full flex flex-row  xl:w-[90%]  lg:w-[80%] lg:mx-auto   mt-[50px] '>
                 <div className='w-1/2 flex xl:flex-col '>
-                    <div className='w-full xl:w-full flex   mx-auto '>
+                    <div className='w-full xl:w-full flex   mx-auto  '>
                     <img src={check === 'eng' && darkMode ? lightLogoEnglish :
                         check === 'fr' && darkMode ? lightLogoFrench :
                         check === 'ar' && darkMode ? lightLogoArabic :
