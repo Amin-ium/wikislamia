@@ -17,7 +17,7 @@ const Navbare = (children) => {
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
 
-    const [user, setUser] = useState(true);
+    // const [user, setUser] = useState(true);
     // const [isSticky, setIsSticky] = useState(false);
     const [isDropOpen, setIisDropOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -34,6 +34,9 @@ const Navbare = (children) => {
     // }, [check]);
 
 
+    const { auth } = usePage().props
+
+    console.log(auth);
 
     const options = [
         { value: "eng", label: "eng" },
@@ -229,7 +232,7 @@ const Navbare = (children) => {
     const setMobileMenu = () => {
         toggleMenuFun()
     };
-    // console.log(toggleMenu);
+
     // const { auth } = usePage().props;
 
     return (
@@ -305,7 +308,7 @@ const Navbare = (children) => {
                         <div className="flex xs:flex items-center gap-10">
                             <div className=" flex flex-row-reverse gap-2 ">
                                 {/* {auth.user ? ( */}
-                                {user ? (
+                                {auth.user ? (
                                     <div   className='relative z-32'>
                                     <Dropdown>
                                         <Dropdown.Trigger>
@@ -363,7 +366,7 @@ const Navbare = (children) => {
 
                                 {/* </div> */}
                                 {/* ) : ( */}
-                                {user ? (
+                                {auth.user ? (
                                       <div className="flex items-center gap-1 text-white">
 
                                       <Link

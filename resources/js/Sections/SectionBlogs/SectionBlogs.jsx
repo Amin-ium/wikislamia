@@ -14,8 +14,9 @@ import { DarkModeContext } from '@/Context/DarkModeContext'
 import lightHeading from '../../../../public/assets/publicImages/gg-removebg-preview.png'
 import SectionTitle from '@/Components/SectionTitle'
 import PostCard from '@/Components/PostCard/PostCard'
+import Pagination from '@/Components/Pagination'
 
-const SectionBlogs = () => {
+const SectionBlogs = ({posts, user}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
@@ -27,16 +28,10 @@ console.log(check);
             <div className='w-[90%] xl:w-[80%] mx-auto'>
             <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting" />
             <img src={illustration1} alt="" className='absolute z-8 -right-[30px] top-[70px]  xl:right-[80px] xl:top-[70px]' />
-            <div className='relative grid grid-cols-1  xl:grid-cols-4 gap-8 mt-10 z-10'>
-                <PostCard username="Admin" src={user} title="What Is Islam" />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-                <PostCard username="Admin" src={user} title="What Is Islam"  />
-            </div>
+
+                <Pagination posts={posts} user={user} />
+
+
             <img src={illustration2} alt="" className='absolute -bottom-[150px] xl:-bottom-[150px] -left-[50px]  xl:left-0 z-8' />
             </div>
 

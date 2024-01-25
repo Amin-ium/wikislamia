@@ -5,7 +5,7 @@ import SectionBlogs from '@/Sections/SectionBlogs/SectionBlogs'
 import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
 import React, { useContext } from 'react'
 
-const Home = () => {
+const Home = ({posts, user}) => {
 
 
   return (
@@ -14,7 +14,7 @@ const Home = () => {
 
     <LayoutApp>
             <SectionSearchBare />
-            <SectionBlogs />
+            <SectionBlogs posts={posts} user={user} />
 
 
         </LayoutApp>
