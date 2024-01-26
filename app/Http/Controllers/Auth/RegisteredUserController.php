@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('AuthFolder/RegisterPage');
     }
 
     /**
@@ -41,7 +41,10 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'imagePath' => 'images/default.jpg',
         ]);
+
+        $user->image_user()->create(['imagePath' => '/images/default.jpg']);
 
         event(new Registered($user));
 

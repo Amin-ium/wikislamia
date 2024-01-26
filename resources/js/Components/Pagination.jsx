@@ -13,9 +13,9 @@ export default function Pagination({ href, active, children,  posts }) {
 
     const [data, setData] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [itemsPerPage, setItemsPerPage] = useState(3)
-    const [pageNumberLimit, setPageNumberLimit] = useState(3)
-    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3)
+    const [itemsPerPage, setItemsPerPage] = useState(8)
+    const [pageNumberLimit, setPageNumberLimit] = useState(8)
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(8)
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
 
@@ -56,14 +56,16 @@ export default function Pagination({ href, active, children,  posts }) {
     }
 
     const handleLoadMore = () => {
-        setItemsPerPage(itemsPerPage + 3)
+        setItemsPerPage(itemsPerPage + 8)
 
     }
 
     const handleLoad = () => {
-        setItemsPerPage(itemsPerPage - 3)
+        setItemsPerPage(itemsPerPage - 8)
 
     }
+
+    console.log(itemsPerPage);
 
 
     const renderPageNumber =  pages.map((number) => {
@@ -87,15 +89,13 @@ export default function Pagination({ href, active, children,  posts }) {
         }
     })
 
-    posts.map((post,i) => {
-        console.log(post.imagePath);
-    })
+
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
-    console.log(darkMode,'', indexOfLastItem === 6);
+
 
 
     useEffect(() => {
@@ -117,16 +117,16 @@ export default function Pagination({ href, active, children,  posts }) {
         if(pages.length > maxPageNumberLimit) {
             setPageIncrementBtn(<li className='bg-gray-300 rounded text-gray-600 px-2 cursor-pointer' onClick={handlePrevBtn}>&hellip;</li>)
         }
-    })
+    },[])
 
-console.log(posts);
+
     const renderData = (data) => {
     //    console.log(data.map(post => Object.values(post.tags).map(tag => tag).map(tg => tg.name)));
        return (
         <DarkModeContextProvider>
         <div className='flex flex-col'>
             <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-            {posts.map((post) => {
+            {data.map((post) => {
                 console.log(post.user.imagePath);
                 return (
                     <PostCard
@@ -151,10 +151,10 @@ console.log(posts);
             <ul className='flex flex-row justify-center gap-3 items-center my-3'>
                 <li>
                     <button onClick={handlePrevBtn} disabled={currentPage == pages[0] ? true : false} className={`${
-                        indexOfLastItem === 6 && darkMode ? "text-gray-700 "  :
-                        indexOfLastItem === 6 && !darkMode ? "  text-gray-300" :
-                        indexOfLastItem !== 6 && darkMode ? "text-lightText "  :
-                        indexOfLastItem !== 6 && !darkMode ? "  text-darkText" :
+                        indexOfLastItem === 8 && darkMode ? "text-gray-700 "  :
+                        indexOfLastItem === 8 && !darkMode ? "  text-gray-300" :
+                        indexOfLastItem !== 8 && darkMode ? "text-lightText "  :
+                        indexOfLastItem !== 8 && !darkMode ? "  text-darkText" :
                         ""} rounded-md p-1 bold `}>Prev</button>
                 </li>
                 {/* {pageIncrementBtn && pageIncrementBtn} */}
@@ -183,13 +183,13 @@ console.log(posts);
                 ""
                 } rounded-md p-1 mb-3`}>Load More</button>
             <button onClick={handleLoad} disabled={indexOfLastItem === 6 ? true : false} className={`${
-                indexOfLastItem === 6 && darkMode ?
+                indexOfLastItem === 8 && darkMode ?
                  "bg-gray-300 text-darkText" :
-                 indexOfLastItem === 6 && !darkMode ?
+                 indexOfLastItem === 8 && !darkMode ?
                  "bg-darkBg text-lightText" :
-                 indexOfLastItem !== 6 && darkMode ?
+                 indexOfLastItem !== 8 && darkMode ?
                  "bg-orangeBg text-darkText" :
-                 indexOfLastItem !== 6 && !darkMode ?
+                 indexOfLastItem !== 8 && !darkMode ?
                  "bg-orangeBg text-darkText" :
                   ""} rounded-md p-1 mb-3`}>Load Less</button>
             </div>

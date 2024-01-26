@@ -29,7 +29,7 @@ class HomeController extends Controller
         // $user = Auth::user();
         $posts = Post::with('user', 'category', 'tags')->get();
         // $accordion = Accordion::get();
-        // $quiz = Quiz::get();
+        $quiz = Quiz::get();
 
         // $verses = [];
 
@@ -52,7 +52,7 @@ class HomeController extends Controller
             // 'accordion' => $accordion,
             // Pass the retrieved Surahs to the view
             // 'verses' => $verses,
-            // 'quiz' => $quiz
+            'quiz' => $quiz
         ]);
     }
 
