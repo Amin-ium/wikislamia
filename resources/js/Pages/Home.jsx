@@ -5,6 +5,7 @@ import SectionBlogs from '@/Sections/SectionBlogs/SectionBlogs'
 import SectionBrands from '@/Sections/SectionBrands/SectionBrands'
 import SectionFaq from '@/Sections/SectionFaq/SectionFaq'
 import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
+import SectionStatistics from '@/Sections/SectionStatistics/SectionStatistics'
 import SectionTestmonial from '@/Sections/SectionTestmonial/SectionTestmonial'
 import React, { useContext } from 'react'
 
@@ -21,6 +22,7 @@ console.log(quiz);
             <SectionFaq quiz={quiz} />
             <SectionBrands />
             <SectionTestmonial />
+            <SectionStatistics />
 
 
 

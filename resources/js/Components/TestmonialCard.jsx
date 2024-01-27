@@ -6,7 +6,7 @@ import test from '../../../public/assets/publicImages/testimonialTwo.png'
 
 const TestmonialCard = ({src, alt, name, job, text}) => {
   return (
-    <div className='w-[310px] h-[340px] bg-[#434343] p-5 flex flex-col  gap-10 rounded-3xl text-lightText '>
+    <div className='w-[310px] h-[340px] bg-[#434343] p-5 flex flex-col  gap-10 rounded-3xl text-lightText relative z-10'>
         <div className='flex flex-col gap-3 mt-3'>
         <FaQuoteLeft size={44} />
             <p>{text}</p>

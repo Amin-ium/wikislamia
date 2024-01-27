@@ -25,8 +25,9 @@ console.log(check);
   return (
     <>
         <div className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
-            <div className='w-[90%] xl:w-[80%] mx-auto'>
-            <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting" />
+        <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
+            <div className='w-[90%] xl:w-[80%] mx-auto mt-5'>
+
             <img src={illustration1} alt="" className='absolute z-8 -right-[30px] top-[70px]  xl:right-[80px] xl:top-[70px]' />
 
                 <Pagination posts={posts} user={user} />

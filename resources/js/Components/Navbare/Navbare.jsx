@@ -249,7 +249,7 @@ const Navbare = (children) => {
                     <div className=" ">
                         <Link href="/" className=" ">
                             <img
-                                className={`w-[180px] h-[65px] min-w-[180px] min-h-[65px]  xs:w-[180px] xs:h-[65px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[250px] xl:h-[80px]  `}
+                                className={`w-[150px] h-[45px] min-w-[150px] min-h-[45px]  xs:w-[150px] xs:h-[45px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[200px] xl:h-[60px]  `}
                                 src={darkMode ? logoLight : logoDark}
                                 alt=""
                             />
@@ -269,7 +269,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'} lg:text-lg xl:text-xl
+                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'} lg:text-lg xl:text-[16px]
                                                 `}
                                     >
                                         {link.englishLink}
@@ -282,7 +282,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal}  ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}  lg:text-lg xl:text-xl
+                                                : normal}  ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}  lg:text-lg xl:text-[16px]
                                                 `}
                                     >
                                         {link.frenchLink}
@@ -295,7 +295,7 @@ const Navbare = (children) => {
                                             ${window.location.pathname ===
                                             link.href
                                                 ? active
-                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}   lg:text-lg xl:text-xl
+                                                : normal} ${darkMode ? 'text-navTextLight' : 'text-navTextDark'}   lg:text-lg xl:text-[16px]
                                                 `}
                                     >
                                         {link.arabicLink}
@@ -387,7 +387,7 @@ const Navbare = (children) => {
                                     <div className="flex items-center gap-1  text-lightText">
 
                                     <Link
-                                        className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border border-lightText  rounded-lg font-medium  hover:opacity-70 px-1`}
+                                        className={`${darkMode ? "border border-lightText text-lightText " : "border border-darkText text-darkText"} loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px]  rounded-lg font-medium  hover:opacity-70 px-1`}
                                         href="/register"
                                     >
                                         {check === "eng"
@@ -399,7 +399,7 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                     <Link
-                                        className={` signUpBtn border border-lightText rounded-lg  text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                        className={`${darkMode ? "border border-lightText text-lightText " : "border border-darkText text-darkText"} signUpBtn border  rounded-lg  text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
                                         href="/login"
                                     >
                                         {check === "eng"
