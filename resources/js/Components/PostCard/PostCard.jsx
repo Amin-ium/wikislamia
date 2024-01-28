@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react'
 
 const PostCard = ({title, description, name, created_at, userSrc, category,tags, id, categoryId, tagId, darkMode, postImgSrc}) => {
   return (
-    <div className='relative w-[100%] xl:w-[100%] hover:scale-110 duration-300 group'>
+    <div className='relative w-[100%] xl:w-[100%] hover:scale-110 duration-300 group z-10'>
         <img src={postImgSrc} alt="" className='w-[100%] xl:w-[100%] xl:h-[300px] rounded-2xl shadow-[0_10px_20px_rgba(240,_46,_170,_0.7)] ' />
         <div className='flex flex-row gap-1 absolute top-[10px] left-[10px] items-center  group-hover:z-20 '>
             <img src={userSrc} alt="" className='w-[50px] h-[50px] rounded-[50%] relative group-hover:z-20 ' />

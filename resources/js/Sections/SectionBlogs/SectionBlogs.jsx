@@ -15,16 +15,18 @@ import lightHeading from '../../../../public/assets/publicImages/gg-removebg-pre
 import SectionTitle from '@/Components/SectionTitle'
 import PostCard from '@/Components/PostCard/PostCard'
 import Pagination from '@/Components/Pagination'
+import { useScrollContext } from '@/Context/ScrollContext'
 
-const SectionBlogs = ({posts, user}) => {
+const SectionBlogs = ({posts, user, sectionId}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
+    const { currentSection } = useScrollContext();
 
 console.log(check);
   return (
     <>
-        <div className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
+        <section id={`section${sectionId}`} className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
         <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
             <div className='w-[90%] xl:w-[80%] mx-auto mt-5'>
 
@@ -33,13 +35,13 @@ console.log(check);
                 <Pagination posts={posts} user={user} />
 
 
-            <img src={illustration2} alt="" className='absolute -bottom-[150px] xl:-bottom-[150px] -left-[50px]  xl:left-0 z-8' />
+            <img src={illustration2} alt="" className='absolute z-8 -bottom-[150px] xl:-bottom-[150px] -left-[50px]  xl:left-0 ' />
             </div>
 
 
 
 
-        </div>
+        </section>
     </>
   )
 }

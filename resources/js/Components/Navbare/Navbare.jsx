@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import Dropdown from "@/Components/Dropdown";
-import { FaMoon, FaSun, FaAlignJustify } from "react-icons/fa";
+import { FaMoon, FaSun, FaAlignJustify, FaArrowCircleUp, FaArrowCircleDown  } from "react-icons/fa";
 // import logoLight from "../../../../public/assets/publicImages/logoLight.png";
 import logoLight from "../../../../public/assets/publicImages/logoLight.svg";
 import logoDark from "../../../../public/assets/publicImages/logoDark.svg";
@@ -10,6 +10,7 @@ import Select from "react-select";
 import { DarkModeContext } from "@/Context/DarkModeContext";
 import { ToggleMenuContext } from "@/Context/ToggleMenuContext";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
+import { useScrollContext } from "@/Context/ScrollContext";
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
 const Navbare = (children) => {
@@ -35,6 +36,32 @@ const Navbare = (children) => {
 
 
     const { auth } = usePage().props
+
+    const { scrollToSection, currentSection } = useScrollContext();
+  const [isTopArrowVisible, setIsTopArrowVisible] = useState(false);
+  const [isBottomArrowVisible, setIsBottomArrowVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionElement = document.getElementById(`section${currentSection}`);
+      if (sectionElement) {
+        const sectionTop = sectionElement.offsetTop;
+        const sectionHeight = sectionElement.offsetHeight;
+        const scrollY = window.scrollY;
+
+        setIsTopArrowVisible(scrollY > sectionTop);
+        setIsBottomArrowVisible(scrollY + window.innerHeight < sectionTop + sectionHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentSection]);
+
 
     console.log(auth);
 
@@ -229,6 +256,10 @@ const Navbare = (children) => {
         handleClick,
     }));
 
+
+
+
+
     const setMobileMenu = () => {
         toggleMenuFun()
     };
@@ -418,18 +449,8 @@ const Navbare = (children) => {
                         </div>
                         {/* Mobile navigation toggle */}
 
-                        <div className="  flex items-center lg:items-center gap-3 mt-1 ml-1 ">
-                            {darkMode ? (
-                                <FaSun
-                                onClick={toggle}
-                                className={`text-yellow-500 h-4 w-4 `}
-                            />
-                            ) : (
-                                <FaMoon
-                                onClick={toggle}
-                                className={`text-navTextDark h-4 w-4 `}
-                            />
-                            )}
+                        <div className="  flex flex-row items-center lg:items-center xl:items-center xl:align-middle gap-3 mt-1 ml-1 ">
+
 
                             <div className=" ">
                             <Select
@@ -454,9 +475,7 @@ const Navbare = (children) => {
                             />
                             </div>
 
-                        </div>
-
-                        <div className="text-lightText lg:hidden flex items-center">
+                            <div className="text-lightText lg:hidden flex items-center">
                             <button
                                 className={` menuBtn`}
                                 onClick={setMobileMenu}
@@ -464,6 +483,31 @@ const Navbare = (children) => {
                                 <FaAlignJustify className={`${darkMode ? "text-navTextLight" : "text-navTextDark"} h-5 w-5`} />
                             </button>
                         </div>
+
+                            <div className="-mt-1 fixed bottom-[40px] right-[20px] flex flex-row gap-3 items-center z-10">
+                            {isTopArrowVisible &&  <FaArrowCircleUp onClick={() => scrollToSection('up')} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>}
+                            {isBottomArrowVisible &&  <FaArrowCircleDown onClick={() => scrollToSection('down')} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>}
+
+
+
+                            {darkMode ? (
+                                <FaSun
+                                onClick={toggle}
+                                className={`text-yellow-500 h-7 w-7 `}
+                            />
+                            ) : (
+                                <FaMoon
+                                onClick={toggle}
+                                className={`text-navTextDark h-7 w-7 `}
+                            />
+                            )}
+                            </div>
+
+
+
+                        </div>
+
+
                     </div>
                 </div>
                 {/* secondary */}

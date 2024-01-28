@@ -1,5 +1,6 @@
 import Navbare from '@/Components/Navbare/Navbare'
 import { DarkModeContext } from '@/Context/DarkModeContext'
+import { ScrollProvider } from '@/Context/ScrollContext'
 import LayoutApp from '@/Layout/LayoutApp'
 import SectionBlogs from '@/Sections/SectionBlogs/SectionBlogs'
 import SectionBrands from '@/Sections/SectionBrands/SectionBrands'
@@ -15,19 +16,20 @@ console.log(quiz);
   return (
     <>
 
-
+<ScrollProvider>
     <LayoutApp>
-            <SectionSearchBare />
-            <SectionBlogs posts={posts} user={user} />
-            <SectionFaq quiz={quiz} />
-            <SectionBrands />
-            <SectionTestmonial />
-            <SectionStatistics />
+            <SectionSearchBare sectionId={1} />
+            <SectionBlogs sectionId={2} posts={posts} user={user} />
+            <SectionFaq sectionId={3} quiz={quiz} />
+            <SectionBrands sectionId={4} />
+            <SectionTestmonial sectionId={5} />
+            <SectionStatistics sectionId={6} />
 
 
 
 
         </LayoutApp>
+        </ScrollProvider>
 
     </>
   )

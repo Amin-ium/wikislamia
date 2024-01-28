@@ -125,7 +125,7 @@ export default function Pagination({ href, active, children,  posts }) {
        return (
         <DarkModeContextProvider>
         <div className='flex flex-col'>
-            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-1'>
             {data.map((post) => {
                 console.log(post.user.imagePath);
                 return (
