@@ -1,12 +1,12 @@
 import Faq from '@/Components/Faq/Faq'
 import FaqBanner from '@/Components/Faq/FaqBanner'
-import { useScrollContext } from '@/Context/ScrollContext';
+import { useScroll } from '@/Context/ScrollContext';
 import React from 'react'
 
 const SectionFaq = ({quiz, sectionId}) => {
-    const { currentSection } = useScrollContext();
+    const { sectionRefs } = useScroll();
   return (
-    <section id={`section${sectionId}`} className='w-full'>
+    <section ref={sectionRefs.section3} className='w-full'>
         <div className='w-[90%] mx-auto flex flex-row items-center'>
             <FaqBanner/>
             <Faq quiz={quiz} />

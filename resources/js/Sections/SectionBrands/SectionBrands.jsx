@@ -7,10 +7,10 @@ import logo5 from '../../../../public/assets/publicImages/logos/ICDT_logo5.svg'
 import logo6 from '../../../../public/assets/publicImages/logos/ICDT_logo1.svg'
 import logo7 from '../../../../public/assets/publicImages/logos/ICDT_logo7.svg'
 import logo8 from '../../../../public/assets/publicImages/logos/ICDT_logo8.svg'
-import { useScrollContext } from '@/Context/ScrollContext'
+import { useScroll } from '@/Context/ScrollContext'
 
-const SectionBrands = ({sectionId}) => {
-    const { currentSection } = useScrollContext();
+const SectionBrands = () => {
+    const { sectionRefs } = useScroll();
     const brands = [
         {src:logo1 , alt:'logo'},
         {src:logo2 , alt:'logo'},
@@ -22,7 +22,7 @@ const SectionBrands = ({sectionId}) => {
         {src:logo8 , alt:'logo'},
     ]
   return (
-    <section id={`section${sectionId}`} className='w-[100%]'>
+    <section ref={sectionRefs.section4} className='w-[100%]'>
         <div className='grid grid-cols-4 xl:justify-center w-[90%] xl:mx-auto'>
         {brands.map((brand,i) => <img key={i} src={brand.src} alt={brand.alt} className='w-[150px] h-[70px] mx-auto' />)}
         </div>

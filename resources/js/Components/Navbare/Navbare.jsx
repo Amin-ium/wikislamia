@@ -9,14 +9,17 @@ import Alpine from "alpinejs";
 import Select from "react-select";
 import { DarkModeContext } from "@/Context/DarkModeContext";
 import { ToggleMenuContext } from "@/Context/ToggleMenuContext";
+
+import { useScroll } from "@/Context/ScrollContext";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
-import { useScrollContext } from "@/Context/ScrollContext";
+
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
 const Navbare = (children) => {
     const {toggleMenu, toggleMenuFun} = useContext(ToggleMenuContext);
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
+
 
     // const [user, setUser] = useState(true);
     // const [isSticky, setIsSticky] = useState(false);
@@ -37,32 +40,34 @@ const Navbare = (children) => {
 
     const { auth } = usePage().props
 
-    const { scrollToSection, currentSection } = useScrollContext();
-  const [isTopArrowVisible, setIsTopArrowVisible] = useState(false);
-  const [isBottomArrowVisible, setIsBottomArrowVisible] = useState(true);
+    const { scrollToSection, showTopButton, showBottomButton, sectionRefs } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sectionElement = document.getElementById(`section${currentSection}`);
-      if (sectionElement) {
-        const sectionTop = sectionElement.offsetTop;
-        const sectionHeight = sectionElement.offsetHeight;
-        const scrollY = window.scrollY;
+    const handleTopButtonClick = () => {
+        // Find the current active section
+        const activeSection = Object.keys(sectionRefs).find(
+          (section) => sectionRefs[section].current.offsetTop <= window.scrollY
+        );
+        console.log(activeSection);
 
-        setIsTopArrowVisible(scrollY > sectionTop);
-        setIsBottomArrowVisible(scrollY + window.innerHeight < sectionTop + sectionHeight);
-      }
-    };
+        // If an active section is found, find the previous one
+         if (activeSection) {
+          scrollToSection(activeSection);
+        }
+        console.log('to top');
+      };
 
-    window.addEventListener('scroll', handleScroll);
+      const handleBottomButtonClick = () => {
+        // Find the current active section
+        const activeSection = Object.keys(sectionRefs).find(
+          (section) => sectionRefs[section].current.offsetTop > window.scrollY
+        );
 
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentSection]);
-
-
+        // If an active section is found, scroll to the next one
+        if (activeSection) {
+          scrollToSection(activeSection);
+        }
+        console.log('to bottom');
+      };
     console.log(auth);
 
     const options = [
@@ -268,7 +273,7 @@ const Navbare = (children) => {
 
     return (
         <header
-            // ref={headerRef}
+            ref={sectionRefs.section0}
             id=""
             className={`${darkMode ? "bg-[#291336]" : "bg-[#EDD7ED]"} relative z-31 w-[100%]    md:w-[100%] lg:w-[100%] xl:w-[100%]   lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
             x-data="{navbarOpen: false}"
@@ -485,10 +490,14 @@ const Navbare = (children) => {
                         </div>
 
                             <div className="-mt-1 fixed bottom-[40px] right-[20px] flex flex-row gap-3 items-center z-10">
-                            {isTopArrowVisible &&  <FaArrowCircleUp onClick={() => scrollToSection('up')} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>}
-                            {isBottomArrowVisible &&  <FaArrowCircleDown onClick={() => scrollToSection('down')} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>}
 
 
+                            {showTopButton && (
+                                <FaArrowCircleUp onClick={handleTopButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>
+                            )}
+                            {showBottomButton && (
+                                <FaArrowCircleDown onClick={handleBottomButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>
+                            )}
 
                             {darkMode ? (
                                 <FaSun

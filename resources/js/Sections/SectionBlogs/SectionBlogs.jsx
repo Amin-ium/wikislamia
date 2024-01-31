@@ -15,18 +15,18 @@ import lightHeading from '../../../../public/assets/publicImages/gg-removebg-pre
 import SectionTitle from '@/Components/SectionTitle'
 import PostCard from '@/Components/PostCard/PostCard'
 import Pagination from '@/Components/Pagination'
-import { useScrollContext } from '@/Context/ScrollContext'
+import { useScroll } from '@/Context/ScrollContext'
 
 const SectionBlogs = ({posts, user, sectionId}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
-    const { currentSection } = useScrollContext();
+    const { sectionRefs } = useScroll();
 
 console.log(check);
   return (
     <>
-        <section id={`section${sectionId}`} className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
+        <section ref={sectionRefs.section2} className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
         <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
             <div className='w-[90%] xl:w-[80%] mx-auto mt-5'>
 
