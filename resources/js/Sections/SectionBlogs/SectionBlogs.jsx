@@ -26,7 +26,7 @@ const SectionBlogs = ({posts, user, sectionId}) => {
 console.log(check);
   return (
     <>
-        <section ref={sectionRefs.section2} className={`${ darkMode ? "border-t-2 border-[#f1f1f125] " : "border-t-2 border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   pt-[50px] mb-[200px] `}>
+        <section ref={sectionRefs.section2} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   py-[50px]  `}>
         <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
             <div className='w-[90%] xl:w-[80%] mx-auto mt-5'>
 
@@ -35,7 +35,7 @@ console.log(check);
                 <Pagination posts={posts} user={user} />
 
 
-            <img src={illustration2} alt="" className='absolute z-8 -bottom-[150px] xl:-bottom-[150px] -left-[50px]  xl:left-0 ' />
+            <img src={illustration2} alt="" className='absolute z-8 top-[550px] -left-[50px]  xl:left-0 ' />
             </div>
 
 

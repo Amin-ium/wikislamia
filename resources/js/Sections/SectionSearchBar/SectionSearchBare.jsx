@@ -20,7 +20,7 @@ const SectionSearchBare = ({sectionId}) => {
 console.log(check);
   return (
     <>
-    <section ref={sectionRefs.section1} className='w-[100%] h-auto homeBg '>
+    <section ref={sectionRefs.section1} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} w-[100%] h-auto homeBg pb-15`}>
         <div className='w-[100%]   pb-[100px] '>
        <div className=' relative z-9 w-[90%]  mx-auto flex flex-col justify-center  pt-[140px] lg:pt-[10px] '>
         <img className={`${darkMode ? "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] lg:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px] lg:-mt-0 mx-auto"

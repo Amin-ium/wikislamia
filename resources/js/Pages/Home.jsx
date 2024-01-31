@@ -5,6 +5,7 @@ import LayoutApp from '@/Layout/LayoutApp'
 import SectionBlogs from '@/Sections/SectionBlogs/SectionBlogs'
 import SectionBrands from '@/Sections/SectionBrands/SectionBrands'
 import SectionFaq from '@/Sections/SectionFaq/SectionFaq'
+import SectionFooter from '@/Sections/SectionFooter/SectionFooter'
 import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
 import SectionStatistics from '@/Sections/SectionStatistics/SectionStatistics'
 import SectionTestmonial from '@/Sections/SectionTestmonial/SectionTestmonial'
@@ -24,6 +25,7 @@ console.log(quiz);
             <SectionBrands sectionId={4} />
             <SectionTestmonial sectionId={5} />
             <SectionStatistics sectionId={6} />
+            <SectionFooter  />
 
 
 
