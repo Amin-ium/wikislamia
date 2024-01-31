@@ -116,9 +116,9 @@ const Navbare = (children) => {
     ];
 
     const active =
-        "font-bold border-b-2 border-lightText text-lightText  hover:bg-purple-800 hover:text-darkBg px-2 rounded";
+        `${darkMode ? " text-lightText" : " text-darkText"} font-bold   px-2 rounded`;
     const normal =
-        "font-normal text-lightText  hover:bg-orangeBg hover:text-darkBg px-2 rounded";
+        `${darkMode ? " text-lightText" : " text-darkText"}  font-normal  px-2 rounded`;
 
     // console.log(currentCheck);
 
@@ -493,21 +493,21 @@ const Navbare = (children) => {
 
 
                             {showTopButton && (
-                                <FaArrowCircleUp onClick={handleTopButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>
+                                <FaArrowCircleUp onClick={handleTopButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} xl:h-7 xl:w-7 h-5 w-5   `}/>
                             )}
                             {showBottomButton && (
-                                <FaArrowCircleDown onClick={handleBottomButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} h-8 w-8  `}/>
+                                <FaArrowCircleDown onClick={handleBottomButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} xl:h-7 xl:w-7 h-5 w-5   `}/>
                             )}
 
                             {darkMode ? (
                                 <FaSun
                                 onClick={toggle}
-                                className={`text-yellow-500 h-7 w-7 `}
+                                className={`text-yellow-500 xl:h-7 xl:w-7 h-5 w-5 `}
                             />
                             ) : (
                                 <FaMoon
                                 onClick={toggle}
-                                className={`text-navTextDark h-7 w-7 `}
+                                className={`text-navTextDark xl:h-7 xl:w-7 h-5 w-5 `}
                             />
                             )}
                             </div>
@@ -523,10 +523,10 @@ const Navbare = (children) => {
 
                 {/* mobile navigation */}
                 <div
-                    className={`fixed z-30 bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird text-lightText w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700 mt-3
+                    className={`${darkMode ? "bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird  " : " lightBg"} fixed z-30 w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700 mt-3
                     ${!toggleMenu ? "h-0" : "h-screen"}`}
                 >
-                    <div className=" ">
+                    <div className={`${darkMode ? "" : ""} relative  `}>
                         <div className="flex flex-col  font-bold text-center tracking-wider">
                         {links &&
                             links.map((link, i) =>

@@ -19,11 +19,11 @@ const SubFooter = () => {
         <div className='flex flex-col xl:flex-row   xl:justify-between xl:gap-[100px] xl:items-center'>
         <div className={`${darkMode ? "text-lightText" : "text-darkText"} flex flex-col  xl:flex-row text-center`}>
             <div className='flex flex-row justify-center gap-[5px]'>
-            <Link className='font-bold '>WIKISLAMIA</Link>
-            <p>2024 - All rights are reserved -</p>
+            <Link className='font-bold text-[14px] xl:text-[16px] '>WIKISLAMIA</Link>
+            <p className='text-[14px] xl:text-[16px]'>2024 - All rights are reserved -</p>
             </div>
 
-            <b>Powered By AmineDAIEF</b>
+            <b className='text-[14px] xl:text-[16px]'>Powered By AmineDAIEF</b>
         </div>
         <div className={`${darkMode ? "text-lightText" : "text-grayText"} flex flex-row items-center justify-center gap-2 `}>
             <FaFacebook size={24} />

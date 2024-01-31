@@ -9,10 +9,10 @@ const SectionFooter = () => {
         <>
         <section className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] text-lightText" : "border-b-[1px] border-[#28282825] text-darkText"} w-[100%]  py-[50px]`}>
         <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row w-[90%] mx-auto justify-between xl:justify-between lg:justify-between md:justify-between sm:justify-between'>
-            <div className='flex flex-row w-2/3 mx-auto mb-3 justify-between sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px]'>
+            <div className='flex flex-row w-2/3 mx-auto mb-3 justify-between sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] gap-5'>
             <div className=''>
                 <h3 className='text-[16px] font-bold'>Pages</h3>
-                <ul className='text-[14px]'>
+                <ul className='text-[14px] text-center'>
                     <li>Home</li>
                     <li>Quran</li>
                     <li>Hadeets</li>
@@ -23,7 +23,7 @@ const SectionFooter = () => {
             </div>
             <div className=''>
                 <h3 className='text-[16px] font-bold'>Informations</h3>
-                <ul className='text-[14px]'>
+                <ul className='text-[14px] text-center'>
                     <li>Home</li>
                     <li>Quran</li>
                     <li>Hadeets</li>
@@ -34,7 +34,7 @@ const SectionFooter = () => {
             </div>
             <div  className=''>
                 <h3 className='text-[16px] font-bold'>Company</h3>
-                <ul className='text-[14px]'>
+                <ul className='text-[14px] text-center'>
                     <li>Home</li>
                     <li>Quran</li>
                     <li>Hadeets</li>

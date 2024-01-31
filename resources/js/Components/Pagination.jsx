@@ -73,9 +73,9 @@ export default function Pagination({ href, active, children,  posts }) {
             return (
                 <li key={number} id={number} onClick={handleClick}
                 className={currentPage == number && darkMode ?
-                 "bg-gray-300 rounded text-darkText px-2 cursor-pointer" :
+                 "bg-gray-500 rounded text-darkText px-2 cursor-pointer" :
                  currentPage == number && !darkMode ?
-                  "bg-darkBg rounded text-lightText px-2 cursor-pointer" :
+                  "bg-gray-500 rounded text-lightText px-2 cursor-pointer" :
                   currentPage !== number && darkMode ?
                   "bg-orangeBg rounded text-lightText px-2 cursor-pointer" :
                   currentPage !== number && !darkMode ?
@@ -124,13 +124,13 @@ export default function Pagination({ href, active, children,  posts }) {
     //    console.log(data.map(post => Object.values(post.tags).map(tag => tag).map(tg => tg.name)));
        return (
         <DarkModeContextProvider>
-        <div className='flex flex-col'>
-            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-1'>
+        <div className='flex flex-col relative z-9'>
+            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-1 relative '>
             {data.map((post) => {
                 console.log(post.user.imagePath);
                 return (
                     <PostCard
-                    className={`${darkMode ? "bg-darkBg" : "bg-lightBg"}`}
+                    className={`${darkMode ? "bg-darkBg" : "bg-lightBg"} relative`}
                       key={post.id}
                       title={post.title}
                       id={post.id}

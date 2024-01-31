@@ -16,7 +16,7 @@ const Accordionn = ({ quiz }) => {
     <Fragment>
 
 
-      <div className='w-full xl:w-1/2 flex flex-col mx-auto '>
+      <div className='w-full xl:w-1/2 flex flex-col xl:flex-col mx-auto '>
         {quiz.map((accordionItem, index) => (
           <div key={index}>
             <Accordion open={openItem === index} className="">

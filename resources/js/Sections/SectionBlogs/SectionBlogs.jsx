@@ -26,16 +26,16 @@ const SectionBlogs = ({posts, user, sectionId}) => {
 console.log(check);
   return (
     <>
-        <section ref={sectionRefs.section2} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   py-[50px]  `}>
+        <section ref={sectionRefs.section2} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   py-[50px] `}>
         <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
-            <div className='w-[90%] xl:w-[80%] mx-auto mt-5'>
+            <div className='w-[90%] xl:w-[80%] mx-auto mt-5 relative z-8'>
 
-            <img src={illustration1} alt="" className='absolute z-8 -right-[30px] top-[70px]  xl:right-[80px] xl:top-[70px]' />
+            <img src={illustration1} alt="" className='absolute   right-0 top-[10px]  xl:right-[80px] xl:top-[70px]' />
 
                 <Pagination posts={posts} user={user} />
 
 
-            <img src={illustration2} alt="" className='absolute z-8 top-[550px] -left-[50px]  xl:left-0 ' />
+            <img src={illustration2} alt="" className='absolute  top-[550px] -left-[50px]  xl:left-0 ' />
             </div>
 
 

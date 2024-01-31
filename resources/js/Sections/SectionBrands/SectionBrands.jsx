@@ -17,6 +17,7 @@ import logo07 from '../../../../public/assets/publicImages/logosDark/ICDT_logo7.
 import logo08 from '../../../../public/assets/publicImages/logosDark/ICDT_logo8.svg'
 import { useScroll } from '@/Context/ScrollContext'
 import { DarkModeContext } from '@/Context/DarkModeContext'
+import SectionTitle from '@/Components/SectionTitle'
 
 const SectionBrands = () => {
     const { darkMode } = useContext(DarkModeContext);
@@ -43,7 +44,8 @@ const SectionBrands = () => {
     ]
   return (
     <section ref={sectionRefs.section4} className={`${darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} w-[100%] py-[50px]`}>
-        <div className='grid grid-cols-4 xl:justify-center w-[90%] xl:mx-auto'>
+        <SectionTitle title="Parteners" des="Our sponsors can be yours"  />
+        <div className='grid grid-cols-4 xl:justify-center justify-center w-[90%] mx-auto xl:mx-auto gap-3'>
         {darkMode ?
         brandsLight.map((brand,i) => <img key={i}  src={brand.src} alt={brand.alt} className='w-[150px] h-[70px] mx-auto' />)
     :

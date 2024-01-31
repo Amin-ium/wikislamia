@@ -66,9 +66,9 @@ const SearchbarEng = () => {
                     <div className="relative h-[45px] w-[100%] sm:h-[45px] sm:w-[100%] md:h-[45px] md:w-[100%] lg:h-[45px]  xl:h-[45px] max-w-[750px] sm:max-w-[750px] md:max-w-[750px] lg:max-w-[850px] xl:max-w-[850px] lg:w-[100%] xl:w-[100%] mx-auto">
                         <input
                             type="text"
-                            className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[100%] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
+                            className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-xl placeholder:text-lightText "
+                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sm xl:placeholder:text-xl placeholder:text-lightText "
                             placeholder="Search by Word or Verse"
                             // value={value}
                             // onChange={onChange}
@@ -76,8 +76,8 @@ const SearchbarEng = () => {
 
                         />
 
-                            <span class="absolute right-[10px] top-[10px] sm:right-[10px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px] flex md:items-center  lg:items-center xl:items-center md:justify-center lg:justify-center xl:justify-center text-gray-100  ">
-                                <FaSearch size={28}  className='  text-gray-100  z-14 ' />
+                            <span class="absolute right-[10px] top-[5px] sm:right-[5px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px] flex md:items-center  lg:items-center xl:items-center md:justify-center lg:justify-center xl:justify-center text-gray-100  ">
+                                <FaSearch size={24}  className='  text-gray-100  z-14 ' />
                             </span>
 
                         {/* <FaSearch size={24}  className='  text-gray-100  z-14 right-[30px] top-[5px] sm:right-[45px] sm:top-[8px] md:right-[100px] md:top-[10px] xl:float-start   lg:top-[10px] ' /> */}
