@@ -11,13 +11,13 @@ import headerImgDark from '../../../../public/assets/publicImages/imgDark.svg'
 import headerImgLight from '../../../../public/assets/publicImages/OBJECTS.svg'
 import { useScroll } from '@/Context/ScrollContext'
 
-const SectionSearchBare = ({sectionId}) => {
+const SectionSearchBare = ({sectionId, verses}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
     const { sectionRefs } = useScroll();
 
-console.log(check);
+
   return (
     <>
     <section ref={sectionRefs.section1} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} w-[100%] h-auto homeBg pb-15`}>
@@ -27,7 +27,7 @@ console.log(check);
         : "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] xl:w-[500px] lg:h-[200px] xl:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px]  lg:-mt-0 mx-auto"} `}
         src={darkMode ? headerImgLight : headerImgDark} alt="" />
         <CheckedRadio />
-        {check === 'ar' ? <SearchbarAr /> : check === 'eng' ? <SearchbarEng /> : check === 'fr' ? <Searchbarfr /> : null}
+        {check === 'ar' ? <SearchbarAr verses={verses} /> : check === 'eng' ? <SearchbarEng verses={verses} /> : check === 'fr' ? <Searchbarfr verses={verses} /> : null}
 
         <CardsBanner />
         </div>

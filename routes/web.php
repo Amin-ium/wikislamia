@@ -7,7 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HadeethController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QuranController;
+use App\Http\Controllers\Quran\QuranController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -54,6 +54,7 @@ Route::get('/hadeeth', [HadeethController::class, 'index'])->name('hadeeth.hadee
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.contactPage');
 Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage');
 
+Route::post('/quran', [QuranController::class, 'index'])->name('quran.searchResults');
 
 
 

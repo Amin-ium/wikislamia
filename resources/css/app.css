@@ -45,3 +45,29 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #220027;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: #220027;
+}

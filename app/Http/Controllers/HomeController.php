@@ -24,18 +24,18 @@ class HomeController extends Controller
 {
     public function Home()
     {
-        // $surahs = Surah::get();
-        // $ayahs = Ayah::get();
-        // $user = Auth::user();
+        $surahs = Surah::get();
+        $ayahs = Ayah::get();
+        $user = Auth::user();
         $posts = Post::with('user', 'category', 'tags')->get();
         // $accordion = Accordion::get();
         $quiz = Quiz::get();
 
-        // $verses = [];
+        $verses = [];
 
-        // foreach($ayahs as $ayah) {
-        //     $verses[] = $ayah;
-        // }
+        foreach($ayahs as $ayah) {
+            $verses[] = $ayah;
+        }
 
 
 
@@ -51,7 +51,7 @@ class HomeController extends Controller
 
             // 'accordion' => $accordion,
             // Pass the retrieved Surahs to the view
-            // 'verses' => $verses,
+            'verses' => $verses,
             'quiz' => $quiz
         ]);
     }

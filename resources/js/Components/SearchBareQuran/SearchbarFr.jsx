@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Alpine from "alpinejs";
 import { BsGithub } from "react-icons/bs";
 import { FaGlobe, FaSearch, FaTimes } from "react-icons/fa";
@@ -21,6 +21,11 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
     // const [checking, setChecking] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
     const [place, setPlace] = useState("Choose a Langage ---- إختر اللغة");
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+      }, []);
 
 
 
@@ -52,6 +57,7 @@ const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {
                             value={value}
                             onChange={onChange}
                             style={{ textAlign: "left" }}
+                            ref={inputRef}
                         />
                         <span class="absolute right-[10px] top-[10px] sm:right-[10px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px] flex md:items-center  lg:items-center xl:items-center md:justify-center lg:justify-center xl:justify-center text-gray-100  ">
                                 <FaSearch size={28}  className='  text-gray-100  z-14 ' />

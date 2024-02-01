@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Alpine from "alpinejs";
 import { BsGithub } from "react-icons/bs";
 import { FaGlobe, FaSearch, FaTimes } from "react-icons/fa";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
-import {
-    DarkModeContext,
-    DarkModeContextProvider,
-} from "@/context/DarkModeContext";
+import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
+import { useSearchBarContext } from "@/Context/SearchBarContext";
+
 // import QuranDef from "../../Pages/Quran/QuranDef";
 
 const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
     const { darkMode } = useContext(DarkModeContext);
+    const { check, setCheck } = useSearchBarContext();
 
     const [dropDoun, setDropDown] = useState();
     const [ArData, setArData] = useState([]);
@@ -22,6 +22,11 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
     // const [checking, setChecking] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
     const [place, setPlace] = useState("Choose a Langage ---- إختر اللغة");
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+      }, []);
 
     const onChange = (event) => {
         setValue(event.target.value);
@@ -47,6 +52,7 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
                                 value={value}
                                 onChange={onChange}
                                 style={{ textAlign: "right" }}
+                                ref={inputRef}
                             />
                             <span class="absolute right-[10px] top-[10px] sm:left-[10px] sm:top-[10px] md:left-[10px] md:top-[10px] lg:left-[10px] lg:top-[10px] xl:left-[10px] xl:top-[10px] flex   text-gray-100  ">
                                 <FaSearch size={28}  className='  text-gray-100  z-14 ' />
@@ -82,8 +88,8 @@ const SearchbarAr = ({ checked, verses, ayahs, quranData }) => {
                                         );
                                     })
                                     .map((verse) => (
-                                        <Link href={`/quran/${verse.id}`} className={`${darkMode ? "bg-darkBg text-lightText hover:bg-lightBg hover:text-darkText" : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"} px-3 pt-2 border-b-gray-300 border-b-[1px] `}>
-                                            {verse.content.substr(0, 33)} ...
+                                        <Link href={`/quran/${verse.id}`} className={`${darkMode ? "bg-darkBg text-lightText hover:bg-lightBg hover:text-darkText" : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"} px-3 pt-2 border-b-gray-300 border-b-[1px] text-right `}>
+                                           ... {verse.content.substr(0, 75)}
                                         </Link>
                                     ))}
                         </div>
