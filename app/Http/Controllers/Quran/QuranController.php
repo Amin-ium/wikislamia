@@ -94,23 +94,41 @@ class QuranController extends Controller
     }
 
     public function index(Request $request)
-    {
-        $searchTerms = $request->input('searchData');
-        $searchTerms = explode(' ', $searchTerms);
-        $query = Ayah::query();
+{
+    $searchTerms = $request->input('searchData');
+    $searchTerms = explode(' ', $searchTerms);
 
-        foreach($searchTerms as $searchTerm){
-            $query->where(function($q) use ($searchTerm){
-                $q->where('englishContent', 'like', '%'.$searchTerm.'%');
-                // and so on
-            });
-        }
-        $results = $query->get();
+    $surahId = $request->input('surah_id'); // Adjust this line based on how you pass the surah_id
 
+    $query = Ayah::query()
+        ->with('surah') // Eager load the surah relationship
+        ->where(function ($q) use ($searchTerms) {
+            foreach ($searchTerms as $searchTerm) {
+                $q->where('englishContent', 'like', '%' . $searchTerm . '%');
+                // Add other conditions as needed
+            }
+        });
 
-
-        return Inertia::render('Quran/Results', ['results' => $results]);
+    // Add a condition to filter by surah_id if provided
+    if ($surahId) {
+        $query->whereHas('surah', function ($q) use ($surahId) {
+            $q->where('id', $surahId);
+        });
     }
+
+    $results = $query->get();
+        $ayahs = Ayah::with('surah')->get();
+
+
+        $verses = [];
+
+        foreach($ayahs as $ayah) {
+            $verses[] = $ayah;
+        }
+
+    return Inertia::render('Quran/Results', ['results' => $results, 'verses' => $verses]);
+}
+
 
 
 

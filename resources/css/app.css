@@ -71,3 +71,19 @@ body{
 ::-webkit-scrollbar-track:hover {
     background: #220027;
 }
+
+.playBtn{
+    color: #2F4F4F;
+  }
+
+  .pauseBtn{
+    color: #2F4F4F;
+  }
+
+.playBtn:disabled {
+    color: #D3D3D3;
+  }
+
+  .pauseBtn:disabled {
+    color: #D3D3D3;
+  }

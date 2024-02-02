@@ -9,14 +9,10 @@ import { useSearchBarContext } from "@/Context/SearchBarContext";
 import { Inertia } from "@inertiajs/inertia";
 // import { DarkModeContext, DarkModeContextProvider } from "@/context/DarkModeContext";
 
-
-
-const SearchbarEng = ({verses}) => {
-
+const SearchbarEng = ({ verses }) => {
     console.log(verses);
-    const {darkMode} = useContext(DarkModeContext);
+    const { darkMode } = useContext(DarkModeContext);
     const { check, setCheck } = useSearchBarContext();
-
 
     const [searchData, setSearchData] = useState([]);
     const [ArData, setArData] = useState([]);
@@ -27,62 +23,109 @@ const SearchbarEng = ({verses}) => {
     // const [checking, setChecking] = useState("");
     const [isNotDisabled, setIsNotDisabled] = useState(false);
     const [place, setPlace] = useState("Choose a Langage ---- إختر اللغة");
+    const [opened, setOpened] = useState(true)
     const inputRef = useRef(null);
 
-    useEffect(() => {
-        inputRef.current.focus();
-      }, []);
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
 
 
+  useEffect(() => {
+    // Add event listener to detect clicks outside the input
+    const handleOutsideClick = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  const handleInputClick = () => {
+    setDropdownVisible(true);
+  };
 
     const onChange = (event) => {
-        setValue(event.target.value);
+         if(event.target.value === '') {
+            console.log('e=mpty');
+            setValue('');
+        }else{
+            setValue(event.target.value);
+        }
+
     };
 
     const onSearch = async (searchTerm) => {
-        // Update the state with the current search term
-        setValue(searchTerm);
+        if (value === '') {
+            console.log('empty');
+        }else{
+            setValue(searchTerm);
 
-        // Use the current value of the input for filtering
-        const filteredData = verses.filter((item) => {
-          const lowerCaseSearchTerm = searchTerm.toLowerCase();
-          const englishContent = item.englishContent.toLowerCase();
-          return lowerCaseSearchTerm && englishContent.includes(lowerCaseSearchTerm);
-        });
+            // Update the state with the current search term
 
-        // Update the state with the filtered data
-        setSearchData(filteredData);
 
-        try {
-          // Use Inertia.post to send the search data to the server
-          const response = await Inertia.post(route('quran.searchResults'), { searchData: searchTerm });
-          // Handle the response if needed
-          console.log(response);
-        } catch (error) {
-          // Handle any errors that occur during the request
-          console.error('Error:', error);
+            // Use the current value of the input for filtering
+            const filteredData = verses.filter((item) => {
+                if (check === "eng") {
+                    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                    const englishContent = item.englishContent.toLowerCase();
+                    return (
+                        lowerCaseSearchTerm &&
+                        englishContent.includes(lowerCaseSearchTerm)
+                    );
+                } else if (check === "ar") {
+                    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                    const englishContent = item.content.toLowerCase();
+                    return (
+                        lowerCaseSearchTerm &&
+                        englishContent.includes(lowerCaseSearchTerm)
+                    );
+                } else if (check === "fr") {
+                    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                    const englishContent = item.frenshContent.toLowerCase();
+                    return (
+                        lowerCaseSearchTerm &&
+                        englishContent.includes(lowerCaseSearchTerm)
+                    );
+                }
+            });
+
+            // Update the state with the filtered data
+            setSearchData(filteredData);
+
+            try {
+                // Use Inertia.post to send the search data to the server
+                const response = await Inertia.post(route("quran.searchResults"), {
+                    searchData: searchTerm,
+                });
+                // Handle the response if needed
+                console.log(response);
+            } catch (error) {
+                // Handle any errors that occur during the request
+                console.error("Error:", error);
+            }
         }
-      };
-
-        const handleClick = () => {
-            // 👇️ clear input value
-            setValue('');
-          };
 
 
+    };
 
+    const handleClick = () => {
+        // 👇️ clear input value
+        setValue("");
+    };
 
-
-
-console.log(searchData);
+    console.log(check);
     return (
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
             <form
-            onSubmit={(e) => {
-                e.preventDefault(); // Prevent the default form submission
-                onSearch(value); // Call the onSearch function with the current search term
-              }}
+                onSubmit={(e) => {
+                    e.preventDefault(); // Prevent the default form submission
+                    onSearch(value); // Call the onSearch function with the current search term
+                }}
                 className="  "
                 x-data="{dropDownOpen: false}"
             >
@@ -91,45 +134,169 @@ console.log(searchData);
                         <input
                             name="search"
                             type="text"
+                            ref={inputRef}
+                            onClick={handleInputClick}
                             className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
                                border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sm xl:placeholder:text-xl placeholder:text-lightText "
-                            placeholder="Search by Word or Verse"
+                            placeholder={
+                                check === "eng"
+                                    ? "Search by Word or Verse"
+                                    : check === "ar"
+                                    ? "إبحث عن كلمة او آية"
+                                    : check === "fr"
+                                    ? "Chercher par mot ou verset"
+                                    : null
+                            }
                             value={value}
+
                             onChange={onChange}
-                            style={{ textAlign: "left" }}
-                            ref={inputRef}
+                            style={{
+                                textAlign:
+                                    check === "ar"
+                                        ? "right"
+                                        : check === "eng" || check === "fr"
+                                        ? "left"
+                                        : null,
+                            }}
 
                         />
 
-                            <button type="submit"  class="absolute right-[10px] top-[5px] sm:right-[5px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px] flex md:items-center  lg:items-center xl:items-center md:justify-center lg:justify-center xl:justify-center text-gray-100  ">
-                                <FaSearch size={24}   className='  text-gray-100  z-14 ' />
-                            </button>
+                        <button
+                            type="submit"
+                            class={`${
+                                check === "ar"
+                                    ? "right-[10px] top-[10px] sm:left-[10px] sm:top-[10px] md:left-[10px] md:top-[10px] lg:left-[10px] lg:top-[10px] xl:left-[10px] xl:top-[10px]"
+                                    : check === "eng" || check === "fr"
+                                    ? "right-[10px] top-[10px] sm:right-[10px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px]"
+                                    : null
+                            } absolute  flex  text-gray-100  `}
+                        >
+                            <FaSearch
+                                size={24}
+                                className="  text-gray-100  z-14 "
+                            />
+                        </button>
 
+                        <div
+                            className={`absolute     flex flex-col    max-h-[200px]  overflow-y-scroll rounded  top-[33px] sm:top-[44px]   w-[100%] md:w-[100%]  lg:w-[100%] xl:w-[100%] `}
+                        >
+                            {check === "eng" &&
+                                verses &&
+                                verses
+                                    .filter((item) => {
+                                        const searchTerm = value.toLowerCase();
+                                        const lowerCaseSearchTerm =
+                                            searchTerm.toLowerCase();
+                                        const searchContent =
+                                            item.englishContent.toLowerCase();
+                                        console.log(
+                                            lowerCaseSearchTerm &&
+                                                searchContent.includes(
+                                                    lowerCaseSearchTerm
+                                                )
+                                        );
+                                        return (
+                                            lowerCaseSearchTerm &&
+                                            searchContent.includes(
+                                                lowerCaseSearchTerm
+                                            )
+                                        );
+                                    })
+                                    .map((verse, i) => (
+                                        isDropdownVisible && (
+                                        <Link
+                                            key={i}
+                                            href={`/quran/${verse.id}`}
+                                            className={`${opened ? "block" : "hidden"} ${
+                                                darkMode
+                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
+                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                        >
+                                            {verse.englishContent} ...
+                                        </Link>
+                                        )
+                                    ))}
 
-<div className={`absolute     flex flex-col    max-h-[200px]  overflow-y-scroll rounded  top-[33px] sm:top-[44px]   w-[100%] md:w-[100%]  lg:w-[100%] xl:w-[100%] `}>
-                        {verses && verses.filter(item => {
-                            const searchTerm = value.toLowerCase();
-                            const englishContent = item.englishContent.toLowerCase();
+                            {check === "ar" &&
+                                verses &&
+                                verses
+                                    .filter((item) => {
+                                        const searchTerm = value.toLowerCase();
+                                        const lowerCaseSearchTerm =
+                                            searchTerm.toLowerCase();
+                                        const searchContent =
+                                            item.content.toLowerCase();
+                                        console.log(
+                                            lowerCaseSearchTerm &&
+                                                searchContent.includes(
+                                                    lowerCaseSearchTerm
+                                                )
+                                        );
+                                        return (
+                                            lowerCaseSearchTerm &&
+                                            searchContent.includes(
+                                                lowerCaseSearchTerm
+                                            )
+                                        );
+                                    })
+                                    .map((verse, i) => (
+                                        isDropdownVisible && (
+                                        <Link
+                                            key={i}
+                                            href={`/quran/${verse.id}`}
+                                            className={`${
+                                                darkMode
+                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
+                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                        >
+                                            {verse.content} ...
+                                        </Link>
+                                        )
+                                    ))}
 
-                            return searchTerm && englishContent.includes(searchTerm)
-                        })
-                        .map((verse, i) => (
-                            <Link href={`/quran/${verse.id}`} className={`${darkMode ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText" : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"} px-3 pt-2 border-b-gray-300 border-b-[1px] `}>{verse.englishContent.substr(0, 33)} ...</Link>
-                        ))}
+                            {check === "fr" &&
+                                verses &&
+                                verses
+                                    .filter((item) => {
+                                        const searchTerm = value.toLowerCase();
+                                        const lowerCaseSearchTerm =
+                                            searchTerm.toLowerCase();
+                                        const searchContent =
+                                            item.frenshContent.toLowerCase();
+                                        console.log(
+                                            lowerCaseSearchTerm &&
+                                                searchContent.includes(
+                                                    lowerCaseSearchTerm
+                                                )
+                                        );
+                                        return (
+                                            lowerCaseSearchTerm &&
+                                            searchContent.includes(
+                                                lowerCaseSearchTerm
+                                            )
+                                        );
+                                    })
+                                    .map((verse, i) => (
+                                        isDropdownVisible && (
+                                        <Link
+                                            key={i}
+                                            href={`/quran/${verse.id}`}
+                                            className={`${
+                                                darkMode
+                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
+                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                        >
+                                            {verse.frenshContent} ...
+                                        </Link>
+                                        )
+                                    ))}
+                        </div>
                     </div>
-
-                    </div>
-
-
-
-
-
-
-
                 </div>
-
-
             </form>
 
             {/* </DarkModeContextProvider> */}

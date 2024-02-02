@@ -11,7 +11,7 @@ class Ayah extends Model
 
     public function surah()
 {
-    return $this->belongsTo(Surah::class);
+    return $this->belongsTo(Surah::class, 'surah_id');
 }
 }
 

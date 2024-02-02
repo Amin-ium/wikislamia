@@ -27,7 +27,7 @@ const SectionSearchBare = ({sectionId, verses}) => {
         : "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] xl:w-[500px] lg:h-[200px] xl:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px]  lg:-mt-0 mx-auto"} `}
         src={darkMode ? headerImgLight : headerImgDark} alt="" />
         <CheckedRadio />
-        {check === 'ar' ? <SearchbarAr verses={verses} /> : check === 'eng' ? <SearchbarEng verses={verses} /> : check === 'fr' ? <Searchbarfr verses={verses} /> : null}
+        <SearchbarEng verses={verses} />
 
         <CardsBanner />
         </div>
