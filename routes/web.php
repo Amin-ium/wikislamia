@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\HadeethController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -35,7 +37,7 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'Home'])->name('Pages.Home');
 
 
-
+Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -46,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('logout', LogoutController::class)->name('logout');
 
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs.blogsPage');

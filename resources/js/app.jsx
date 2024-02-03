@@ -9,6 +9,7 @@ import { DarkModeContext, DarkModeContextProvider } from './Context/DarkModeCont
 import { SearchContext } from './Context/SearchBarContext';
 import { ToggleMenuContextProvider } from './Context/ToggleMenuContext';
 import { ToggleMenuContext } from './Context/ToggleMenuContext';
+import { ScrollProvider } from './Context/ScrollContext';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Wikislamia';
 
@@ -26,6 +27,7 @@ createInertiaApp({
 
 
       return (
+        <ScrollProvider>
         <ToggleMenuContextProvider>
           <DarkModeContextProvider>
             <SearchContext>
@@ -72,6 +74,7 @@ createInertiaApp({
             </SearchContext>
           </DarkModeContextProvider>
         </ToggleMenuContextProvider>
+        </ScrollProvider>
       );
     };
 

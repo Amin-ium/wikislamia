@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import React, { useEffect } from 'react';
 
-export default function RegisterPage() {
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import Guest from '@/Layouts/GuestLayout';
+import ValidationErrors from '@/Components/ValidationErrors';
+import Label from '@/Components/Label';
+import Input from '@/Components/Input';
+
+export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -20,6 +20,10 @@ export default function RegisterPage() {
         };
     }, []);
 
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+    };
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -27,92 +31,78 @@ export default function RegisterPage() {
     };
 
     return (
-        <GuestLayout>
+        <Guest>
             {/* <Head title="Register" /> */}
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
+            <ValidationErrors errors={errors} />
 
-                    <TextInput
-                        id="name"
+            <form  onSubmit={submit}>
+                <div>
+                    <Label forInput="name" value="Name" />
+
+                    <Input
+                        type="text"
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        handleChange={onHandleChange}
                         required
                     />
-
-                    <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <Label forInput="email" value="Email" />
 
-                    <TextInput
-                        id="email"
+                    <Input
                         type="email"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        handleChange={onHandleChange}
                         required
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <Label forInput="password" value="Password" />
 
-                    <TextInput
-                        id="password"
+                    <Input
                         type="password"
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
+                        handleChange={onHandleChange}
                         required
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+                    <Label forInput="password_confirmation" value="Confirm Password" />
 
-                    <TextInput
-                        id="password_confirmation"
+                    <Input
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        handleChange={onHandleChange}
                         required
                     />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
+                <div className="flex items-center justify-between mt-4">
+                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <button className="bg-orangeBg p-2 rounded ml-4" processing={processing}>
                         Register
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
-        </GuestLayout>
+        </Guest>
     );
 }
-

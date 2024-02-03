@@ -1,17 +1,26 @@
-import { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeContext';
+import ValidationErrors from '@/Components/ValidationErrors';
+import Label from '@/Components/Label';
+import Input from '@/Components/Input';
 import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import Guest from '@/Layouts/GuestLayout';
+
+
 
 export default function Login({ status, canResetPassword }) {
+
+    const {darkMode} = useContext(DarkModeContext)
+
+    console.log(darkMode);
+
+
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
-        remember: false,
+        remember: '',
     });
 
     useEffect(() => {
@@ -20,6 +29,10 @@ export default function Login({ status, canResetPassword }) {
         };
     }, []);
 
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+    };
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -27,71 +40,75 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
+        <DarkModeContextProvider>
+        <Guest className={`${darkMode ? "bg-green-500 text-lightText" : "bg-red-500 text-darkText"}`}>
             {/* <Head title="Log in" /> */}
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+            <ValidationErrors errors={errors} />
 
-                    <TextInput
-                        id="email"
-                        type="email"
+            <form onSubmit={submit}>
+                <div className={`${darkMode ? " text-lightText" : " text-lightText"}`}>
+                    <Label forInput="email" value="Email" />
+
+                    <Input
+                        type="text"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
                         isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
+                        handleChange={onHandleChange}
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <Label forInput="password" value="Password" />
 
-                    <TextInput
-                        id="password"
+                    <Input
                         type="password"
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
+                        handleChange={onHandleChange}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="block mt-4">
                     <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
+
+                        <span className="ml-2 text-sm ">Remember me</span>
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex flex-col gap-3  mt-4 ">
+                    <div className='flex flex-row  justify-between'>
+                    <Link
+                            href="/register"
+                            className="underline text-sm  "
+                        >
+                            Register
+                        </Link>
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="underline text-sm  "
                         >
                             Forgot your password?
                         </Link>
                     )}
+                    </div>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+
+                    <button className="bg-orangeBg p-2 rounded " processing={processing}>
                         Log in
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
-        </GuestLayout>
+        </Guest>
+        </DarkModeContextProvider>
     );
 }

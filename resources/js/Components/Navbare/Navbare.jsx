@@ -32,10 +32,21 @@ const Navbare = (children) => {
     const [isActiveBlogs, setIisActiveBlogs] = useState("");
     const [activeLink, setActiveLink] = useState("");
     const [currentCheck, setCurrentCheck] = useState(check);
+    const [dashboard, setDashboard] = useState(false);
+    const [profile, setProfile] = useState(false);
 
-    // useEffect(() => {
-    //     setCurrentCheck(check)
-    // }, [check]);
+    useEffect(() => {
+        if(window.location.pathname.match('dashboard')) {
+            setDashboard(true)
+        }else{
+            setDashboard(false)
+        }
+        if(window.location.pathname.match('profile')) {
+            setProfile(true)
+        }else{
+            setProfile(false)
+        }
+    }, []);
 
 
     const { auth } = usePage().props
@@ -376,12 +387,12 @@ const Navbare = (children) => {
                                         </Dropdown.Trigger>
                                         {/* {auth.user.is_admin ? ( */}
                                         <Dropdown.Content>
-                                            <Dropdown.Link href="/profile">
+                                            <Link href="/profile">
                                                 Profile
-                                            </Dropdown.Link>
-                                            <Dropdown.Link href="/dashboard">
+                                            </Link>
+                                            <Link href="/dashboard">
                                                 Dashboard
-                                            </Dropdown.Link>
+                                            </Link>
                                             <Dropdown.Link href="/dashboard/admin-dashboard">
                                                 Admin Dashboard
                                             </Dropdown.Link>
@@ -407,7 +418,9 @@ const Navbare = (children) => {
 
                                       <Link
                                           className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border bg-red-500 border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
-                                          href="/register"
+                                          href="/logout"
+                                                    as="button"
+                                                    method="POST"
                                       >
                                           {check === "eng"
                                               ? "Logout"
@@ -489,15 +502,19 @@ const Navbare = (children) => {
                             </button>
                         </div>
 
-                            <div className="-mt-1 fixed bottom-[40px] right-[20px] flex flex-row gap-3 items-center z-10">
-
-
-                            {showTopButton && (
+                            <div className={`${check === 'ar'&& dashboard && profile ? "left-[20px]" : "right-[20px]"  } -mt-1 fixed bottom-[40px] flex flex-row gap-3 items-center z-10`}>
+                            {!dashboard && !profile &&
+                            showTopButton&& (
                                 <FaArrowCircleUp onClick={handleTopButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} xl:h-7 xl:w-7 h-5 w-5   `}/>
                             )}
-                            {showBottomButton && (
+
+                            {!dashboard && !profile &&
+                                showBottomButton&& (
                                 <FaArrowCircleDown onClick={handleBottomButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} xl:h-7 xl:w-7 h-5 w-5   `}/>
                             )}
+
+
+
 
                             {darkMode ? (
                                 <FaSun

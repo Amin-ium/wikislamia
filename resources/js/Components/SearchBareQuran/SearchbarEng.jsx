@@ -122,6 +122,7 @@ const SearchbarEng = ({ verses }) => {
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
             <form
+            autocomplete="off"
                 onSubmit={(e) => {
                     e.preventDefault(); // Prevent the default form submission
                     onSearch(value); // Call the onSearch function with the current search term
@@ -135,6 +136,7 @@ const SearchbarEng = ({ verses }) => {
                             name="search"
                             type="text"
                             ref={inputRef}
+                            autocomplete="false"
                             onClick={handleInputClick}
                             className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
