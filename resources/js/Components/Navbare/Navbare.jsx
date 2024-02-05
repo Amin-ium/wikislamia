@@ -304,7 +304,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={`    hidden lg:flex lg:gap-2 md:gap-1 gap-1   `}
+                    <div className={` ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"}   hidden lg:flex lg:gap-2 md:gap-1 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -502,7 +502,7 @@ const Navbare = (children) => {
                             </button>
                         </div>
 
-                            <div className={`${check === 'ar'&& dashboard && profile ? "left-[20px]" : "right-[20px]"  } -mt-1 fixed bottom-[40px] flex flex-row gap-3 items-center z-10`}>
+                            <div className={`${check === 'ar'&& dashboard || check === 'ar' && profile ? "left-[20px]" : "right-[20px]"  } -mt-1 fixed bottom-[40px] flex flex-row gap-3 items-center z-10`}>
                             {!dashboard && !profile &&
                             showTopButton&& (
                                 <FaArrowCircleUp onClick={handleTopButtonClick} className={`${darkMode ? "text-lightText" : "text-[#00081F]"} xl:h-7 xl:w-7 h-5 w-5   `}/>

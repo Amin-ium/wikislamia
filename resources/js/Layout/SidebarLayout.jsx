@@ -5,7 +5,7 @@ import { DarkModeContext } from '@/Context/DarkModeContext';
 import Navbare from '@/Components/Navbare/Navbare';
 import { SidebarContextProvider } from '@/Context/SidebarContext';
 
-const SidebarProfileLayout = ({user, users,  children , toggleSidebar, postsTag, postsCategory, singleUser, categories}) => {
+const SidebarLayout = ({user, users,  children , toggleSidebar, postsTag, postsCategory, singleUser, categories}) => {
 
     const {toggle, darkMode} = useContext(DarkModeContext)
 
@@ -31,4 +31,4 @@ console.log(categories);
   )
 }
 
-export default SidebarProfileLayout
+export default SidebarLayout

@@ -5,9 +5,11 @@ import TextInput from '@/Components/TextInput';
 // import { Link, useForm, usePage } from '@inertiajs/react';
 import { Link, usePage, useForm } from "@inertiajs/inertia-react";
 import { Transition } from '@headlessui/react';
+import { useSearchBarContext } from '@/Context/SearchBarContext';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
+    const { check, setCheck } = useSearchBarContext();
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
@@ -21,18 +23,21 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     };
 
     return (
-        <section className={className}>
+        <section  className={`${className} ${check === 'ar' ? "test-right" : "text-left"} `}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">
+                {check === "eng" ? "Profile Information" : check === "fr" ? "Informations de profile" : check === "ar" ? "معلومات الصفحة الشخصية" : null}
+                </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+
+                    {check === "eng" ? "Update your account's profile information and email address" : check === "fr" ? "Mis à jour des informations de profile et compte personnel" : check === "ar" ? "تحديث معلومات الصفحة الشخصية والحساب الشخصي" : null}
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value={check === "eng" ? "Name" : check === "fr" ? "Nom" : check === "ar" ? "الاسم" : null} />
 
                     <TextInput
                         id="name"
@@ -48,7 +53,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value={check === "eng" ? "ُEmail" : check === "fr" ? "Email" : check === "ar" ? "البريد الالكتروني" : null} />
 
                     <TextInput
                         id="email"
@@ -66,27 +71,30 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="text-sm mt-2 text-gray-800">
-                            Your email address is unverified.
+                            {check === "eng" ? "Your email address is unverified" : check === "fr" ? "Votre email est inverifié" : check === "ar" ? "البريد الالكتروني غير محقق" : null}
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
                                 className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
-                                Click here to re-send the verification email.
+
+                                {check === "eng" ? "Click here to re-send the verification email" : check === "fr" ? "Clicker ici pour renvoyer l'email de verification" : check === "ar" ? "اضغط هنا لإعادة إرسال رسالة التحقق" : null}
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
                             <div className="mt-2 font-medium text-sm text-green-600">
-                                A new verification link has been sent to your email address.
+                                 {check === "eng" ? "A new verification link has been sent to your email address" : check === "fr" ? "Un lien de verification a été envoyé à votre adresse email" : check === "ar" ? "لقد تم إرسال رابط التحقق الى بريدك الإلكتروني" : null}
                             </div>
                         )}
                     </div>
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                    {check === "eng" ? "Save" : check === "fr" ? "Enregistrer" : check === "ar" ? "حفظ" : null}
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -95,7 +103,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-sm text-gray-600">
+                        {check === "eng" ? "Saveي" : check === "fr" ? "Enregistré" : check === "ar" ? "تم الحفظ" : null}
+                        </p>
                     </Transition>
                 </div>
             </form>

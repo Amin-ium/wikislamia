@@ -5,6 +5,7 @@ import { createContext, useState, useEffect } from 'react'
 
 export const SidebarContext = createContext();
 
+
 export const SidebarContextProvider = ({children}) => {
 
     const [opened, setOpened] = useState(
@@ -28,3 +29,5 @@ export const SidebarContextProvider = ({children}) => {
     )
 
 };
+
+

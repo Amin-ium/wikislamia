@@ -10,6 +10,8 @@ import { SearchContext } from './Context/SearchBarContext';
 import { ToggleMenuContextProvider } from './Context/ToggleMenuContext';
 import { ToggleMenuContext } from './Context/ToggleMenuContext';
 import { ScrollProvider } from './Context/ScrollContext';
+import {  SidebarContextProvider } from './Context/SidebarContext';
+import { CheckedLinksContextProvider } from './Context/CheckLinksContext';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Wikislamia';
 
@@ -31,6 +33,8 @@ createInertiaApp({
         <ToggleMenuContextProvider>
           <DarkModeContextProvider>
             <SearchContext>
+            <SidebarContextProvider>
+            <CheckedLinksContextProvider>
               {/* Move useContext inside the ToggleMenuContextProvider */}
               <ToggleMenuContext.Consumer>
               {({ toggleMenu, toggleMenuFun }) => {
@@ -71,6 +75,8 @@ createInertiaApp({
                 );
               }}
               </ToggleMenuContext.Consumer>
+              </CheckedLinksContextProvider>
+              </SidebarContextProvider>
             </SearchContext>
           </DarkModeContextProvider>
         </ToggleMenuContextProvider>

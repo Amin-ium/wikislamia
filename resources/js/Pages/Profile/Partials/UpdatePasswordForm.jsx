@@ -5,10 +5,12 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
+import { useSearchBarContext } from '@/Context/SearchBarContext';
 
 export default function UpdatePasswordForm({ className = '' }) {
     const passwordInput = useRef();
     const currentPasswordInput = useRef();
+    const { check, setCheck } = useSearchBarContext();
 
     const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
         current_password: '',
@@ -39,16 +41,19 @@ export default function UpdatePasswordForm({ className = '' }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Update Password</h2>
+                <h2 className="text-lg font-medium text-gray-900">
+                {check === "eng" ? "Update Password" : check === "fr" ? "Mise-à-jour le mot de passe" : check === "ar" ? "تحديث كلمة السر" : null}
+                </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay secure.
+
+                    value={check === "eng" ? "Ensure your account is using a long, random password to stay secure" : check === "fr" ? "Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité" : check === "ar" ? "تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية ليظل آمنًا" : null}
                 </p>
             </header>
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="current_password" value="Current Password" />
+                    <InputLabel htmlFor="current_password" value={check === "eng" ? "Current Password" : check === "fr" ? "Mot de passe actuel" : check === "ar" ? " كلمة السر الحالية" : null} />
 
                     <TextInput
                         id="current_password"
@@ -64,7 +69,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password" value="New Password" />
+                    <InputLabel htmlFor="password" value={check === "eng" ? "New Password" : check === "fr" ? "Nouveau Mot de passe" : check === "ar" ? " كلمة السر جديدة" : null} />
 
                     <TextInput
                         id="password"
@@ -80,7 +85,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+                    <InputLabel htmlFor="password_confirmation" value={check === "eng" ? "Confirm Password" : check === "fr" ? "Confirmer le Mot de passe" : check === "ar" ? "تأكيد كلمة السر" : null} />
 
                     <TextInput
                         id="password_confirmation"
@@ -95,7 +100,9 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                    {check === "eng" ? "Save" : check === "fr" ? "Enregistrer" : check === "ar" ? "حفظ" : null}
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -104,7 +111,9 @@ export default function UpdatePasswordForm({ className = '' }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-sm text-gray-600">
+                        {check === "eng" ? "Saved" : check === "fr" ? "Enregistré" : check === "ar" ? "تم الحفظ" : null}
+                        </p>
                     </Transition>
                 </div>
             </form>
