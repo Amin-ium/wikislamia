@@ -39,7 +39,7 @@ export default function UpdatePasswordForm({ className = '' }) {
     };
 
     return (
-        <section className={className}>
+        <section className={`bg-grayBg`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
                 {check === "eng" ? "Update Password" : check === "fr" ? "Mise-à-jour le mot de passe" : check === "ar" ? "تحديث كلمة السر" : null}

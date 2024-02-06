@@ -33,6 +33,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 </div>
 
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
+                {/* <a href="javascript:;" class="inline-block px-6 py-3 mt-4 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer lg:w-full hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">
+                    Try Premium
+                    <i class="ml-1 fas fa-arrow-right" aria-hidden="true"></i>
+                </a> */}
                     <div className="flex justify-center">
                         <svg
                             viewBox="0 0 62 65"

@@ -34,6 +34,7 @@ const Navbare = (children) => {
     const [currentCheck, setCurrentCheck] = useState(check);
     const [dashboard, setDashboard] = useState(false);
     const [profile, setProfile] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
     useEffect(() => {
         if(window.location.pathname.match('dashboard')) {
@@ -286,14 +287,15 @@ const Navbare = (children) => {
         <header
             ref={sectionRefs.section0}
             id=""
-            className={`${darkMode ? "bg-[#291336]" : "bg-[#EDD7ED]"} relative z-31 w-[100%]    md:w-[100%] lg:w-[100%] xl:w-[100%]   lg:max-w-[100%]   border-b-[1px] md:border-b-[1px] border-lightText xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
+            className={`${profile || dashboard ? "xl:w-[calc(100%-240px)] right-0" : ""} ${check === "ar" ? "left-0" : ""} absolute z-31 w-[100%]    md:w-[100%] lg:w-[100%]   lg:max-w-[100%]   ${dashboard || profile ? "" : "border-b-[1px] md:border-b-[1px] border-lightText"} xl:border-0 lg:border-0 md:border-0 sm:border-0 py-2`}
             x-data="{navbarOpen: false}"
         >
+            <div className={`lg:w-[90%] lg:mx-auto xl:w-[90%] xl:mx-auto relative`}>
             <nav className=" z-31 ">
                 {/* Primary menu and logo */}
-                <div className="flex lg:flex-row justify-between align-middle items-center sm:justify-between md:justify-between lg:justify-around lg:align-middle lg:items-center  w-[95%] mx-auto lg:mx-auto gap-1  ">
+                <div className={`flex ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"}    justify-between  sm:justify-between md:justify-between  ${dashboard || profile  ? " lg:justify-end " : "lg:justify-around"}  lg:align-middle lg:items-center  w-[95%] mx-auto lg:mx-auto gap-1  `}>
                     {/* logo */}
-                    <div className=" ">
+                    <div className={`${dashboard || profile ? "hidden" : "block"}`}>
                         <Link href="/" className=" ">
                             <img
                                 className={`w-[150px] h-[45px] min-w-[150px] min-h-[45px]  xs:w-[150px] xs:h-[45px] sm:w-[180px] sm:h-[65px]  md:w-[200px] md:h-[70px]  lg:w-[200px] lg:h-[70px] xl:w-[200px] xl:h-[60px]  `}
@@ -304,7 +306,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={` ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"}   hidden lg:flex lg:gap-2 md:gap-1 gap-1   `}
+                    <div className={` ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"} ${dashboard&&check === "ar" || profile&&check === "ar"  ? "lg:flex-col absolute left-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" : dashboard&&check === "eng" || profile&&check === "eng" ? "lg:flex-col absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" :  dashboard&&check === "fr" || profile&&check === "fr" ? "lg:flex-col absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300"  : ""} ${showMenu  ? "lg:block duration-300" : showMenu&&!dashboard || showMenu&&!profile ? "lg:block duration-300" : !showMenu&&dashboard || !showMenu&&profile ? "lg:hidden duration-300"  : ""} ${dashboard || profile ? "" : ""}   hidden  lg:flex lg:gap-2 md:gap-1 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -351,12 +353,19 @@ const Navbare = (children) => {
                             )}
                     </div>
 
-                    <div className="flex  flex-row   gap-2 align-middle lg:items-center ">
-                        <div className="flex xs:flex items-center gap-10">
-                            <div className=" flex flex-row-reverse gap-2 ">
+
+                    <div className={`${dashboard&&check === 'fr' || dashboard&&check === 'eng' || profile&&check === 'fr' || profile&&check === 'eng' ? "absolute right-1 " : " "} ${dashboard&&check === "eng" || dashboard&&check === "fr" || profile&&check === "eng" || profile&&check === "fr" ? "lg:mt-5 xl:mt-5" : ""}   flex  flex-row  lg:items-center lg:align-middle xl:items-center xl:align-middle   gap-1 align-middle  `}>
+                        {dashboard || profile && (
+                            <div>
+                            <button className={`${darkMode ? "border-lightText text-lightText" : "border-darkText text-darkText"  } hover:opacity-50 me-2  border-[1px]  xl:text-xs rounded-lg px-1 duration-300 hidden xl:block lg:block`} onClick={() => setShowMenu(!showMenu)}>Menu</button>
+                        </div>
+                        )}
+
+                        <div className="flex xs:flex items-center xl:align-middle  xl:items-center gap-10 ">
+                            <div className={` flex flex-row-reverse gap-2  relative z-40 `}>
                                 {/* {auth.user ? ( */}
                                 {auth.user ? (
-                                    <div   className='relative z-32'>
+                                    <div   className='relative '>
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md">
@@ -414,7 +423,7 @@ const Navbare = (children) => {
                                 {/* </div> */}
                                 {/* ) : ( */}
                                 {auth.user ? (
-                                      <div className="flex items-center gap-1 text-white">
+                                      <div className="flex items-center gap-1 text-white relative z-40">
 
                                       <Link
                                           className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border bg-red-500 border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
@@ -433,7 +442,7 @@ const Navbare = (children) => {
 
                                   </div>
                                 ) : (
-                                    <div className="flex items-center gap-1  text-lightText">
+                                    <div className="flex items-center gap-1  text-lightText relative z-40">
 
                                     <Link
                                         className={`${darkMode ? "border border-lightText text-lightText " : "border border-darkText text-darkText"} loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px]  rounded-lg font-medium  hover:opacity-70 px-1`}
@@ -448,7 +457,7 @@ const Navbare = (children) => {
                                             : null}
                                     </Link>
                                     <Link
-                                        className={`${darkMode ? "border border-lightText text-lightText " : "border border-darkText text-darkText"} signUpBtn border  rounded-lg  text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px]  font-medium duration-300 ease-in-out hover:bg-opacity-100  px-1`}
+                                        className={`${darkMode ? "border border-lightText text-lightText " : "border border-darkText text-darkText"} signUpBtn border  rounded-lg  text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px]  font-medium duration-300 ease-in-out hover:bg-opacity-100   px-1`}
                                         href="/login"
                                     >
                                         {check === "eng"
@@ -467,10 +476,10 @@ const Navbare = (children) => {
                         </div>
                         {/* Mobile navigation toggle */}
 
-                        <div className="  flex flex-row items-center lg:items-center xl:items-center xl:align-middle gap-3 mt-1 ml-1 ">
+                        <div className="  flex flex-row items-center lg:items-center xl:items-center xl:align-middle gap-1 relative z-40 ">
 
 
-                            <div className=" ">
+                            <div className={`${dashboard || profile ? "mt-1 md:mt-1 lg:mt-1 xl:mt-1 " : ""} xl:mt-1 `}>
                             <Select
 
                                 // defaultValue={{
@@ -500,7 +509,7 @@ const Navbare = (children) => {
                             >
                                 <FaAlignJustify className={`${darkMode ? "text-navTextLight" : "text-navTextDark"} h-5 w-5`} />
                             </button>
-                        </div>
+                            </div>
 
                             <div className={`${check === 'ar'&& dashboard || check === 'ar' && profile ? "left-[20px]" : "right-[20px]"  } -mt-1 fixed bottom-[40px] flex flex-row gap-3 items-center z-10`}>
                             {!dashboard && !profile &&
@@ -540,7 +549,7 @@ const Navbare = (children) => {
 
                 {/* mobile navigation */}
                 <div
-                    className={`${darkMode ? "bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird  " : " lightBg"} fixed z-30 w-[100%]  left-0 right-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700 mt-3
+                    className={`${darkMode ? "bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird  " : " lightBg"} fixed z-30 w-[100%]  left-0 right-0 top-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
                     ${!toggleMenu ? "h-0" : "h-screen"}`}
                 >
                     <div className={`${darkMode ? "" : ""} relative  `}>
@@ -592,6 +601,8 @@ const Navbare = (children) => {
                     </div>
                 </div>
             </nav>
+            </div>
+
         </header>
     );
 };

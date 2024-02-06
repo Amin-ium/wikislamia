@@ -12,7 +12,6 @@ export default function Profile({ auth }) {
     return (
         <LayoutApp
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
         >
             <ScrollProvider>
             <SidebarLayout>

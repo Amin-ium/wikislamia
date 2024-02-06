@@ -46,7 +46,7 @@ export default function DeleteUserForm({ className = '' }) {
     };
 
     return (
-        <section className={`space-y-6 ${className}`}>
+        <section className={`space-y-6 bg-grayBg`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
                 {check === "eng" ? "Delete account" : check === "fr" ? "Supprimer le Compte" : check === "ar" ? "حذف الحساب" : null}

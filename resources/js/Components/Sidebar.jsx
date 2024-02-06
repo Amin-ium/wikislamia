@@ -1,7 +1,11 @@
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 import { usePage } from '@inertiajs/inertia-react';
-import { Link } from '@inertiajs/react';
+import logoLight from "../../../public/assets/publicImages/logoLight.svg";
+import logoDark from "../../../public/assets/publicImages/logoDark.svg";
+import darkLogo from "../../../public/assets/publicImages/favicon-dark.svg";
+import lightLogo from "../../../public/assets/publicImages/Group 144444.svg";
+import { Link} from "@inertiajs/inertia-react";
 import React, { useContext, useEffect, useState } from 'react'
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 import { FaBahai } from "react-icons/fa";
@@ -17,6 +21,7 @@ import { FaChartLine } from "react-icons/fa";
 import { BsPostcardFill } from "react-icons/bs";
 import { RiImageEditFill } from "react-icons/ri";
 import { CheckedLinksContext } from '@/Context/CheckLinksContext';
+import { DarkModeContext } from '@/Context/DarkModeContext';
 
 const Sidebar = () => {
     const { opened, handleSidebar, setOpened } = useContext(SidebarContext);
@@ -31,6 +36,7 @@ const Sidebar = () => {
            toggleDeleteAccountPage } = useContext(CheckedLinksContext);
 
     const { auth } = usePage().props
+    const { toggle, darkMode } = useContext(DarkModeContext);
 
 
     useEffect(() => {
@@ -47,23 +53,38 @@ const Sidebar = () => {
     }, []);
 
     const profileLinks = [
-        {linkEng: "Update Infos", linkFr: "ُEdit Infos", linkAr: "تحديث المعلومات", href: "href01", icon:<LuClipboardEdit size={18} className='text-lightText' />, method: toggleUpdateInfosPage},
-        {linkEng: "Update Password", linkFr: "Edit Mot de passe", linkAr: "تغيير كلمة السر",  href: "href02", icon:<RiLockPasswordFill size={18} className='text-lightText '  />, method: toggleUpdatePasswordPage},
-        {linkEng: "Delete account", linkFr: "Supprimer le compte", linkAr: "حذف الحساب",  href: "href03", icon:<MdDeleteForever size={18} className='text-lightText '  />, method: toggleDeleteAccountPage},
-        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={18} className='text-lightText '  />, method: null},
+        {linkEng: "Update Infos", linkFr: "ُEdit Infos", linkAr: "تحديث المعلومات", href: "href01", icon:<LuClipboardEdit size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleUpdateInfosPage} />, method: toggleUpdateInfosPage},
+        {linkEng: "Update Password", linkFr: "Edit Mot de passe", linkAr: "تغيير كلمة السر",  href: "href02", icon:<RiLockPasswordFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleUpdatePasswordPage}  />, method: toggleUpdatePasswordPage},
+        {linkEng: "Delete account", linkFr: "Supprimer le compte", linkAr: "حذف الحساب",  href: "href03", icon:<MdDeleteForever size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleDeleteAccountPage}  />, method: toggleDeleteAccountPage},
+        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`}  />, method: null},
     ];
 
     const dashboardLinks = [
-        {linkEng: "Statistics", linkFr: "Statistiques", linkAr: "إحصائيات", href: "href01", icon:<FaChartLine size={18} className='text-lightText '  />},
-        {linkEng: "Your Posts", linkFr: "Votre Posts", linkAr: "مقالاتك",  href: "href02", icon:<BsPostcardFill size={18} className='text-lightText '  />},
-        {linkEng: "Create Post", linkFr: "Créer un Post", linkAr: "أنشر مقالا",  href: "href03", icon:<RiImageEditFill size={18} className='text-lightText '  />},
-        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={18} className='text-lightText '  />},
+        {linkEng: "Statistics", linkFr: "Statistiques", linkAr: "إحصائيات", href: "href01", icon:<FaChartLine size={opened ? 18 : 22} className={` text-lightText`}  />},
+        {linkEng: "Your Posts", linkFr: "Votre Posts", linkAr: "مقالاتك",  href: "href02", icon:<BsPostcardFill size={opened ? 18 : 22} className={` text-lightText`}  />},
+        {linkEng: "Create Post", linkFr: "Créer un Post", linkAr: "أنشر مقالا",  href: "href03", icon:<RiImageEditFill size={opened ? 18 : 22} className={` text-lightText`}  />},
+        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText`}  />},
     ]
 
 
   return (
 
-    <div className={`${opened ? "w-[240px]" : "w-[40px]"} ${check === 'ar' ? "fixed right-0 " : "fixed left-0 "}  h-screen bg-darkText duration-300 text-lightText `}>
+    <div className={`${opened ? "w-[240px]" : "w-[40px]"} ${check === 'ar' ? "fixed right-0 " : "fixed left-0 "}  h-screen bg-darkText duration-300 text-lightText`}>
+        <div>
+
+                <Link href="/" className=" ">
+                <img
+                    className={`${opened ? "w-[200px] h-[60px]" : "w-[100px] h-[30px] my-3"}   `}
+                    src={darkMode&&opened ? logoLight :
+                        !darkMode&&opened ? logoDark :
+                        darkMode&&!opened ? lightLogo :
+                        !darkMode&&!opened ? darkLogo : null }
+                    alt=""
+                />
+            </Link>
+
+
+        </div>
         <div className={`${check === 'ar' ? "flex-row-reverse" : "flex-row"} flex  justify-between mt-3  mx-1  border-b-[1px] border-[#f1f1f125] py-2`}>
             {opened && (
                 <h2>@{auth.user.name}</h2>
@@ -115,7 +136,7 @@ const Sidebar = () => {
             {profile && (
                 profileLinks.map((profileLink, i) => (
                     <div className={`flex ${check === 'ar' ? "flex-row-reverse" : "flex-row"} items-center gap-1 mb-[20px]`}>
-                        <ul>
+                        <ul className={`flex items-center  gap-1 ${check === "ar" ? "flex-row-reverse" : "flex-row"} ${opened ? "" : "justify-center"} `}>
                         {profileLink.icon}
                             {opened &&
                                 (check === "ar" ? (

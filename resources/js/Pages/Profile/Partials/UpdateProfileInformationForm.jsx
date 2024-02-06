@@ -23,13 +23,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     };
 
     return (
-        <section  className={`${className} ${check === 'ar' ? "test-right" : "text-left"} `}>
+        <section  className={` ${check === 'ar' ? "test-right" : "text-left"} bg-grayBg`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-lightText">
                 {check === "eng" ? "Profile Information" : check === "fr" ? "Informations de profile" : check === "ar" ? "معلومات الصفحة الشخصية" : null}
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-400">
 
                     {check === "eng" ? "Update your account's profile information and email address" : check === "fr" ? "Mis à jour des informations de profile et compte personnel" : check === "ar" ? "تحديث معلومات الصفحة الشخصية والحساب الشخصي" : null}
                 </p>
