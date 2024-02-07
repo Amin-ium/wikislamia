@@ -37,6 +37,11 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     Try Premium
                     <i class="ml-1 fas fa-arrow-right" aria-hidden="true"></i>
                 </a> */}
+                {/* <input type="text" placeholder="Default input" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input> */}
+                {/* <a class="mt-auto mb-0 font-semibold leading-normal text-sm group text-slate-500" href="javascript:;">
+                Read More
+                <i class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
+                </a> */}
                     <div className="flex justify-center">
                         <svg
                             viewBox="0 0 62 65"

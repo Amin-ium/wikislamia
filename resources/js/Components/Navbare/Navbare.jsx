@@ -12,6 +12,8 @@ import { ToggleMenuContext } from "@/Context/ToggleMenuContext";
 
 import { useScroll } from "@/Context/ScrollContext";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
+import { FaPowerOff } from "react-icons/fa6";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
@@ -51,6 +53,7 @@ const Navbare = (children) => {
 
 
     const { auth } = usePage().props
+    console.log(auth);
 
     const { scrollToSection, showTopButton, showBottomButton, sectionRefs } = useScroll();
 
@@ -175,14 +178,14 @@ const Navbare = (children) => {
         menu: provided => ({ ...provided, zIndex: 9999 }),
         control: (provided, state) => ({
             ...provided,
-            background: "#fff",
+            background: "#00081F",
             fontSize: "14px",
             borderColor: "#9e9e9e",
             minHeight: "20px",
             height: "20px",
             width: "60px",
-
-            minWidth: "hi",
+            color: "#f1f1f1",
+            minWidth: "60px",
             boxShadow: state.isFocused ? null : null,
         }),
         menuPortal: base => ({ ...base, zIndex: 32 }),
@@ -192,6 +195,7 @@ const Navbare = (children) => {
             height: "20px",
             padding: "0 6px 6px 6px",
             width: "60px",
+            color: "#f1f1f1",
 
         }),
 
@@ -199,6 +203,8 @@ const Navbare = (children) => {
             ...provided,
             margin: "-10px",
             width: "60px",
+
+
 
         }),
         indicatorSeparator: (state) => ({
@@ -208,12 +214,25 @@ const Navbare = (children) => {
             ...provided,
             height: "20px",
 
+
         }),
 
         placeholder: (provided, state) => ({
             ...provided,
             display: "none",
+
         }),
+        option: provided => ({
+            ...provided,
+            color: '#f1f1f1',
+            background: "#00081F",
+            fontSize: "14px",
+          }),
+
+          singleValue: provided => ({
+            ...provided,
+            color: '#f1f1f1'
+          })
     };
 
     const updateValue = (value) => {
@@ -293,7 +312,7 @@ const Navbare = (children) => {
             <div className={`lg:w-[90%] lg:mx-auto xl:w-[90%] xl:mx-auto relative`}>
             <nav className=" z-31 ">
                 {/* Primary menu and logo */}
-                <div className={`flex ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"}    justify-between  sm:justify-between md:justify-between  ${dashboard || profile  ? " lg:justify-end " : "lg:justify-around"}  lg:align-middle lg:items-center  w-[95%] mx-auto lg:mx-auto gap-1  `}>
+                <div className={`flex   lg:flex-row  justify-between  sm:justify-between md:justify-between  ${dashboard&&check==="eng" || profile&&check==="eng" || dashboard&&check==="fr" || profile&&check==="fr"  ? " lg:justify-end " : ""}  lg:align-middle lg:items-center  w-[95%] mx-auto lg:mx-auto gap-1  `}>
                     {/* logo */}
                     <div className={`${dashboard || profile ? "hidden" : "block"}`}>
                         <Link href="/" className=" ">
@@ -306,7 +325,7 @@ const Navbare = (children) => {
                     </div>
                     {/* primary */}
                     {/* {`${isSticky ? "text-white" : "text-black"} navLinks hidden lg:flex gap-8 `}  */}
-                    <div className={` ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"} ${dashboard&&check === "ar" || profile&&check === "ar"  ? "lg:flex-col absolute left-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" : dashboard&&check === "eng" || profile&&check === "eng" ? "lg:flex-col absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" :  dashboard&&check === "fr" || profile&&check === "fr" ? "lg:flex-col absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300"  : ""} ${showMenu  ? "lg:block duration-300" : showMenu&&!dashboard || showMenu&&!profile ? "lg:block duration-300" : !showMenu&&dashboard || !showMenu&&profile ? "lg:hidden duration-300"  : ""} ${dashboard || profile ? "" : ""}   hidden  lg:flex lg:gap-2 md:gap-1 gap-1   `}
+                    <div className={` ${check === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"} ${dashboard&&check === "ar" || profile&&check === "ar"  ? "lg:flex-col absolute left-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" : dashboard&&check === "eng" || profile&&check === "eng" ? "lg:flex-col absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300" :  dashboard&&check === "fr" || profile&&check === "fr" ? "lg:flex-col xl:items-center absolute right-[250px] top-[40px] bg-white p-4 rounded-lg shadow-lg duration-300"  : ""} ${showMenu  ? "lg:block duration-300" : showMenu&&!dashboard || showMenu&&!profile ? "lg:block duration-300" : !showMenu&&dashboard || !showMenu&&profile ? "lg:hidden duration-300"  : ""} ${dashboard || profile ? "" : ""}   hidden  lg:flex lg:gap-2 md:gap-1 gap-1   `}
                     >
                         {links &&
                             links.map((link, i) =>
@@ -354,45 +373,29 @@ const Navbare = (children) => {
                     </div>
 
 
-                    <div className={`${dashboard&&check === 'fr' || dashboard&&check === 'eng' || profile&&check === 'fr' || profile&&check === 'eng' ? "absolute right-1 " : " "} ${dashboard&&check === "eng" || dashboard&&check === "fr" || profile&&check === "eng" || profile&&check === "fr" ? "lg:mt-5 xl:mt-5" : ""}   flex  flex-row  lg:items-center lg:align-middle xl:items-center xl:align-middle   gap-1 align-middle  `}>
+                    <div className={`${dashboard&&check === 'fr' || dashboard&&check === 'eng' || profile&&check === 'fr' || profile&&check === 'eng' ? " " : " "} ${dashboard&&check === "eng" || dashboard&&check === "fr" || profile&&check === "eng" || profile&&check === "fr" ? "xl:right-0 flex" : "xl:left-0 flex"}    flex-row xl:flex-row  lg:items-center lg:align-middle xl:items-center xl:align-middle   gap-1 align-middle  `}>
                         {dashboard || profile && (
-                            <div>
-                            <button className={`${darkMode ? "border-lightText text-lightText" : "border-darkText text-darkText"  } hover:opacity-50 me-2  border-[1px]  xl:text-xs rounded-lg px-1 duration-300 hidden xl:block lg:block`} onClick={() => setShowMenu(!showMenu)}>Menu</button>
-                        </div>
+                            <div className="button w-15 h-4 mt-[3px]  cursor-pointer select-none
+                            active:translate-y-2  active:[box-shadow:0_0px_0_0_#00081F,0_0px_0_0_#00081F]
+                            active:border-b-[0px] transition-all duration-150 [box-shadow:0_5px_0_0_#00081F,0_4px_0_0_#00081F]
+                            rounded-full  border-[1px] border-blue-400 hidden xl:block lg:block">
+                            <button className={`     xl:bg-darkText   xl:text-xs rounded-lg px-1 flex flex-col justify-center items-center h-full bg-darkText  font-normal text-lightText text-xs  `} onClick={() => setShowMenu(!showMenu)}>Menu</button>
+                            </div>
                         )}
 
                         <div className="flex xs:flex items-center xl:align-middle  xl:items-center gap-10 ">
                             <div className={` flex flex-row-reverse gap-2  relative z-40 `}>
                                 {/* {auth.user ? ( */}
                                 {auth.user ? (
-                                    <div   className='relative '>
+                                    <div   className='relative mt-[2px]'>
                                     <Dropdown>
                                         <Dropdown.Trigger>
-                                            <span className="inline-flex rounded-md">
-                                                <button
-                                                    type="button"
-                                                    className="inline-flex items-center px-1 py-1 border border-gray-100 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 "
-                                                >
-                                                    {/* {
-                                                                 auth
-                                                                     .user
-                                                                     .name
-                                                             } */}
-                                                    admin
-                                                    <svg
-                                                        className="ml-2 -mr-0.5 h-4 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 20 20"
-                                                        fill="currentColor"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            </span>
+                                            <div className="relative">
+                                                <img src={auth.user.imagePath} className="h-8 w-8 rounded-full border border-lightText" alt="" />
+                                                <BiSolidDownArrow  size={10} className="absolute text-lightText font-bold left-[17px] top-[20px]" />
+                                            </div>
+
+
                                         </Dropdown.Trigger>
                                         {/* {auth.user.is_admin ? ( */}
                                         <Dropdown.Content>
@@ -423,21 +426,23 @@ const Navbare = (children) => {
                                 {/* </div> */}
                                 {/* ) : ( */}
                                 {auth.user ? (
-                                      <div className="flex items-center gap-1 text-white relative z-40">
+                                      <div className="flex xl:items-center text-center gap-1 text-white relative z-40 mt-[4px] buttonLogout">
 
                                       <Link
-                                          className={` loginBtn text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[14px] border bg-red-500 border-lightText rounded-lg font-medium  hover:opacity-70 px-1`}
+                                          className={`text-center mx-auto `}
                                           href="/logout"
                                                     as="button"
                                                     method="POST"
+
                                       >
-                                          {check === "eng"
+                                          {/* {check === "eng"
                                               ? "Logout"
                                               : check === "ar"
                                               ? "الخروج"
                                               : check === "fr"
                                               ? "Déconnexion"
-                                              : null}
+                                              : null} */}
+                                               <FaPowerOff size={16}/>
                                       </Link>
 
                                   </div>
@@ -479,7 +484,7 @@ const Navbare = (children) => {
                         <div className="  flex flex-row items-center lg:items-center xl:items-center xl:align-middle gap-1 relative z-40 ">
 
 
-                            <div className={`${dashboard || profile ? "mt-1 md:mt-1 lg:mt-1 xl:mt-1 " : ""} xl:mt-1 `}>
+                            <div className={`${dashboard || profile ? "mt-1 md:mt-1 lg:mt-1 xl:mt-1 " : ""} `}>
                             <Select
 
                                 // defaultValue={{
@@ -496,18 +501,19 @@ const Navbare = (children) => {
                                 myHeight="10px"
                                 myFontSize="12px"
                                 styles={customStyles}
-                                className="relative -mt-1 z-32"
+                                className="relative  z-32 text-lightText"
 
 
                             />
                             </div>
 
-                            <div className="text-lightText lg:hidden flex items-center">
+                            <div className="text-lightText lg:hidden flex items-center ">
+
                             <button
                                 className={` menuBtn`}
                                 onClick={setMobileMenu}
                             >
-                                <FaAlignJustify className={`${darkMode ? "text-navTextLight" : "text-navTextDark"} h-5 w-5`} />
+                                <FaAlignJustify className={`${darkMode ? "text-navTextLight" : "text-navTextDark"} mt-[4px]  h-5 w-5`} />
                             </button>
                             </div>
 
@@ -535,6 +541,8 @@ const Navbare = (children) => {
                                 onClick={toggle}
                                 className={`text-navTextDark xl:h-7 xl:w-7 h-5 w-5 `}
                             />
+
+
                             )}
                             </div>
 
@@ -552,7 +560,7 @@ const Navbare = (children) => {
                     className={`${darkMode ? "bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird  " : " lightBg"} fixed z-30 w-[100%]  left-0 right-0 top-0    overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700
                     ${!toggleMenu ? "h-0" : "h-screen"}`}
                 >
-                    <div className={`${darkMode ? "" : ""} relative  `}>
+                    <div className={`${darkMode ? "" : ""} relative mt-10 `}>
                         <div className="flex flex-col  font-bold text-center tracking-wider">
                         {links &&
                             links.map((link, i) =>

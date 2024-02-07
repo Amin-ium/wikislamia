@@ -6,8 +6,9 @@ import DashboardSection from '@/Sections/DashboardSection';
 
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, posts }) {
     const { check, setCheck } = useSearchBarContext();
+    console.log(posts);
     return (
         <LayoutApp
             user={auth.user}
@@ -18,7 +19,7 @@ export default function Dashboard({ auth }) {
             {/* <Head title="Dashboard" /> */}
 
             <div className="py-12">
-            <DashboardSection />
+            <DashboardSection posts={posts} />
             </div>
             </SidebarLayout>
             </ScrollProvider>

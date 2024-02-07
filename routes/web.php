@@ -37,16 +37,14 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'Home'])->name('Pages.Home');
 
 
-Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'Profile'])->name('Pages.Profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
 });
 
 Route::post('logout', LogoutController::class)->name('logout');
