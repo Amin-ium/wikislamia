@@ -10,12 +10,18 @@ import { DarkModeContext } from '@/Context/DarkModeContext'
 import headerImgDark from '../../../../public/assets/publicImages/imgDark.svg'
 import headerImgLight from '../../../../public/assets/publicImages/OBJECTS.svg'
 import { useScroll } from '@/Context/ScrollContext'
+import moment from 'moment'
+import PrayerTime from '@/Components/PrayerTime'
 
-const SectionSearchBare = ({sectionId, verses}) => {
+const SectionSearchBare = ({sectionId, verses, resultPrayer}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
     const { sectionRefs } = useScroll();
+
+    const formattedDate = moment().format('HH:mm');
+    // var dt = moment("12:15 AM", ["h:mm A"]).format("HH:mm");
+    console.log(formattedDate);
 
 
   return (
@@ -23,6 +29,8 @@ const SectionSearchBare = ({sectionId, verses}) => {
     <section ref={sectionRefs.section1} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} w-[100%] h-auto homeBg pb-15`}>
         <div className='w-[100%]   py-[100px] '>
        <div className=' relative z-9 w-[90%]  mx-auto flex flex-col justify-center  pt-[140px] lg:pt-[10px] '>
+       <PrayerTime FajrPrayer={resultPrayer.data.timings.Fajr} DhuhrPrayer={resultPrayer.data.timings.Dhuhr} AsrPrayer={resultPrayer.data.timings.Asr} MaghribPrayer={resultPrayer.data.timings.Maghrib} IshaPrayer={resultPrayer.data.timings.Isha}  />
+
         <img className={`${darkMode ? "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] lg:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px] lg:-mt-0 mx-auto"
         : "w-[300px] h-[150px]  md:w-[400px] md:h-[200px] lg:w-[400px] xl:w-[500px] lg:h-[200px] xl:h-[200px] -mt-[100px] sm:-mt-[100px]  md:-mt-[100px]  lg:-mt-0 mx-auto"} `}
         src={darkMode ? headerImgLight : headerImgDark} alt="" />

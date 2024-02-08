@@ -10,6 +10,7 @@ use App\Http\Controllers\HadeethController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Quran\QuranController;
+use App\Http\Controllers\QuranSurahsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'Home'])->name('Pages.Home');
 
+Route::get('item', [QuranSurahsController::class, 'index']);
 
 
 
