@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
 });
 
-Route::post('logout', LogoutController::class)->name('logout');
+// Route::post('logout', LogoutController::class)->name('logout');
 
 
 
