@@ -26,6 +26,17 @@ const SectionSearchBare = ({sectionId, verses, resultPrayer}) => {
     console.log(formattedDate);
 
 
+    let requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+
+      fetch("https://hadeethenc.com/api/v1/hadeeths/one/?language=fr&id=2962", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+
   return (
     <>
     <section ref={sectionRefs.section1} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} w-[100%] h-auto homeBg pb-15`}>

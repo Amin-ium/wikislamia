@@ -56,7 +56,7 @@ const Results = ({results, verses}) => {
 
             </div>
             <div className='flex xl:flex-col gap-1 w-[70%] mx-auto  mt-5'>
-      {results?.map((result, i) => (
+      {results.map((result, i) => (
         <div key={i} className='border flex flex-col p-4  '>
           {check === 'eng' ? (
             <div className='flex flex-row justify-between items-center bg-grayBg rounded-lg text-lightText p-4'>

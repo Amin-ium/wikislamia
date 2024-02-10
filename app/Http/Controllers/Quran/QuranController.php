@@ -95,10 +95,15 @@ class QuranController extends Controller
 
     public function index(Request $request)
 {
+    $results = [];
     $searchTerms = $request->input('searchData');
-    $searchTerms = explode(' ', $searchTerms);
 
-    $surahId = $request->input('surah_id'); // Adjust this line based on how you pass the surah_id
+    if(empty($searchTerms)) {
+        $results = [];
+    }else{
+        $searchTerms = explode(' ', $searchTerms);
+
+
 
     $query = Ayah::query()
         ->with('surah') // Eager load the surah relationship
@@ -109,14 +114,24 @@ class QuranController extends Controller
             }
         });
 
-    // Add a condition to filter by surah_id if provided
-    if ($surahId) {
-        $query->whereHas('surah', function ($q) use ($surahId) {
-            $q->where('id', $surahId);
-        });
-    }
+        $results = $query->get();
+    };
 
-    $results = $query->get();
+
+    // dd($searchTerms);
+    // Add a condition to filter by surah_id if provided
+    // if ($surahId) {
+    //     $query->whereHas('surah', function ($q) use ($surahId) {
+    //         $q->where('id', $surahId);
+    //     });
+    // }
+
+
+
+
+
+
+
         $ayahs = Ayah::with('surah')->get();
 
 
@@ -125,6 +140,8 @@ class QuranController extends Controller
         foreach($ayahs as $ayah) {
             $verses[] = $ayah;
         }
+
+
 
     return Inertia::render('Quran/Results', ['results' => $results, 'verses' => $verses]);
 }
