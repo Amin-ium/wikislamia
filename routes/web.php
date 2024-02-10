@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
 Route::post('logout', LogoutController::class)->name('logout');
 
 
+
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs.blogsPage');
 Route::get('/quran', [QuranController::class, 'index'])->name('quran.quranPage');
 Route::get('/hadeeth', [HadeethController::class, 'index'])->name('hadeeth.hadeethPage');
