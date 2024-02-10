@@ -5,6 +5,7 @@ import { FaMoon, FaSun, FaAlignJustify, FaArrowCircleUp, FaArrowCircleDown  } fr
 // import logoLight from "../../../../public/assets/publicImages/logoLight.png";
 import logoLight from "../../../../public/assets/publicImages/logoLight.svg";
 import logoDark from "../../../../public/assets/publicImages/logoDark.svg";
+import prayerIcon from "../../../../public/assets/publicImages/prayerTimesIcon.png";
 import Alpine from "alpinejs";
 import Select from "react-select";
 import { DarkModeContext } from "@/Context/DarkModeContext";
@@ -18,7 +19,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
 const Navbare = (children) => {
-    const {toggleMenu, toggleMenuFun} = useContext(ToggleMenuContext);
+    const {toggleMenu, toggleMenuFun, togglePrayingTime, togglePrayingTimeFun} = useContext(ToggleMenuContext);
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
 
@@ -384,7 +385,11 @@ const Navbare = (children) => {
                         )}
 
                         <div className="flex xs:flex items-center xl:align-middle  xl:items-center gap-10 ">
+
                             <div className={` flex flex-row-reverse gap-2  relative z-40 `}>
+                            <div className="cursor-pointer">
+                                <img src={prayerIcon}onClick={togglePrayingTimeFun} className="h-8 w-8  " alt="Prayer Times" />
+                            </div>
                                 {/* {auth.user ? ( */}
                                 {auth.user ? (
                                     <div   className='relative mt-[2px]'>
@@ -478,6 +483,7 @@ const Navbare = (children) => {
 
                                 {/* )} */}
                             </div>
+
                         </div>
                         {/* Mobile navigation toggle */}
 

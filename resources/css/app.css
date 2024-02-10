@@ -46,6 +46,13 @@ body{
     background-position: center;
 }
 
+.prayerBg{
+    background-image: url('../../public/assets/publicImages/prayerTimeBg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

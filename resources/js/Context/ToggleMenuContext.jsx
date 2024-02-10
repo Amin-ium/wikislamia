@@ -11,6 +11,14 @@ export const ToggleMenuContextProvider = ({children}) => {
         JSON.parse(localStorage.getItem("toggleMenu")) || false
     );
 
+    const [togglePrayingTime, setTogglePrayingTime] = useState(
+        JSON.parse(localStorage.getItem("togglePrayingTime")) || false
+    );
+
+    const togglePrayingTimeFun = () => {
+        setTogglePrayingTime(!togglePrayingTime)
+    }
+
 
     const toggleMenuFun = () => {
         setToggleMenu(!toggleMenu)
@@ -21,7 +29,7 @@ export const ToggleMenuContextProvider = ({children}) => {
     }, [toggleMenu]);
 
     return (
-        <ToggleMenuContext.Provider value={{toggleMenu, toggleMenuFun}}>
+        <ToggleMenuContext.Provider value={{toggleMenu, toggleMenuFun, togglePrayingTime, togglePrayingTimeFun}}>
             {children}
         </ToggleMenuContext.Provider>
     )
