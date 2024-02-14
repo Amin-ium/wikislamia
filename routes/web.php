@@ -37,7 +37,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'Home'])->name('Pages.Home');
 
-// Route::get('item', [QuranSurahsController::class, 'index']);
+Route::get('item', [QuranSurahsController::class, 'saveAyahs']);
 
 
 

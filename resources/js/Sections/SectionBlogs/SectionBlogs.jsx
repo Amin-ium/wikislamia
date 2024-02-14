@@ -2,18 +2,15 @@ import React, { useContext } from 'react'
 import headImg from "../../../../public/assets/publicImages/—Pngtree—ramadan illustration muslim family praying_7466838 2.svg"
 import illustration1 from "../../../../public/assets/publicImages/illustarion1.svg"
 import illustration2 from "../../../../public/assets/publicImages/Illustration2.svg"
-import user from "../../../../public/assets/publicImages/testimonialTwo.png"
 
-import SearchbarEng from '@/Components/SearchBareQuran/SearchbarEng'
-import CheckedRadio from '@/Components/CheckedRadio'
-import CardsBanner from '@/Components/CardsBanner'
+
+
 import { useSearchBarContext } from '@/Context/SearchBarContext'
-import SearchbarAr from '@/Components/SearchBareQuran/SearchbarAr'
-import Searchbarfr from '@/Components/SearchBareQuran/SearchbarFr'
+
 import { DarkModeContext } from '@/Context/DarkModeContext'
-import lightHeading from '../../../../public/assets/publicImages/gg-removebg-preview.png'
+
 import SectionTitle from '@/Components/SectionTitle'
-import PostCard from '@/Components/PostCard/PostCard'
+
 import Pagination from '@/Components/Pagination'
 import { useScroll } from '@/Context/ScrollContext'
 

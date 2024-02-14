@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import headImg from "../../../../public/assets/publicImages/—Pngtree—ramadan illustration muslim family praying_7466838 2.svg"
-import SearchbarEng from '@/Components/SearchBareQuran/SearchbarEng'
+// import SearchbarEng from '@/Components/SearchBareQuran/SearchbarEng'
 import CheckedRadio from '@/Components/CheckedRadio'
 import CardsBanner from '@/Components/CardsBanner'
 import { useSearchBarContext } from '@/Context/SearchBarContext'
@@ -13,6 +13,7 @@ import { useScroll } from '@/Context/ScrollContext'
 import moment from 'moment'
 import PrayerTime from '@/Components/PrayerTime'
 import { ToggleMenuContext } from '@/Context/ToggleMenuContext'
+import SearchbarEng from '@/Components/SearchBareQuran/SearchbarEng'
 
 const SectionSearchBare = ({sectionId, verses, resultPrayer}) => {
 

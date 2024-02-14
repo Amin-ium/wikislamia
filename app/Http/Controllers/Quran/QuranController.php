@@ -110,6 +110,8 @@ class QuranController extends Controller
         ->where(function ($q) use ($searchTerms) {
             foreach ($searchTerms as $searchTerm) {
                 $q->where('englishContent', 'like', '%' . $searchTerm . '%');
+                $q->where('content', 'like', '%' . $searchTerm . '%');
+                $q->where('frenshContent', 'like', '%' . $searchTerm . '%');
                 // Add other conditions as needed
             }
         });
