@@ -16,11 +16,11 @@ class Surah extends Model
     return $this->hasMany(Ayah::class);
 }
 
+public function surahaudio() {
+    return $this->hasOne(SurahAudio::class);
+}
 
 
 
 
-// public function surahaudio() {
-//     return $this->hasOne(SurahAudio::class);
-// }
 }

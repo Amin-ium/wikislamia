@@ -49,17 +49,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
 });
 
+Route::get('/quran/{id}', [QuranController::class, 'show'])->name('Quran.IndividualQuran');
+Route::get('/quran/{id}/full-surah', [QuranController::class, 'getFullSurah'])->name('Quran.Fsurah');
+
 // Route::post('logout', LogoutController::class)->name('logout');
 
 
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs.blogsPage');
-Route::get('/quran', [QuranController::class, 'index'])->name('quran.quranPage');
+Route::get('/quran', [QuranController::class, 'QuranPage'])->name('quran.quranPage');
 Route::get('/hadeeth', [HadeethController::class, 'index'])->name('hadeeth.hadeethPage');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.contactPage');
 Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage');
 
 Route::post('/quran', [QuranController::class, 'index'])->name('quran.searchResults');
+Route::get('/quran/surah/{id}', [QuranController::class, 'Surah'])->name('Quran.Surah');
 
 
 

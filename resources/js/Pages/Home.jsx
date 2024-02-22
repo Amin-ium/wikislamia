@@ -11,7 +11,7 @@ import SectionStatistics from '@/Sections/SectionStatistics/SectionStatistics'
 import SectionTestmonial from '@/Sections/SectionTestmonial/SectionTestmonial'
 import React, { useContext } from 'react'
 
-const Home = ({posts, user, quiz, verses, resultPrayer, fatihah}) => {
+const Home = ({posts, user, quiz, verses, resultPrayer, fatihah, surahs}) => {
 
 console.log(fatihah );
   return (
@@ -19,7 +19,7 @@ console.log(fatihah );
 
 <ScrollProvider>
     <LayoutApp>
-            <SectionSearchBare sectionId={1} verses={verses} resultPrayer={resultPrayer} />
+            <SectionSearchBare sectionId={1} verses={verses} resultPrayer={resultPrayer} surahs={surahs} />
             <SectionBlogs sectionId={2} posts={posts} user={user} />
             <SectionFaq sectionId={3} quiz={quiz} />
             <SectionBrands sectionId={4} />

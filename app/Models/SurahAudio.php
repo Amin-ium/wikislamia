@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SourahAudio extends Model
+class Surahaudio extends Model
 {
     use HasFactory;
 
@@ -13,4 +13,3 @@ class SourahAudio extends Model
         return $this->belongsTo(Surah::class, 'surah_id');
     }
 }
-

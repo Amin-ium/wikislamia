@@ -11,6 +11,7 @@ use App\Models\Fatiha;
 use App\Models\Surah;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Models\SourahAudio;
 
 use Illuminate\Support\Facades\Input;
 use Symfony\Component\Console\Input\Input as InputInput;
@@ -22,6 +23,20 @@ class QuranController extends Controller
 //     $verses = Fatiha::all();
 //     return Inertia::render('Home', ['verses' => $verses]);
 //    }
+
+
+public function QuranPage()
+{
+ $surahs = Surah::with('ayahs', 'surahaudio')->get();
+
+
+
+
+
+
+ return Inertia::render('Quran/QuranPage', ['surahs'=> $surahs]);
+}
+
 
    public function getFullSurah($id)
    {
@@ -52,6 +67,7 @@ class QuranController extends Controller
     public function Surah($id)
     {
         $surah = Surah::with('ayahs', 'surahaudio')->find($id);
+        // dd($surah);
 
         return Inertia::render('Quran/Surah', ['surah' => $surah]);
     }
@@ -101,26 +117,32 @@ class QuranController extends Controller
     if(empty($searchTerms)) {
         $results = [];
     }else{
-        $searchTerms = explode(' ', $searchTerms);
+        // $searchTerms = explode(' ', $searchTerms);
 
 
 
-    $query = Ayah::query()
-        ->with('surah') // Eager load the surah relationship
-        ->where(function ($q) use ($searchTerms) {
-            foreach ($searchTerms as $searchTerm) {
-                $q->where('englishContent', 'like', '%' . $searchTerm . '%');
-                $q->where('content', 'like', '%' . $searchTerm . '%');
-                $q->where('frenshContent', 'like', '%' . $searchTerm . '%');
-                // Add other conditions as needed
-            }
-        });
+    // $query = Ayah::query()
+    //     ->with('surah') // Eager load the surah relationship
+    //     ->where(function ($q) use ($searchTerms) {
 
-        $results = $query->get();
+    //             $q->where('englishContent', 'LIKE', "%{$searchTerms}%" );
+    //             $q->where('content',  'LIKE', "%{$searchTerms}%" );
+    //             $q->where('frenshContent',  'LIKE', "%{$searchTerms}%"  );
+    //             // Add other conditions as needed
+
+    //     });
+
+
+
+    //     $results = $query->get();
+    $results = Ayah::where('englishContent', 'LIKE', '%'.$searchTerms.'%')
+                    ->orWhere('content',  'LIKE', "%{$searchTerms}%" )
+                    ->orWhere('frenshContent',  'LIKE', "%{$searchTerms}%" )->with('surah')->get();
+
     };
 
 
-    // dd($searchTerms);
+
     // Add a condition to filter by surah_id if provided
     // if ($surahId) {
     //     $query->whereHas('surah', function ($q) use ($surahId) {
@@ -145,8 +167,12 @@ class QuranController extends Controller
 
 
 
+
+
     return Inertia::render('Quran/Results', ['results' => $results, 'verses' => $verses]);
 }
+
+
 
 
 

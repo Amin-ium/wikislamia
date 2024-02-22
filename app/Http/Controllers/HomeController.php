@@ -108,7 +108,8 @@ class HomeController extends Controller
             'verses' => $verses,
             'quiz' => $quiz,
             'resultPrayer' => $resultPrayer,
-            'fatihah' => $fatihah
+            'fatihah' => $fatihah,
+            'surahs' => $surahs
         ]);
     }
 

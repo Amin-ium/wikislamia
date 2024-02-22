@@ -26,7 +26,6 @@ class QuranSurahsController extends Controller
 
     foreach ($datas as $data) {
         Log::info('Processing data: ' . json_encode($data));
-
         // Check if 'surah_id' key exists in the current $data
         if (array_key_exists('surah_id', $data)) {
             // Check if Surah exists before inserting Ayah
@@ -41,6 +40,13 @@ class QuranSurahsController extends Controller
 
                 // Insert Ayah using the relationship
                 $surah->ayahs()->create([
+
+
+
+
+
+                    'id' => $data['id'],
+                    'surah_id' => $data['surah_id'],
                     'content' => $data['content'],
                     'englishContent' => $data['englishContent'],
                     'frenshContent' => $data['frenshContent'],
@@ -48,6 +54,8 @@ class QuranSurahsController extends Controller
                     'audio' => $data['audio'],
                     'revelationType' => $data['revelationType'],
                 ]);
+
+
 
             } else {
                 // Handle case where Surah doesn't exist
@@ -64,7 +72,7 @@ class QuranSurahsController extends Controller
 
 public function saveSurahs()
 {
-    $verses = File::get(base_path() . '/public/surahs.json');
+    $verses = File::get(base_path() . '/public/ayahs.json');
     $datas = json_decode($verses, true);
 
 
@@ -73,6 +81,7 @@ public function saveSurahs()
 
 
         Surah::create([
+                    'id' => $data['id'],
                     'arabicName' => $data['arabicName'],
                     'englishName' => $data['englishName'],
                     'englishNameTranslation' => $data['englishNameTranslation'],
@@ -84,7 +93,7 @@ public function saveSurahs()
 
         };
 
-    return 'Verses Created Successfully';
+    return 'Surahs Created Successfully';
 }
 
 

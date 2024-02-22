@@ -125,7 +125,7 @@ export default function Pagination({ href, active, children,  posts }) {
        return (
         <DarkModeContextProvider>
         <div className='flex flex-col relative z-9'>
-            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-1 relative '>
+            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center mx-auto gap-5 my-1 relative '>
             {data.map((post) => {
                 console.log(post.user.imagePath);
                 return (
@@ -134,7 +134,7 @@ export default function Pagination({ href, active, children,  posts }) {
                       key={post.id}
                       title={post.title}
                       id={post.id}
-                      description={post.description.substring(0, 150)}
+                      description={post.description.substring(0, 70)+ ' ...'}
                       name={post.user.name}
                       tags={Object.values(post.tags).map(tag => tag).map(tg => tg.name)}
                       tagId={post.tags.map(tag => tag.id)}
