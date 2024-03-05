@@ -56,7 +56,7 @@ const SectionFooter = () => {
             </div>
         </div>
     </section>
-     <SubFooter />
+
      </>
   )
 }

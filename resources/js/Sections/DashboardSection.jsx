@@ -9,19 +9,19 @@ import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext
 import LayoutApp from '@/Layout/LayoutApp'
 import React, { useContext } from 'react'
 
-const DashboardSection = ({posts}) => {
+const DashboardSection = ({posts, users}) => {
     const { opened } = useContext(SidebarContext);
     const { check, setCheck } = useSearchBarContext();
     const { statisticsDashboard,  yourPosts, createPost, setting} = useContext(CheckedLinksContext);
-    console.log(statisticsDashboard,  yourPosts, createPost, setting);
+console.log(users);
 
   return (
 
 
     <SidebarContextProvider>
-    <div className={`${opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300 flex flex-col justify-center   `}>
+    <div className={`${opened ? "w-[calc(100%-240px)] " : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300 flex flex-col    `}>
         {/* {check === "ar" ? "لوحة التحكم" : check === "fr" ? "Tableau de Board" : check === "eng" ? "Dashboard" : '' } */}
-        <ChartDashboard posts={posts} />
+        <ChartDashboard posts={posts} users={users} />
         {statisticsDashboard && (<StatisticsDashboard posts={posts} />)}
         {yourPosts && (<YourPosts posts={posts} />)}
         {createPost && (<CreatePost posts={posts} />)}

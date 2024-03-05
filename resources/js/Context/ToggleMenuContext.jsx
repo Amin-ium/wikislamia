@@ -7,6 +7,8 @@ export const ToggleMenuContext = createContext();
 
 export const ToggleMenuContextProvider = ({children}) => {
 
+
+
     const [toggleMenu, setToggleMenu] = useState(
         JSON.parse(localStorage.getItem("toggleMenu")) || false
     );

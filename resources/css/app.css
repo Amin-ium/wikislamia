@@ -1,7 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400..700&family=Righteous&display=swap');
+@font-face {
+    font-family: "Nabi";
+    src: local("Nabi"),
+      url("./fonts/Nabi.ttf") format("TrueType");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "saleem";
+    src: local("saleem"),
+      url("./fonts/PDMS_Saleem_QuranFont_shipped.ttf") format("TrueType");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "swer";
+    src: local("swer"),
+      url("./fonts/Mcs_Swer_Al_Quran_3.ttf") format("TrueType");
+    font-weight: normal;
+  }
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nabiFont {
+    font-family: "Nabi";
+
+    }
+.red::after {
+
+    content: '﴿';
+
+    font-family: "Nabi";
+
+}
+
+.red::before {
+
+    content: '﴾';
+    font-family: "Nabi";
+
+}
+
+/* .para::after {
+
+    content: url('../../public/assets/publicImages/rseparator.svg');
+    font-family: "Nabi";
+
+} */
+
+/* .para::before {
+
+    content: url('../../public/assets/publicImages/rseparator.svg');
+    font-family: "Nabi";
+
+} */
+
+
+.saleem {
+    font-family: "saleem";
+
+    }
+
+.swer {
+    font-family: "swer";
+
+    }
 
 
 .bgCover {
@@ -39,7 +104,9 @@ body{
 }
 
 .lightBg{
-    background: #f5e1fa; background-image: radial-gradient(at 21.0% 42.0%, #fcfdff 0px, transparent 50%),radial-gradient(at 5.0% 47.0%, #c4e7f5 0px, transparent 50%),radial-gradient(at 5.0% 86.0%, #fffffc 0px, transparent 50%),radial-gradient(at 76.0% 45.0%, #e6fae3 0px, transparent 50%),radial-gradient(at 73.0% 7.0%, #f7e7e6 0px, transparent 50%)
+    background: #f5e1fa;
+    background-image: linear-gradient(at 21.0% 42.0%, #fcfdff 0px, transparent 50%),radial-gradient(at 5.0% 47.0%, #c4e7f5 0px, transparent 50%),radial-gradient(at 5.0% 86.0%, #fffffc 0px, transparent 50%),radial-gradient(at 76.0% 45.0%, #e6fae3 0px, transparent 50%),
+    /* radial-gradient(at 73.0% 7.0%, #f7e7e6 0px, transparent 50%) */
 }
 
 .bgGradient{
@@ -111,15 +178,31 @@ body{
 
   }
 
-  .borderStyle {
-    background: "linear-gradient(179.88deg, rgba(49,58,91,0.1) -2.06%, rgba(49,58,91,0.5) 66.09%, rgba(49,58,91,0) 102.05%)";
+  .lightBorder {
+    background-color: #f1f1f1;
   }
+
+  .darkBorder {
+    background-color: #220027;
+  }
+
+
 
   /* .borderGradientLeft::after {
     content: url('../../public/assets/publicImages/border.svg');
 
 
   } */
+
+  #myFullScreen::backdrop {
+    background-color: rgba(255,255,255,0);
+}
+
+#myFullScreen::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
 
   .buttonLogout {
 	/* cursor: pointer;
@@ -146,8 +229,6 @@ body{
 
 .cardUi {
 
-
-
     transform: rotate(7deg);
 
   }
@@ -165,6 +246,52 @@ body{
 
 
   }
+
+  .quranPara::before{
+    content: '﴾';
+    font-family: "Nabi";
+    color: #f1f1f1;
+    font-size: 16px;
+    margin: 0 5px;
+  }
+
+  .quranPara::after {
+
+    content: '﴿';
+
+    font-family: "Nabi";
+    color: #f1f1f1;
+    font-size: 16px;
+    margin: 0 5px;
+
+}
+  .para {
+    font-family: "Reem Kufi Fun", sans-serif;
+
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .list{
+    transition: all 0.2s ease-in-out;
+}
+
+.bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+.text-fill-color {
+-webkit-text-fill-color: transparent;
+}
+
+.listTracks::-webkit-scrollbar {
+    width: 0px;
+    }
+
+.playing {
+    background-color: bisque;
+}
 
 
 

@@ -9,18 +9,19 @@ import SectionFooter from '@/Sections/SectionFooter/SectionFooter'
 import SectionSearchBare from '@/Sections/SectionSearchBar/SectionSearchBare'
 import SectionStatistics from '@/Sections/SectionStatistics/SectionStatistics'
 import SectionTestmonial from '@/Sections/SectionTestmonial/SectionTestmonial'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-const Home = ({posts, user, quiz, verses, resultPrayer, fatihah, surahs}) => {
+const Home = ({posts, user, quiz, verses, fatihah, surahs, items}) => {
 
-console.log(fatihah );
+
+
   return (
     <>
 
 <ScrollProvider>
-    <LayoutApp>
-            <SectionSearchBare sectionId={1} verses={verses} resultPrayer={resultPrayer} surahs={surahs} />
-            <SectionBlogs sectionId={2} posts={posts} user={user} />
+    <LayoutApp >
+            <SectionSearchBare sectionId={1} verses={verses} surahs={surahs} />
+            <SectionBlogs sectionId={2}  items={posts} user={user} />
             <SectionFaq sectionId={3} quiz={quiz} />
             <SectionBrands sectionId={4} />
             <SectionTestmonial sectionId={5} />

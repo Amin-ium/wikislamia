@@ -5,6 +5,8 @@ import Guest from '@/Layouts/GuestLayout';
 import ValidationErrors from '@/Components/ValidationErrors';
 import Label from '@/Components/Label';
 import Input from '@/Components/Input';
+import LoginBanner from '@/Components/LoginBanner';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -32,11 +34,19 @@ export default function Register() {
 
     return (
         <Guest>
+            <div className="-mb-[40px]">
+                    <div className="w-[100%] flex flex-row-reverse ">
+                        <LoginBanner />
             {/* <Head title="Register" /> */}
+            <div className="w-1/2 h-screen">
+                            <div className="w-[70%] mx-auto flex flex-col -mt-[70px]  ">
+                                <Link href="/" className="flex justify-center w-[60%] mx-auto  ">
+                                    <ApplicationLogo className=" fill-current text-gray-500" />
+                                </Link>
 
             <ValidationErrors errors={errors} />
 
-            <form  onSubmit={submit}>
+            <form  className="-mt-[120px]"  onSubmit={submit}>
                 <div>
                     <Label forInput="name" value="Name" />
 
@@ -52,7 +62,7 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-3">
                     <Label forInput="email" value="Email" />
 
                     <Input
@@ -66,7 +76,7 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-3">
                     <Label forInput="password" value="Password" />
 
                     <Input
@@ -80,7 +90,7 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-3">
                     <Label forInput="password_confirmation" value="Confirm Password" />
 
                     <Input
@@ -93,16 +103,20 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="flex items-center justify-between mt-4">
+                <div className="flex flex-col items-center justify-between mt-3">
                     <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
                         Already registered?
                     </Link>
 
-                    <button className="bg-orangeBg p-2 rounded ml-4" processing={processing}>
+                    <button className="bg-darkText w-full text-lightText font-bold p-2 rounded mt-3" processing={processing}>
                         Register
                     </button>
                 </div>
             </form>
+            </div>
+                        </div>
+                    </div>
+                </div>
         </Guest>
     );
 }

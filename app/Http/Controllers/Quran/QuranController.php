@@ -67,8 +67,18 @@ public function QuranPage()
     public function Surah($id)
     {
         $surah = Surah::with('ayahs', 'surahaudio')->find($id);
-        // dd($surah);
 
+        // $nextSurah = Surah::with('ayahs', 'surahaudio')->find($id + 1);
+        // $previousSurah = Surah::with('ayahs', 'surahaudio')->find($id - 1);
+
+
+        // $next = Surah::where('id', '>', $surah->id)->min('id');
+        // $previous = Surah::where('id', '<', $surah->id)->max('id');
+
+        // $nextSurah = Surah::with('ayahs', 'surahaudio')->find($next);
+        // $previousSurah = Surah::with('ayahs', 'surahaudio')->find($previous);
+
+        // dd($nextSurah);
         return Inertia::render('Quran/Surah', ['surah' => $surah]);
     }
 

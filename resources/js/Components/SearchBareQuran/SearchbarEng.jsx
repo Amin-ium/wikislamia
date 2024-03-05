@@ -10,7 +10,6 @@ import { Inertia } from "@inertiajs/inertia";
 // import { DarkModeContext, DarkModeContextProvider } from "@/context/DarkModeContext";
 
 const SearchbarEng = ({ verses, surahs }) => {
-
     const { darkMode } = useContext(DarkModeContext);
     const { check, setCheck } = useSearchBarContext();
 
@@ -23,135 +22,45 @@ const SearchbarEng = ({ verses, surahs }) => {
     // const [checking, setChecking] = useState("");
     const [isNotDisabled, setIsNotDisabled] = useState(false);
     const [place, setPlace] = useState("Choose a Langage ---- إختر اللغة");
-    const [opened, setOpened] = useState(true)
+    const [opened, setOpened] = useState(true);
     const inputRef = useRef(null);
 
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
-    // const content =  'إِنّ الَّذينَ لا يُؤمِنونَ بِالآخِرَةِ لَيُسَمّونَ المَلائِكَةَ تَسمِيَةَ الأُنثىٰ'
-
-    // let url = 'https://cdn.islamic.network/quran/audio/64/ar.alafasy/'
-    // let newUrls = []
-    // for(let i=0; i<6236; i++) {
-    //     newUrls.push(url+i+'.mp3')
-    // }
-    // console.log(newUrls)
-
-
-    // let cleanString = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-    // "");
-
-    // let  newArray = []
-
-
-
-    // let ids = []
-    // for (let i = 0; i < 6237; i++) {
-    //     document.write(`{"id":${i}},`)
-
-
-    // }
-    // console.log(ids);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const myidss =[]
-
-
-// const withoutId = myidss.map((str, index) => ({ id: str }));
-
-
-
-
-
-// for (let i = 0; i < withoutId.length; i++) {
-//     newArray[i].id = withoutId[i].id;
-
-
-//     // withoutId[i].audio = 'https://cdn.islamic.network/quran/audio/64/ar.alafasy/'+;
-
-
-// }
-// console.log(newArray)
-
-
-// console.log(oldarray)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  useEffect(() => {
-    // Add event listener to detect clicks outside the input
-    const handleOutsideClick = (event) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
-        setDropdownVisible(false);
-      }
+    useEffect(() => {
+        // Add event listener to detect clicks outside the input
+        const handleOutsideClick = (event) => {
+            if (inputRef.current && !inputRef.current.contains(event.target)) {
+                setDropdownVisible(false);
+            }
+        };
+
+        document.addEventListener("click", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        };
+    }, []);
+
+    const handleInputClick = () => {
+        setDropdownVisible(true);
     };
-
-    document.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
-
-  const handleInputClick = () => {
-    setDropdownVisible(true);
-  };
 
     const onChange = (event) => {
-         if(event.target.value === '') {
-
-            setValue('');
-        }else{
+        if (event.target.value === "") {
+            setValue("");
+        } else {
             setValue(event.target.value);
         }
-
     };
 
     const onSearch = async (searchTerm) => {
-        if (value === '') {
-            console.log('empty');
-        }else{
+        if (value === "") {
+            console.log("empty");
+        } else {
             setValue(searchTerm);
 
             // Update the state with the current search term
-
 
             // Use the current value of the input for filtering
             const filteredData = verses.filter((item) => {
@@ -197,9 +106,12 @@ const SearchbarEng = ({ verses, surahs }) => {
 
             try {
                 // Use Inertia.post to send the search data to the server
-                const response = await Inertia.post(route("quran.searchResults"), {
-                    searchData: searchTerm,
-                });
+                const response = await Inertia.post(
+                    route("quran.searchResults"),
+                    {
+                        searchData: searchTerm,
+                    }
+                );
                 // Handle the response if needed
                 console.log(response);
             } catch (error) {
@@ -207,8 +119,6 @@ const SearchbarEng = ({ verses, surahs }) => {
                 console.error("Error:", error);
             }
         }
-
-
     };
 
     const handleClick = () => {
@@ -221,7 +131,7 @@ const SearchbarEng = ({ verses, surahs }) => {
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
             <form
-            autocomplete="off"
+                autocomplete="off"
                 onSubmit={(e) => {
                     e.preventDefault(); // Prevent the default form submission
                     onSearch(value); // Call the onSearch function with the current search term
@@ -237,9 +147,9 @@ const SearchbarEng = ({ verses, surahs }) => {
                             ref={inputRef}
                             autocomplete="false"
                             onClick={handleInputClick}
-                            className="relative z-auto bg-yellow-500 sm:bg-blue md:bg-green-500 lg:bg-red-500 xl:bg-gray-500  rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
+                            className={`relative z-auto bg-lightBg sm:bg-lightBg md:bg-lightBg lg:bg-lightBg xl:bg-lightBg rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
                               rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sm xl:placeholder:text-xl placeholder:text-lightText "
+                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sm xl:placeholder:text-xl placeholder:text-darkText  `}
                             placeholder={
                                 check === "eng"
                                     ? "Search by Word or Verse"
@@ -250,7 +160,6 @@ const SearchbarEng = ({ verses, surahs }) => {
                                     : null
                             }
                             value={value}
-
                             onChange={onChange}
                             style={{
                                 textAlign:
@@ -260,7 +169,6 @@ const SearchbarEng = ({ verses, surahs }) => {
                                         ? "left"
                                         : null,
                             }}
-
                         />
 
                         <button
@@ -271,11 +179,11 @@ const SearchbarEng = ({ verses, surahs }) => {
                                     : check === "eng" || check === "fr"
                                     ? "right-[10px] top-[10px] sm:right-[10px] sm:top-[10px] md:right-[10px] md:top-[10px] lg:right-[10px] lg:top-[10px] xl:right-[10px] xl:top-[10px]"
                                     : null
-                            } absolute  flex  text-gray-100  `}
+                            } absolute  flex  text-gray-900  `}
                         >
                             <FaSearch
                                 size={24}
-                                className="  text-gray-100  z-14 "
+                                className="  text-gray-900  z-14 "
                             />
                         </button>
 
@@ -299,21 +207,26 @@ const SearchbarEng = ({ verses, surahs }) => {
                                             )
                                         );
                                     })
-                                    .map((verse, i) => (
-                                        isDropdownVisible && (
-                                        <Link
-                                            key={i}
-                                            href={`/quran/${verse.id}`}
-                                            className={`${opened ? "block" : "hidden"} ${
-                                                darkMode
-                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
-                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
-                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
-                                        >
-                                            {verse.englishContent} ...
-                                        </Link>
-                                        )
-                                    ))}
+                                    .map(
+                                        (verse, i) =>
+                                            isDropdownVisible && (
+                                                <Link
+                                                    key={i}
+                                                    href={`/quran/${verse.id}`}
+                                                    className={`${
+                                                        opened
+                                                            ? "block"
+                                                            : "hidden"
+                                                    } ${
+                                                        darkMode
+                                                            ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                            : "bg-lightBg text-darkText hover:bg-darkText hover:text-lightText"
+                                                    } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                                >
+                                                    {verse.englishContent} ...
+                                                </Link>
+                                            )
+                                    )}
 
                             {check === "ar" &&
                                 verses &&
@@ -334,35 +247,31 @@ const SearchbarEng = ({ verses, surahs }) => {
                                             ""
                                         );
 
-
-                                            if (searchItem.includes(searchTerm)) {
-                                                return (
-
-                                                    searchItem
-
-                                                );
-                                            }
+                                        if (searchItem.includes(searchTerm)) {
+                                            return searchItem;
+                                        }
                                         // return (
                                         //     searchTerm &&
                                         //     searchItem.includes(searchTerm) &&
                                         //     searchItem !== searchTerm
                                         // );
                                     })
-                                    .map((verse, i) => (
-                                        isDropdownVisible && (
-                                        <Link
-                                            key={i}
-                                            href={`/quran/${verse.id}`}
-                                            className={`${
-                                                darkMode
-                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
-                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
-                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
-                                        >
-                                            {verse.content} ...
-                                        </Link>
-                                        )
-                                    ))}
+                                    .map(
+                                        (verse, i) =>
+                                            isDropdownVisible && (
+                                                <Link
+                                                    key={i}
+                                                    href={`/quran/${verse.id}`}
+                                                    className={`${
+                                                        darkMode
+                                                            ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                            : "bg-lightBg text-darkText hover:bg-darkText hover:text-lightText"
+                                                    } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                                >
+                                                    {verse.content} ...
+                                                </Link>
+                                            )
+                                    )}
 
                             {check === "fr" &&
                                 verses &&
@@ -386,27 +295,26 @@ const SearchbarEng = ({ verses, surahs }) => {
                                             )
                                         );
                                     })
-                                    .map((verse, i) => (
-                                        isDropdownVisible && (
-                                        <Link
-                                            key={i}
-                                            href={`/quran/${verse.id}`}
-                                            className={`${
-                                                darkMode
-                                                    ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
-                                                    : "bg-lightBg text-darkText hover:bg-darkBg hover:text-lightText"
-                                            } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
-                                        >
-                                            {verse.frenshContent} ...
-                                        </Link>
-                                        )
-                                    ))}
+                                    .map(
+                                        (verse, i) =>
+                                            isDropdownVisible && (
+                                                <Link
+                                                    key={i}
+                                                    href={`/quran/${verse.id}`}
+                                                    className={`${
+                                                        darkMode
+                                                            ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                                            : "bg-lightBg text-darkText hover:bg-darkText hover:text-lightText"
+                                                    } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                                >
+                                                    {verse.frenshContent} ...
+                                                </Link>
+                                            )
+                                    )}
                         </div>
                     </div>
                 </div>
             </form>
-
-            {/* </DarkModeContextProvider> */}
         </React.Fragment>
     );
 };

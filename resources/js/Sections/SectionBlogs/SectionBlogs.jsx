@@ -13,26 +13,27 @@ import SectionTitle from '@/Components/SectionTitle'
 
 import Pagination from '@/Components/Pagination'
 import { useScroll } from '@/Context/ScrollContext'
+import PostCard from '@/Components/PostCard/PostCard'
 
-const SectionBlogs = ({posts, user, sectionId}) => {
+const SectionBlogs = ({items, user, sectionId, posts, Component}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
     const { sectionRefs } = useScroll();
 
-console.log(check);
+console.log(posts);
   return (
     <>
         <section ref={sectionRefs.section2} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   py-[50px] `}>
         <SectionTitle title="Post&Blogs" des="Enjoy Reading and Posting"  />
             <div className='w-[90%] xl:w-[80%] mx-auto mt-5 relative z-8'>
 
-            <img src={illustration1} alt="" className='absolute   right-0 top-[10px]  xl:right-[80px] xl:top-[70px]' />
+            <img src={illustration1} alt="" className='absolute   right-0 top-[10px]  xl:-right-[30px] xl:-top-[50px]' />
+            <img src={illustration2} alt="" className='absolute  top-[750px] -left-[70px]  xl:-left-[130px] z-5 ' />
+                <Pagination Component={PostCard} items={items} user={user}  />
 
-                <Pagination posts={posts} user={user} />
 
 
-            <img src={illustration2} alt="" className='absolute  top-[550px] -left-[50px]  xl:left-0 ' />
             </div>
 
 

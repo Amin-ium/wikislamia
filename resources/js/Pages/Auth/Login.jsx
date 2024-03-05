@@ -1,114 +1,161 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from "react";
 
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
-import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeContext';
-import ValidationErrors from '@/Components/ValidationErrors';
-import Label from '@/Components/Label';
-import Input from '@/Components/Input';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/GuestLayout';
-
+import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import {
+    DarkModeContext,
+    DarkModeContextProvider,
+} from "@/Context/DarkModeContext";
+import ValidationErrors from "@/Components/ValidationErrors";
+import Label from "@/Components/Label";
+import Input from "@/Components/Input";
+import Checkbox from "@/Components/Checkbox";
+import Guest from "@/Layouts/GuestLayout";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import LoginBanner from "@/Components/LoginBanner";
 
 
 export default function Login({ status, canResetPassword }) {
-
-    const {darkMode} = useContext(DarkModeContext)
+    const { darkMode } = useContext(DarkModeContext);
 
     console.log(darkMode);
 
-
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: '',
+        email: "",
+        password: "",
+        remember: "",
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            reset("password");
         };
     }, []);
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(
+            event.target.name,
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value
+        );
     };
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route("login"));
     };
 
     return (
         <DarkModeContextProvider>
-        <Guest className={`${darkMode ? "bg-green-500 text-lightText" : "bg-red-500 text-darkText"}`}>
-            {/* <Head title="Log in" /> */}
+            <Guest
+                className={`${
+                    darkMode
+                        ? "bg-green-500 text-lightText"
+                        : "bg-red-500 text-darkText"
+                } `}
+            >
+                <div className="-mb-[40px]">
+                    <div className="w-[100%] flex flex-row-reverse ">
+                        <LoginBanner/>
+                        <div className="w-1/2 h-screen">
+                            <div className="w-[70%] mx-auto flex flex-col  ">
+                                <Link href="/" className="flex justify-center w-[60%] mx-auto  ">
+                                    <ApplicationLogo className=" fill-current text-gray-500" />
+                                </Link>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                            {/* <Head title="Log in" /> */}
 
-            <ValidationErrors errors={errors} />
+                            {status && (
+                                <div className="mb-4 font-medium text-sm text-green-600">
+                                    {status}
+                                </div>
+                            )}
 
-            <form onSubmit={submit}>
-                <div className={`${darkMode ? " text-lightText" : " text-lightText"}`}>
-                    <Label forInput="email" value="Email" />
+                            <ValidationErrors errors={errors} />
 
-                    <Input
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
-                </div>
+                            <form className="-mt-[120px]" onSubmit={submit}>
+                                <div
+                                    className={`${
+                                        darkMode
+                                            ? " text-lightText"
+                                            : " text-lightText"
+                                    }`}
+                                >
+                                    <Label forInput="email" value="Email" className="text-darkText" />
 
-                <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                                    <Input
+                                        type="text"
+                                        name="email"
+                                        value={data.email}
+                                        className="mt-1 block w-full"
+                                        autoComplete="username"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
 
-                    <Input
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        handleChange={onHandleChange}
-                    />
-                </div>
+                                <div className="mt-4">
+                                    <Label
+                                        forInput="password"
+                                        value="Password"
+                                    />
 
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
+                                    <Input
+                                        type="password"
+                                        name="password"
+                                        value={data.password}
+                                        className="mt-1 block w-full"
+                                        autoComplete="current-password"
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
 
-                        <span className="ml-2 text-sm ">Remember me</span>
-                    </label>
-                </div>
+                                <div className="block mt-4">
+                                    <label className="flex items-center">
+                                        <Checkbox
+                                            name="remember"
+                                            value={data.remember}
+                                            handleChange={onHandleChange}
+                                        />
 
-                <div className="flex flex-col gap-3  mt-4 ">
-                    <div className='flex flex-row  justify-between'>
-                    <Link
-                            href="/register"
-                            className="underline text-sm  "
-                        >
-                            Register
-                        </Link>
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm  "
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
+                                        <span className="ml-2 text-sm ">
+                                            Remember me
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div className="flex flex-col gap-3  mt-4 ">
+                                    <div className="flex flex-row  justify-between">
+                                        <Link
+                                            href="/register"
+                                            className="underline text-sm  "
+                                        >
+                                            Register
+                                        </Link>
+                                        {canResetPassword && (
+                                            <Link
+                                                href={route("password.request")}
+                                                className="underline text-sm  "
+                                            >
+                                                Forgot your password?
+                                            </Link>
+                                        )}
+                                    </div>
+
+                                    <button
+                                        className="bg-darkText text-lightText font-bold p-2 rounded "
+                                        processing={processing}
+                                    >
+                                        Log in
+                                    </button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
                     </div>
-
-
-                    <button className="bg-orangeBg p-2 rounded " processing={processing}>
-                        Log in
-                    </button>
                 </div>
-            </form>
-        </Guest>
+            </Guest>
         </DarkModeContextProvider>
     );
 }

@@ -5,26 +5,76 @@ import { Link } from '@inertiajs/inertia-react';
 import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeContext';
 import PostCard from './PostCard/PostCard';
 import moment from 'moment';
+import { LuMoveRight } from 'react-icons/lu';
 
 
-export default function Pagination({ href, active, children,  posts }) {
+export default function Pagination({ href, active, children,  items, Component }) {
 
     const {darkMode} = useContext(DarkModeContext);
+    console.log(darkMode);
 
     const [data, setData] = useState([])
+
+    const [props, setProps] = useState(null)
     const [currentPage, setCurrentPage] = useState(1)
-    const [itemsPerPage, setItemsPerPage] = useState(8)
-    const [pageNumberLimit, setPageNumberLimit] = useState(8)
-    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(8)
+    const [itemsPerPage, setItemsPerPage] = useState(9)
+    const [pageNumberLimit, setPageNumberLimit] = useState(9)
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(9)
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
 
 
- console.log(currentPage);
- console.log(itemsPerPage);
- console.log(pageNumberLimit);
- console.log(maxPageNumberLimit);
- console.log(minPageNumberLimit);
+
+
+ useEffect(() => {
+    setData(items)
+},[])
+
+const properties = [
+    ` key={item.id}
+                       title={item.title}
+                       id={item.id}
+                       description={item.description.substring(0, 70)+ ' ...'}
+                       name={item.user.name}
+                       tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                       tagId={item.tags.map(tag => tag.id)}
+                       category={item.category.name}
+                       categoryId={item.category.id}
+                       created_at={moment(item.created_at).fromNow()}
+                       postImgSrc={item.imagePath}
+                       darkMode={darkMode}
+                       userSrc={item.user.imagePath}`,
+ ]
+
+
+const propertiess = () => {
+    items.foreach((item,i) => {
+    surahNumber=item.numberInQuran
+    englishName=item.englishName
+    translatedName=item.englishNameTranslation
+    arabicName=item.arabicName
+    versetsLength=item.versesNumber
+})
+}
+
+
+
+
+
+
+  useEffect(() => {
+     for (let i = 0; i < data.length; i++) {
+         if(data[i].hasOwnProperty('title') ) {
+
+             setProps(properties)
+         }else if(data[i] === 'englishName') {
+
+
+             setProps(propertiess)
+         }
+
+     }
+  }, [])
 
 
 
@@ -65,7 +115,7 @@ export default function Pagination({ href, active, children,  posts }) {
 
     }
 
-    console.log(itemsPerPage);
+
 
 
     const renderPageNumber =  pages.map((number) => {
@@ -98,9 +148,7 @@ export default function Pagination({ href, active, children,  posts }) {
 
 
 
-    useEffect(() => {
-        setData(posts)
-    },[])
+
 
 
 
@@ -123,29 +171,42 @@ export default function Pagination({ href, active, children,  posts }) {
     const renderData = (data) => {
     //    console.log(data.map(post => Object.values(post.tags).map(tag => tag).map(tg => tg.name)));
        return (
-        <DarkModeContextProvider>
+
         <div className='flex flex-col relative z-9'>
             <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center mx-auto gap-5 my-1 relative '>
-            {data.map((post) => {
-                console.log(post.user.imagePath);
-                return (
-                    <PostCard
-                    className={`${darkMode ? "bg-darkBg" : "bg-lightBg"} relative`}
-                      key={post.id}
-                      title={post.title}
-                      id={post.id}
-                      description={post.description.substring(0, 70)+ ' ...'}
-                      name={post.user.name}
-                      tags={Object.values(post.tags).map(tag => tag).map(tg => tg.name)}
-                      tagId={post.tags.map(tag => tag.id)}
-                      category={post.category.name}
-                      categoryId={post.category.id}
-                      created_at={moment(post.created_at).fromNow()}
-                      postImgSrc={post.imagePath}
-                      darkMode={darkMode}
-                      userSrc={post.user.imagePath}
-                      />
-                )
+            {data.map((item) => {
+
+
+
+
+                     if (item.hasOwnProperty('englishName')) {
+                        return( <Link href={`/quran/surah/${item.id}`}><Component
+                        className={` relative`}
+                            surahNumber={item.numberInQuran}
+                            englishName={item.englishName}
+                            translatedName={item.englishNameTranslation}
+                            arabicName={item.arabicName}
+                            versetsLength={item.versesNumber}
+                         /></Link>)
+                    } else if(item.hasOwnProperty('title')) {
+                        return( <Component
+                            className={` relative`}
+                            key={item.id}
+                            title={item.title}
+                            id={item.id}
+                            description={item.description.substring(0, 70)+ ' ...'}
+                            name={item.user.name}
+                            tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                            tagId={item.tags.map(tag => tag.id)}
+                            category={item.category.name}
+                            categoryId={item.category.id}
+                            created_at={moment(item.created_at).fromNow()}
+                            postImgSrc={item.imagePath}
+                            darkMode={darkMode}
+                            userSrc={item.user.imagePath}
+                             />)
+                    }
+
             })}
             </div>
             <ul className='flex flex-row justify-center gap-3 items-center my-3'>
@@ -195,13 +256,13 @@ export default function Pagination({ href, active, children,  posts }) {
             </div>
 
         </div>
-        </DarkModeContextProvider>
+
        )
     }
 
 
 
-    console.log(data.tags);
+
 
     return (
         <>

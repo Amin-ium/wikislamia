@@ -16,10 +16,12 @@ import { useSearchBarContext } from "@/Context/SearchBarContext";
 import { FaPowerOff } from "react-icons/fa6";
 import { BiSolidDownArrow } from "react-icons/bi";
 
+
+
 // import { SearchContext, useSearchBarContext } from "@/Context/SearchBarContext";
 
-const Navbare = (children) => {
-    const {toggleMenu, toggleMenuFun, togglePrayingTime, togglePrayingTimeFun} = useContext(ToggleMenuContext);
+const Navbare = () => {
+    const {toggleMenu} = useContext(ToggleMenuContext);
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
 
@@ -39,6 +41,11 @@ const Navbare = (children) => {
     const [profile, setProfile] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
 
+
+
+
+
+
     useEffect(() => {
         if(window.location.pathname.match('dashboard')) {
             setDashboard(true)
@@ -53,8 +60,11 @@ const Navbare = (children) => {
     }, []);
 
 
+
     const { auth } = usePage().props
-    console.log(auth);
+
+
+
 
     const { scrollToSection, showTopButton, showBottomButton, sectionRefs } = useScroll();
 
@@ -63,7 +73,7 @@ const Navbare = (children) => {
         const activeSection = Object.keys(sectionRefs).find(
           (section) => sectionRefs[section].current.offsetTop <= window.scrollY
         );
-        console.log(activeSection);
+
 
         // If an active section is found, find the previous one
          if (activeSection) {
@@ -84,7 +94,7 @@ const Navbare = (children) => {
         }
         console.log('to bottom');
       };
-    console.log(auth);
+
 
     const options = [
         { value: "eng", label: "eng" },
@@ -239,55 +249,7 @@ const Navbare = (children) => {
     const updateValue = (value) => {
         setCheck(value.value);
     };
-    // console.log(ToggleMenuContext);
 
-
-
-    // useEffect(() => {
-    //     function activeLinkFunction() {
-    //         if (window.location.pathname === "/") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         } else if (window.location.pathname === "/blogs") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         } else if (window.location.pathname === "/quran") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         } else if (window.location.pathname === "/about") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         } else if (window.location.pathname === "/contact") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         }else if (window.location.pathname === "/hadeeth") {
-    //             setIsActive(true);
-    //             setActiveLink("red-400");
-
-    //         } else {
-    //             setIsActive(false);
-    //         }
-    //     }
-
-    //     activeLinkFunction();
-    // }, []);
-
-    // if( window.innerWidth > 960) {
-    //   // setLogo(logoDark)
-    //   // header.classList.remove('sticky');
-    //   const  header = document.getElementById('myHeader');
-    //   header.classList.replace('bg-gray-500', 'bg-transparent');
-    //   // alert('window great then 960');
-    // }else{
-    //   const  header = document.getElementById('myHeader');
-    //   header.classList.remove('bg-transparent', 'bg-gray-500');
-    //   // alert('window less then 960');
-    // }
 
     Alpine.data("myComponent", () => ({
         handleClick,
@@ -387,9 +349,20 @@ const Navbare = (children) => {
                         <div className="flex xs:flex items-center xl:align-middle  xl:items-center gap-10 ">
 
                             <div className={` flex flex-row-reverse gap-2  relative z-40 `}>
-                            <div className="cursor-pointer">
+                            {/* <div className="cursor-pointer">
                                 <img src={prayerIcon}onClick={togglePrayingTimeFun} className="h-8 w-8  " alt="Prayer Times" />
                             </div>
+                            {togglePrayingTime && (
+             <PrayerTime    />
+
+            // <div className='h-[400x] w-[200px] absolute right-[50px] -top-[30px] flex justify-center z-10 rounded-lg '>
+            //     <video className='h-[400x] w-[200px] rounded-xl'   src={prayerTimesPannel} autoPlay muted loop />
+            //     <div className='absolute bottom-[10px] py-3   w-full  bg-lightBg text-darkText'>
+            //     <h2 className='text-center text-darkText'>Prayer Times</h2>
+            //     </div>
+
+            // </div>
+        )} */}
                                 {/* {auth.user ? ( */}
                                 {auth.user ? (
                                     <div   className='relative mt-[2px]'>
@@ -410,7 +383,7 @@ const Navbare = (children) => {
                                             <Link href="/dashboard">
                                                 Dashboard
                                             </Link>
-                                            <Dropdown.Link href="/dashboard/admin-dashboard">
+                                            <Dropdown.Link href="/admin-dashboard">
                                                 Admin Dashboard
                                             </Dropdown.Link>
                                         </Dropdown.Content>

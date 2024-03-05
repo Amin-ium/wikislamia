@@ -19,6 +19,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 
@@ -27,53 +28,33 @@ class HomeController extends Controller
     public function Home(Request $request)
     {
 
-        $ldate = date('Y-m-d');
-        // $ldate = '07-02-2024';
-
-        // $lat = Auth::user()->latitude;
-        // $long = Auth::user()->longitude;
-
-
-        // $location = Location::get($ip);
-        // $position = Location::get('105.191.147.7');
+        // $ldate = date('Y-m-d');
 
 
 
-    // Access specific information
+
+        // $url = 'https://api.aladhan.com/v1/timingsByCity/'.$ldate.'?city=Casablanca&country=Morocco&method=8';
 
 
-    // Use the latitude and longitude as needed
-    // dd($latitude, $longitude);
-
-        // dd($locationData);
+        // $response = Http::retry(3, 100)->get($url);
 
 
+        // $data = json_encode($response);
+        // $ch=curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        // $curl_response = curl_exec($ch);
 
-        // dd($currentUserInfo);
+		// $resultPrayer = json_decode($curl_response,true);
 
+        // $versesTest = VersesTest::get();
 
-        $url = 'https://api.aladhan.com/v1/timingsByCity/'.$ldate.'?city=Casablanca&country=Morocco&method=8';
-
-
-        $response = Http::retry(3, 100)->get($url);
-
-
-        $data = json_encode($response);
-        $ch=curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        $curl_response = curl_exec($ch);
-
-		$resultPrayer = json_decode($curl_response,true);
-
-        $versesTest = VersesTest::get();
-
-        $fatihah = $versesTest[0]->data[0];
+        // $fatihah = $versesTest[0]->data[0];
 
 
 
@@ -107,8 +88,6 @@ class HomeController extends Controller
             // Pass the retrieved Surahs to the view
             'verses' => $verses,
             'quiz' => $quiz,
-            'resultPrayer' => $resultPrayer,
-            'fatihah' => $fatihah,
             'surahs' => $surahs
         ]);
     }

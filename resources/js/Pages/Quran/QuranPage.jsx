@@ -1,32 +1,38 @@
+import Pagination from '@/Components/Pagination';
 import SurahCard from '@/Components/SurahCard';
 import LayoutApp from '@/Layout/LayoutApp'
-import { Link } from "@inertiajs/inertia-react";
-import React, { useEffect } from 'react'
+import { Head, Link, usePage } from "@inertiajs/inertia-react";
 
-const QuranPage = ({surahs}) => {
-    useEffect(() => {
-        console.log(surahs);
-    }, [surahs])
+import React, { useContext, useEffect } from 'react'
+import QuranPageBanner from '@/Components/quran/quranPageBanner';
+import { useSearchBarContext } from '@/Context/SearchBarContext';
+import { DarkModeContext } from '@/Context/DarkModeContext';
+
+const QuranPage = ({surahs, items}) => {
+
+    const { check, setCheck } = useSearchBarContext();
+    const { toggle, darkMode } = useContext(DarkModeContext);
+
+
+    const { resultPrayer } = usePage().props;
 
 
   return (
     <>
     <LayoutApp>
+    <Head>
+              <title>Quran Page</title>
+          </Head>
     <div className='my-[200px] w-[80%] mx-auto text-darkText '>
-        <h2>QuranPage</h2>
-        <div className='grid  xl:grid-cols-3 gap-7  '>
-            {surahs.map((surah, i) => (
-                <Link href={`/quran/surah/${surah.id}`}>
-                <SurahCard
-                surahNumber={surah.numberInQuran}
-                englishName={surah.englishName}
-                translatedName={surah.englishNameTranslation}
-                arabicName={surah.arabicName}
-                versetsLength={surah.versesNumber}
+        <QuranPageBanner text={check === "ar" ? "يقال لصاحب القرآن: اقرأ، وارْقَ، ورتّل كما كنت ترتّل في الدنيا؛ فإن منزلتك عند آخر آية تقرؤها" : check === 'eng' ? 'It will said to the the reader of the Qur’an: Read, ascend, and recite as you recited in this world. Your status is at the last verse you recite' : check === 'fr' ? 'Il dira au lecteur du Coran : Lis, monte et récite comme tu l’as récité dans ce monde. Votre statut est au dernier verset que vous récitez' : 'يقال لصاحب القرآن: اقرأ، وارْقَ، ورتّل كما كنت ترتّل في الدنيا؛ فإن منزلتك عند آخر آية تقرؤها'} />
 
-                 /></Link>
+        <div className='  '>
+             {/* {surahs.map((surah, i) => (
+                <Link href={`/quran/surah/${surah.id}`}> */}
+                    <Pagination Component={SurahCard} items={surahs}  />
+                {/* </Link> */}
 
-            ))}
+            {/* ))} */}
 
         </div>
     </div>

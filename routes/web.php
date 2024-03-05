@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BlogsController;
@@ -65,7 +66,14 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage')
 Route::post('/quran', [QuranController::class, 'index'])->name('quran.searchResults');
 Route::get('/quran/surah/{id}', [QuranController::class, 'Surah'])->name('Quran.Surah');
 
+Route::group(['middleware' => ['auth', 'is_admin']], function () {
+    Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('Pages.AdminDashboard');
+
+});
 
 
 
-require __DIR__.'/auth.php';
+
+
+// require __DIR__.'/auth.php';
+// require __DIR__.'/admin.php';
