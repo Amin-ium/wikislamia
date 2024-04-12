@@ -9,6 +9,8 @@ import List from "@/Components/List";
 
 export default function Surah({ surah, next, previous }) {
 
+
+
     const { darkMode } = useContext(DarkModeContext);
 
     const [musicNumber, setMusicNumber] = useState(0)
@@ -18,7 +20,7 @@ export default function Surah({ surah, next, previous }) {
     const [fully, setFully] = useState("Request Full Screen");
     const [currentSurah, setCurrentSurah] = useState(surah);
 
-    console.log(surah.surahaudio.audio);
+    // console.log(surah.surahaudio.audio);
 
 
     const myDocument = document.getElementById("myFullScreen");
@@ -72,7 +74,7 @@ export default function Surah({ surah, next, previous }) {
     return (
         <React.Fragment>
             <Head>
-                <title>Blogs</title>
+                <title>{check === 'ar' ? currentSurah?.arabicName : check === 'eng' ? currentSurah?.englishName : check === 'fr' ? currentSurah?.englishName : ''}</title>
             </Head>
             <LayoutApp>
                 <div
@@ -87,7 +89,7 @@ export default function Surah({ surah, next, previous }) {
                     >
                         {fully}
                     </button>
-                    <h2 className={`my-3 text-4xl font-bold text-center pt-10  `}>
+                    <h2 className={`my-3 text-4xl font-bold text-center pt-10 ${darkMode ? 'text-lightText' : 'text-darkText'} `}>
                         {check === "ar"
                             ? currentSurah?.arabicName
                             : check === "fr"

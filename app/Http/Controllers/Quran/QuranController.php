@@ -68,18 +68,20 @@ public function QuranPage()
     {
         $surah = Surah::with('ayahs', 'surahaudio')->find($id);
 
-        // $nextSurah = Surah::with('ayahs', 'surahaudio')->find($id + 1);
-        // $previousSurah = Surah::with('ayahs', 'surahaudio')->find($id - 1);
+        $nextSurah = Surah::with('ayahs', 'surahaudio')->find($id + 1);
+        $previousSurah = Surah::with('ayahs', 'surahaudio')->find($id - 1);
 
 
-        // $next = Surah::where('id', '>', $surah->id)->min('id');
-        // $previous = Surah::where('id', '<', $surah->id)->max('id');
+        $next = Surah::where('id', '>', $surah->id)->min('id');
+        $previous = Surah::where('id', '<', $surah->id)->max('id');
 
-        // $nextSurah = Surah::with('ayahs', 'surahaudio')->find($next);
-        // $previousSurah = Surah::with('ayahs', 'surahaudio')->find($previous);
+        $nextSurah = Surah::with('ayahs', 'surahaudio')->find($next);
+        $previousSurah = Surah::with('ayahs', 'surahaudio')->find($previous);
+
+
 
         // dd($nextSurah);
-        return Inertia::render('Quran/Surah', ['surah' => $surah]);
+        return Inertia::render('Quran/Surah', ['surah' => $surah, 'next' => $nextSurah, 'previous' => $previousSurah]);
     }
 
     public function quranList()

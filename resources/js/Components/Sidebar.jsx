@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/inertia-react';
 import logoLight from "../../../public/assets/publicImages/logoLight.svg";
 import logoDark from "../../../public/assets/publicImages/logoDark.svg";
 import darkLogo from "../../../public/assets/publicImages/favicon-dark.svg";
-import lightLogo from "../../../public/assets/publicImages/Group 144444.svg";
+import lightLogo from "../../../public/assets/publicImages/Group144444.svg";
 import { Link} from "@inertiajs/inertia-react";
 import React, { useContext, useEffect, useState } from 'react'
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
@@ -27,6 +27,7 @@ const Sidebar = () => {
     const { opened, handleSidebar, setOpened } = useContext(SidebarContext);
     const { check, setCheck } = useSearchBarContext();
     const [dashboard, setDashboard] = useState(null);
+    const [adminDashboard, setAdminDashboard] = useState(null);
     const [profile, setProfile] = useState(null);
     const { updateInfosPage,
             toggleUpdateInfosPage,
@@ -42,20 +43,31 @@ const Sidebar = () => {
 
     const { auth } = usePage().props
     const { toggle, darkMode } = useContext(DarkModeContext);
+    const [dashboardLink, setDashboardLink] = useState(false);
+    const [adminDashboardLink, setAdminDashboardLink] = useState(false);
 
 
     useEffect(() => {
-        if(window.location.pathname.match('dashboard')) {
+        if(window.location.pathname === '/dashboard') {
             setDashboard(true)
-        }else{
-            setDashboard(false)
-        }
-        if(window.location.pathname.match('profile')) {
-            setProfile(true)
-        }else{
             setProfile(false)
+            setAdminDashboard(false)
+
         }
+        else if(window.location.pathname === '/profile') {
+            setProfile(true)
+            setDashboard(false)
+            setAdminDashboard(false)
+        }else if(window.location.pathname === '/admin-dashboard'){
+            setProfile(false)
+            setDashboard(false)
+            setAdminDashboard(true)
+        }
+
+
     }, []);
+
+
 
     const profileLinks = [
         {linkEng: "Update Infos", linkFr: "ُEdit Infos", linkAr: "تحديث المعلومات", href: "href01", icon:<LuClipboardEdit size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleUpdateInfosPage} />, method: toggleUpdateInfosPage},
@@ -71,6 +83,13 @@ const Sidebar = () => {
         {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleSetting}  />, method: toggleSetting},
     ]
 
+    const adminDashboardLinks = [
+        {linkEng: "Statistics", linkFr: "Statistiques", linkAr: "إحصائيات", href: "href01", icon:<FaChartLine size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleStatisticsDashboard}  />, method: toggleStatisticsDashboard},
+        {linkEng: "All Posts", linkFr: "Tous les Posts", linkAr: "جميع المقالات",  href: "href02", icon:<BsPostcardFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleYourPosts}  />, method: toggleYourPosts},
+        {linkEng: "Create Post", linkFr: "Créer un Post", linkAr: "أنشر مقالا",  href: "href03", icon:<RiImageEditFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleCreatePost}  />, method: toggleCreatePost},
+        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleSetting}  />, method: toggleSetting},
+    ]
+
 
   return (
 
@@ -81,9 +100,9 @@ const Sidebar = () => {
                 <img
                     className={`${opened ? "w-[200px] h-[60px]" : "w-[100px] h-[30px] my-3"}    `}
                     src={darkMode&&opened ? logoLight :
-                        !darkMode&&opened ? logoDark :
+                        !darkMode&&opened ? logoLight :
                         darkMode&&!opened ? lightLogo :
-                        !darkMode&&!opened ? darkLogo : "" }
+                        !darkMode&&!opened ? lightLogo: "" }
                     alt=""
                 />
             </Link>
@@ -145,6 +164,12 @@ const Sidebar = () => {
             <MdDashboard onClick={turnOffLinks} />
             <Link href="/dashboard" onClick={turnOffLinks}>{dashboard && (check === "eng" ? "Dashboard Panel" : check === 'ar' ? "لوحة التحكم" : check === "fr" ? "Tableau de Board" : null)}{profile && (check === "eng" ? "Profile Page" : check === 'ar' ? "الصفحة الشخصية" : check === "fr" ? "Page de Profile" : null)}</Link>
             </div> : null}
+            {adminDashboard&&!opened ? <MdDashboard  onClick={turnOffLinks} />
+            : adminDashboard&&opened ?
+            <div className={`flex ${check === 'ar' ? "flex-row-reverse" : "flex-row"} items-center gap-1`}>
+            <MdDashboard onClick={turnOffLinks} />
+            <Link href="/admin-dashboard" onClick={turnOffLinks}>{adminDashboard && (check === "eng" ? "Admin Dashboard Panel" : check === 'ar' ? "لوحة تحكم المسؤول" : check === "fr" ? "Tableau de Board Admin" : null)}{profile && (check === "eng" ? "Profile Page" : check === 'ar' ? "الصفحة الشخصية" : check === "fr" ? "Page de Profile" : null)}</Link>
+            </div> : null}
 
         </div>
 
@@ -173,6 +198,27 @@ const Sidebar = () => {
             )}
             {dashboard && (
                 dashboardLinks.map((dashboardLink, i) => (
+                    <div className={`flex ${check === 'ar' ? "flex-row-reverse" : "flex-row"} items-center gap-1 mb-[20px]`}>
+                         <ul className={`flex items-center  gap-1 ${check === "ar" ? "flex-row-reverse" : "flex-row"} ${opened ? "" : "justify-center"} `}>
+                    {dashboardLink.icon}
+                    {opened &&
+                        (check === "ar" ? (
+                            <li className={`${check === 'ar' ? "text-right" : "text-left "} cursor-pointer`} key={i} onClick={dashboardLink.method}  >{dashboardLink.linkAr}</li>
+                        ) : check === 'eng' ? (
+                            <li className={`${check === 'ar' ? "text-right" : "text-left "} cursor-pointer`} key={i} onClick={dashboardLink.method}  >{dashboardLink.linkEng}</li>
+                        ) : check === "fr" ? (
+                            <li className={`${check === 'ar' ? "text-right" : "text-left "} cursor-pointer`} key={i} onClick={dashboardLink.method}  >{dashboardLink.linkFr}</li>
+                        ) : null)
+                    }
+                    </ul>
+
+                    </div>
+
+                ))
+            )}
+
+{adminDashboard && (
+                adminDashboardLinks.map((dashboardLink, i) => (
                     <div className={`flex ${check === 'ar' ? "flex-row-reverse" : "flex-row"} items-center gap-1 mb-[20px]`}>
                          <ul className={`flex items-center  gap-1 ${check === "ar" ? "flex-row-reverse" : "flex-row"} ${opened ? "" : "justify-center"} `}>
                     {dashboardLink.icon}

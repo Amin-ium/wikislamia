@@ -5,9 +5,19 @@ import SidebarLayout from '@/Layout/SidebarLayout';
 import DashboardSection from '@/Sections/DashboardSection';
 
 import { Head } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 export default function AdminDashboard({ auth, posts, users }) {
     const { check, setCheck } = useSearchBarContext();
+
+    useEffect(() => {
+
+        if(document.location.pathname === '/dashboard') {
+            console.log('dashboard');
+        }else if(document.location.pathname === '/admin-dashboard'){
+            console.log('not dashboard');
+        }
+    }, []);
 
     return (
         <LayoutApp

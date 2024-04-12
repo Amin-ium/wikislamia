@@ -95,6 +95,12 @@ const Navbare = () => {
         console.log('to bottom');
       };
 
+      const handleMenuButtonClick = () => {
+        // Find the current active section
+        setShowMenu(!showMenu)
+      };
+
+
 
     const options = [
         { value: "eng", label: "eng" },
@@ -342,7 +348,7 @@ const Navbare = () => {
                             active:translate-y-2  active:[box-shadow:0_0px_0_0_#00081F,0_0px_0_0_#00081F]
                             active:border-b-[0px] transition-all duration-150 [box-shadow:0_5px_0_0_#00081F,0_4px_0_0_#00081F]
                             rounded-full  border-[1px] border-blue-400 hidden xl:block lg:block">
-                            <button className={`     xl:bg-darkText   xl:text-xs rounded-lg px-1 flex flex-col justify-center items-center h-full bg-darkText  font-normal text-lightText text-xs  `} onClick={() => setShowMenu(!showMenu)}>Menu</button>
+                            <button className={`     xl:bg-darkText   xl:text-xs rounded-lg px-1 flex flex-col justify-center items-center h-full bg-darkText  font-normal text-lightText text-xs  `} onClick={handleMenuButtonClick}>Menu</button>
                             </div>
                         )}
 
@@ -376,17 +382,17 @@ const Navbare = () => {
 
                                         </Dropdown.Trigger>
                                         {/* {auth.user.is_admin ? ( */}
-                                        <Dropdown.Content>
+                                        <div className={`${check === 'ar' ? 'text-right' : 'text-left'} flex flex-col bg-lightBg text-sm w-[140px] p-2 rounded-md absolute right-0 top-[40px]`}>
                                             <Link href="/profile">
-                                                Profile
+                                                {check === 'eng' ? 'Profile' : check === 'fr' ? 'Profile' : check === 'ar' ? 'الصفحة الشخصية' : null}
                                             </Link>
                                             <Link href="/dashboard">
-                                                Dashboard
+                                                  {check === 'eng' ? 'Dashboard' : check === 'fr' ? 'Tableau de Board' : check === 'ar' ? 'لوحة التحكم' : null}
                                             </Link>
-                                            <Dropdown.Link href="/admin-dashboard">
-                                                Admin Dashboard
-                                            </Dropdown.Link>
-                                        </Dropdown.Content>
+                                            <Link href="/admin-dashboard">
+                                                 {check === 'eng' ? 'Admin-Dashboard' : check === 'fr' ? 'Tableau de Board َAdmin' : check === 'ar' ? 'لوحة تحكم المسؤول' : null}
+                                            </Link>
+                                        </div>
                                         {/* ) : ( */}
                                         {/* <Dropdown.Content>
                                                          <Dropdown.Link href="/profile">

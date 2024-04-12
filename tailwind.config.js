@@ -102,4 +102,5 @@ export default {
     },
 
     plugins: [forms],
+    plugins: [require("daisyui")],
 };

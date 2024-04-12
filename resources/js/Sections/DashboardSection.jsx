@@ -13,7 +13,7 @@ const DashboardSection = ({posts, users}) => {
     const { opened } = useContext(SidebarContext);
     const { check, setCheck } = useSearchBarContext();
     const { statisticsDashboard,  yourPosts, createPost, setting} = useContext(CheckedLinksContext);
-console.log(users);
+console.log('Users : '+users);
 
   return (
 

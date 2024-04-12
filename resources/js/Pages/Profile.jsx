@@ -62276,7 +62276,7 @@ export default function Profile({ auth }) {
             <SidebarLayout>
             {/* <Head title="Dashboard" /> */}
 
-            <div className="py-12">
+            <div className="mt-12">
             <Edit />
             </div>
             </SidebarLayout>
