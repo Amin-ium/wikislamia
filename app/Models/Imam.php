@@ -14,5 +14,10 @@ class Imam extends Model
 {
     return $this->hasMany(Hadeet::class);
 }
+
+public function books()
+{
+    return $this->hasMany(Book::class);
+}
 }
 

@@ -293,6 +293,22 @@ body{
     background-color: bisque;
 }
 
+.imam::after {
+
+    content: '﴿';
+
+    font-family: "Nabi";
+
+}
+
+.imam::before {
+
+    content: '﴾';
+
+    font-family: "Nabi";
+
+}
+
 
 
 

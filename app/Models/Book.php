@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hadeet extends Model
+class Book extends Model
 {
     use HasFactory;
-    protected $table = 'hadeets';
+    protected $table = 'books';
 
-
-    public function chapiter()
+    public function hadeets()
 {
-    return $this->belongsTo(Chapiter::class);
-}
-
-public function book()
-{
-    return $this->belongsTo(Book::class);
+    return $this->hasMany(Hadeet::class);
 }
 
 public function imam()

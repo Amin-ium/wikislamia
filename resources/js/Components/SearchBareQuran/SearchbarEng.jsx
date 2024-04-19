@@ -126,7 +126,7 @@ const SearchbarEng = ({ verses, surahs }) => {
         setValue("");
     };
 
-    console.log(check);
+    console.log(verses);
     return (
         <React.Fragment>
             {/* <DarkModeContextProvider> */}
@@ -192,41 +192,43 @@ const SearchbarEng = ({ verses, surahs }) => {
                         >
                             {check === "eng" &&
                                 verses &&
-                                verses
-                                    .filter((item) => {
-                                        const searchTerm = value.toLowerCase();
-                                        const lowerCaseSearchTerm =
-                                            searchTerm.toLowerCase();
-                                        const searchContent =
-                                            item.englishContent.toLowerCase();
+                                // verses
+                                //     .filter((item) => {
+                                //         const searchTerm = value.toLowerCase();
+                                //         const lowerCaseSearchTerm =
+                                //             searchTerm.toLowerCase();
+                                //         const searchContent =
+                                //             item.englishContent.toLowerCase();
 
-                                        return (
-                                            lowerCaseSearchTerm &&
-                                            searchContent.includes(
-                                                lowerCaseSearchTerm
-                                            )
-                                        );
-                                    })
-                                    .map(
-                                        (verse, i) =>
-                                            isDropdownVisible && (
-                                                <Link
-                                                    key={i}
-                                                    href={`/quran/${verse.id}`}
-                                                    className={`${
-                                                        opened
-                                                            ? "block"
-                                                            : "hidden"
-                                                    } ${
-                                                        darkMode
-                                                            ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
-                                                            : "bg-lightBg text-darkText hover:bg-darkText hover:text-lightText"
-                                                    } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
-                                                >
-                                                    {verse.englishContent} ...
-                                                </Link>
-                                            )
-                                    )}
+                                //         return (
+                                //             lowerCaseSearchTerm &&
+                                //             searchContent.includes(
+                                //                 lowerCaseSearchTerm
+                                //             )
+                                //         );
+                                //     })
+                                //     .map(
+                                //         (verse, i) =>
+                                //             isDropdownVisible && (
+                                //                 <Link
+                                //                     key={i}
+                                //                     href={`/quran/${verse.id}`}
+                                //                     className={`${
+                                //                         opened
+                                //                             ? "block"
+                                //                             : "hidden"
+                                //                     } ${
+                                //                         darkMode
+                                //                             ? "bg-grayBg text-lightText hover:bg-lightBg hover:text-darkText"
+                                //                             : "bg-lightBg text-darkText hover:bg-darkText hover:text-lightText"
+                                //                     } px-3 pt-2 border-b-gray-300 border-b-[1px] `}
+                                //                 >
+                                //                     {verse.englishContent} ...
+                                //                 </Link>
+                                //             )
+                                //     )
+                                console.log(verses)
+                            }
 
                             {check === "ar" &&
                                 verses &&

@@ -12,7 +12,9 @@ class HadeethController extends Controller
     public function index()
     {
         $hadeets = Hadeet::with(['chapiter', 'imam'])->get();
-    $imams = Imam::get();
+    $imams = Imam::with( 'books')->get();
+
+
 
     // $articlehadeeth = Articlehadeeth::with('titlehadeeth')->get();
 
@@ -22,6 +24,8 @@ class HadeethController extends Controller
         'imams' => $imams,
         // 'articlehadeeth' => $articlehadeeth
     ];
+
+
         return Inertia::render('Hadeeth/HadeethPage', compact('hadeetData'));
     }
 }

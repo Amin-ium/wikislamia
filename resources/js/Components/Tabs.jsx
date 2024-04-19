@@ -1,71 +1,68 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
+import { FaKaaba } from "react-icons/fa6";
 
-const Tabs = ({tabs}) => {
-    const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-  const [underlineLeft, setUnderlineLeft] = useState(0);
+const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, imam_name }) => {
+    const [selectedTabIndex, setSelectedTabIndex] = useState();
 
-  const handleTabClick = (index) => {
-    const totalTabs = tabs.length;
-    const percentage = (index / totalTabs) * 100;
-    setSelectedTabIndex(index);
-    setUnderlineLeft(percentage);
-  };
-  return (
-    // <div  className='mt-[200px] w-[80%] mx-auto flex flex-row'>
-    // {/* <div role="tablist" className="tabs tabs-lifted"> */}
-    //     {/* {data.map((imam,i) =>
-    //     <button role="tab" key={i} id={imam.id}  onClick={handleClick} className={`${currentTab === `${imam.id}`  ? 'text-red-500' : 'text-green-500'} tab`}>{imam.imam_english_name}</button>
+    useEffect(() => {
+        setSelectedTabIndex(1);
+    }, [selectedTabIndex]);
 
-    //     )} */}
-    // {/* </div> */}
-    // {/* <div  className=' w-[80%]  mx-auto mt-3'> */}
-    //     {/* {data.map((imam,i) =>
-    //          currentTab === `${imam.id}` &&
-    //          <div role="tabpanel" className='tab-content text-lightText bg-base-100 border-base-300 rounded-box p-6'>
-    //             <h3 className='text-lightText' key={i}>{imam.imam_english_name}</h3>
-    //             <p className='text-lightText' key={i}>{imam.english_bio}</p>
-    //          </div>
+    // const handleTabClick = (e) => {
+    //   const totalTabs = tabs.length;
+    //   const percentage = (index / totalTabs) * 100;
+    //   setSelectedTabIndex(index);
+    //   setUnderlineLeft(percentage);
+    // };
+    const formatText = (text) => {
+        // Split the text into paragraphs based on newline characters
+        const paragraphs = text.split("\n");
 
-    //     )} */}
-    // {/* </div> */}
+        // Iterate through each paragraph and replace dots with line breaks
+        const formattedText = paragraphs.map((paragraph, index) => {
+            // Check if the paragraph ends with a dot
+            if (paragraph.trim().endsWith(".")) {
+                // Replace the dot with a line break
+                return (
+                    <React.Fragment key={index}>
+                        {paragraph.slice(0, -1)}
+                        <br />
+                    </React.Fragment>
+                );
+            } else {
+                return (
+                    <React.Fragment key={index}>
+                        {paragraph}
+                        <br />
+                    </React.Fragment>
+                );
+            }
+        });
 
-    // {data.map((imam,i) =>
-    // <div  role="tablist"  className='tabs tabs-lifted '>
-
-    //     <input key={i} type="radio" id={imam.id}  onClick={handleClick} name="my_tabs_2" role="tab" className={`${currentTab === `${imam.id}`  ? 'text-red-500' : 'text-green-500'} tab `} aria-label={imam.imam_english_name} />
-    //     {/* <div key={i} role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">{imam.english_bio}</div> */}
-
-    //  <div key={i} role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">{imam.english_bio}</div>
-
-    //     </div>
-
-
-
-    // )}
-
-
-
-
+        return formattedText;
+    };
+    console.log(selectedTabIndex);
+    return (
+        <div className="w-full flex flex-row justify-center">
+            <div onClick={handleClick} className="cursor-pointer h-[140px] w-[140px] flex items-center justify-center relative">
 
 
-    // </div>
-<div>
-      {tabs.map((tab, index) => (
-        <div className="tab-container">
-        <div
-          key={index}
-          className={`tab-item ${selectedTabIndex === index ? 'selected' : ''}`}
-          onClick={() => handleTabClick(index)}
-        >
-          {tab.imam_english_name}
+
+                    <img
+                        key={index}
+
+                        id={id}
+                        src={imagePath}
+                        className="h-[140px] w-[140px] absolute "
+                    />
+                    <h2 className=" text-lightText  absolute text-titleFont font-bold">{imam_name}</h2>
+
+            </div>
+
+
+
         </div>
-        <div  className="underline" style={{ left: `${underlineLeft}%` }}>{tab.english_bio}</div>
-        </div>
-      ))}
-      </div>
+    );
+};
 
-
-  )
-}
-
-export default Tabs
+export default Tabs;
