@@ -76,7 +76,7 @@
 .dropMenu {
     overflow-y: hidden;
 }
-
+imam
 .righteous-regular {
     font-family: "Righteous", sans-serif;
     font-weight: 400;
@@ -125,6 +125,25 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.teamBg{
+
+    background-image: url('../../public/assets/publicImages/team.jpg');
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.layer {
+    background-color: rgba(204, 166, 209, 0.7);
+
+
+
+    width: 100%;
+    height: 400px;
 }
 
 /* width */
@@ -296,16 +315,18 @@ body{
 .imam::after {
 
     content: '﴿';
-
+    font-size: 30px;
     font-family: "Nabi";
+    color: #00081F;
 
 }
 
 .imam::before {
 
     content: '﴾';
-
+    font-size: 30px;
     font-family: "Nabi";
+    color: #00081F;
 
 }
 

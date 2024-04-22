@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import ContactForm from "./ContactForm";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import contactBanner from '../../../../public/assets/publicImages/contactBanner.png'
 
 const ContactPage = () => {
     const {darkMode} = useContext(DarkModeContext);
@@ -24,15 +25,27 @@ const ContactPage = () => {
                     {/* <Title
                     title='Contact Us'
                      /> */}
-                    <p >Drop us a line through the form below and we'll get back to you</p>
+                     <div className="w-full flex flex-row  mx-auto">
+                        <img src={contactBanner} className="h-[250px] w-[250px] mx-auto " alt="" />
+                        <div className=" flex flex-row justify-center items-center mx-auto gap-2 ">
+                            <div className={`${darkMode ? "bg-purple-600 " : "bg-purple-900 "} w-[10px] h-[60px] `}></div>
+                            <div className={`${darkMode ? "text-lightText " : "text-darkText "} flex flex-col text-darkText text-left text-2xl font-[800]`}>
+                                <h2>Drop us a line through the form below</h2>
+                                <h2>We'll get back to you</h2>
+                            </div>
+
+                        </div>
+                     </div>
+
+
                     </div>
 
                     <div className=' w-full h-auto flex flex-col md:flex-row md:items-center gap-4 md:flex justify-between '>
 
-                            <div className={`${darkMode ? "from-[#1e2024] to-[#21272b] text-lightText" : "from-[#797f8d] to-[#aebcc5] text-darkText"} bg-gradient-to-r  w-[90%] mx-auto md:w-[60%] h-full py-10 mb-5 relative justify-center   p-8   rounded-lg flex flex-col`}>
+                            <div className={`${darkMode ? "shadow-2xl shadow-purple-900 border-[1px] border-purple-900 text-lightText" : "shadow-[0_0px_60px_-15px_#800080] text-darkText"}  w-[90%] mx-auto md:w-[60%] h-full py-10 mb-5 -mt-[50px] relative justify-center   p-8   rounded-[20px] flex flex-col`}>
                                     <ContactForm />
                             </div>
-                            <div className={`${darkMode ? "from-[#1e2024] to-[#21272b] text-lightText" : "from-[#797f8d] to-[#aebcc5] text-darkText"} md:w-[35%] w-[90%]  mx-auto h-full bg-gradient-to-r    rounded-lg p-8 flex flex-col gap-8 justify-center mb-5`}>
+                            <div className={`${darkMode ? "shadow-2xl shadow-purple-900 border-[1px] border-purple-900 text-lightText" : "shadow-[0_0px_60px_-15px_#800080] text-darkText"} md:w-[35%] w-[90%]  mx-auto h-full bg-gradient-to-r    rounded-lg p-8 flex flex-col gap-8 justify-center mb-5`}>
                                 {/* {darkMode ?
                                 <ApplicationLogo className="w-full h-64 object-cover rounded-lg mb-2" /> :
                                 <ApplicationLogo className="w-full h-64 object-cover rounded-lg mb-2" />} */}

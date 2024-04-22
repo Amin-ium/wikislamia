@@ -69,6 +69,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage')
 Route::post('/quran', [QuranController::class, 'index'])->name('quran.searchResults');
 Route::get('/quran/surah/{id}', [QuranController::class, 'Surah'])->name('Quran.Surah');
 
+Route::get('/hadeeth/{id}', [HadeethController::class, 'show'])->name('Hadeeth.Book');
+
 Route::group(['middleware' => ['auth', 'is_admin']], function () {
     Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('Pages.AdminDashboard');
 

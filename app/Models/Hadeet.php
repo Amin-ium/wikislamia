@@ -11,10 +11,10 @@ class Hadeet extends Model
     protected $table = 'hadeets';
 
 
-    public function chapiter()
-{
-    return $this->belongsTo(Chapiter::class);
-}
+//     public function chapiter()
+// {
+//     return $this->belongsTo(Chapiter::class);
+// }
 
 public function book()
 {
