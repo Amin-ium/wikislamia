@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaKaaba } from "react-icons/fa6";
 
-const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, imam_name }) => {
+const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, saheeh_name }) => {
     const [selectedTabIndex, setSelectedTabIndex] = useState();
 
     useEffect(() => {
@@ -44,18 +44,23 @@ const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, imam_name }) 
     console.log(selectedTabIndex);
     return (
         <div className="w-full flex flex-row justify-center">
-            <div onClick={handleClick} className="cursor-pointer h-[140px] w-[140px] flex items-center justify-center relative">
+            <div onClick={handleClick} className="cursor-pointer bg-grayBg rounded-full h-[100px] w-[100px] flex flex-row justify-center mx-5 align-middle items-center  relative">
 
 
 
-                    <img
-                        key={index}
 
-                        id={id}
-                        src={imagePath}
-                        className="h-[140px] w-[140px] absolute "
-                    />
-                    <h2 className=" text-lightText  absolute text-titleFont font-bold">{imam_name}</h2>
+                    <h2  className=" text-lightText text-md  absolute  text-center font-bold">{
+
+                            saheeh_name.split(" ").map(function(item, idx) {
+                                return (
+                                    <span className="protestFont" key={idx}>
+                                        {item}
+                                        <br/>
+                                    </span>
+                                 )
+                            })
+
+                    }</h2>
 
             </div>
 

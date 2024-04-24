@@ -9,6 +9,7 @@ import SearchbarEngHadeeth from '@/Components/searchbarHadeeths/SearchbarEngHade
 import ClipPathLinks from '@/Components/ClipPathLinks';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { DarkModeContext } from '@/Context/DarkModeContext';
+import imagePath from '../../../../public/assets/publicImages/imams/round-badge-.png'
 
 
 
@@ -21,6 +22,56 @@ const HadeethPage = ({hadeetData}) => {
 
     const [selectedTabIndex, setSelectedTabIndex] = useState(1);
     const [activeTab, setActiveTab] = useState(false);
+    const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [sections, setSections] = useState([]);
+  const [hadeethsBook, setHadeethsBook] = useState(null);
+
+  const options = [
+    { label: 'Sunan Abu Dawud', value: 'abudawud' },
+    { label: 'Musnad Imam Abu Hanifa', value: 'abuhanifa' },
+    { label: 'Sahih al Bukhari', value: 'bukhari' },
+    { label: 'Forty Hadith of Shah Waliullah Dehlawi', value: 'dehlawi' },
+    { label: 'Sunan Ibn Majah', value: 'ibnmajah' },
+    { label: 'Muwatta Malik', value: 'malik' },
+    { label: 'Sahih Muslim', value: 'muslim' },
+    { label: 'Sunan an Nasai', value: 'nasai' },
+    { label: 'Forty Hadith of an-Nawawi', value: 'nawawi' },
+    { label: 'Forty Hadith Qudsi', value: 'qudsi' },
+    { label: 'Jami At Tirmidhi', value: 'tirmidhi' },
+  ];
+
+
+
+
+
+  useEffect(() => {
+    const url = "https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-" + hadeethsBook + ".json";
+    const fetchDataForPosts = async () => {
+      try {
+        const response = await fetch(
+            url
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error: Status ${response.status}`);
+        }
+        let postsData = await response.json();
+        setData(postsData);
+        setSections(Object.entries(postsData.metadata.sections).filter(([key, value]) => key !== "0"));
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDataForPosts();
+  }, [hadeethsBook, sections]);
+
+
 
     const formatText = (text) => {
         // Split the text into paragraphs based on newline characters
@@ -52,7 +103,8 @@ const HadeethPage = ({hadeetData}) => {
 
 
 
-console.log(hadeetData);
+
+console.log(sections);
 
 
   return (
@@ -65,14 +117,15 @@ console.log(hadeetData);
             <div className='w-[100%] mx-auto mt-[100px] flex flex-col justify-center'>
                 <img src={banner} className='h-[15%] w-[15%] mx-auto my-3 ' alt="" />
                 <SearchbarEngHadeeth hadeetData={hadeetData}  />
-                <div className='w-[80%] mx-auto flex flex-row justify-between mt-3 '>
-                    {hadeetData.imams.map((tab, i) =>
-                    <div key={i} className={`${selectedTabIndex == tab.id ? "" : ""} p-3`} onClick={() => setActiveTab(true)}>
-                     <Tabs tabs={hadeetData.imams} imam_name={check === 'fr' ? tab.imam_frensh_name : check === 'eng' ? tab.imam_english_name : check === 'ar' ? tab.imam_arabic_name : null} bio={selectedTabIndex === `${tab.id}` && check === 'eng' ? tab.english_bio : check === 'fr' ? tab.french_bio : check === 'ar' ? tab.arabic_bio : null} idx={i} id={tab.id} index={i} handleClick={() => setSelectedTabIndex(`${tab.id}`)} imagePath={`/assets/publicImages/imams/${tab.imam_imagePath}.png`} />
+                {/* <div className='w-[80%] mx-auto flex flex-row justify-center mt-3 '>
+                    {data && data?.books?.map((tab, i) =>
+
+                    <div key={i} className={`${selectedTabIndex == tab.id ? "" : ""} `} onClick={() => setActiveTab(true)}>
+                     <Tabs  tabs={data.books} saheeh_name={check === 'fr' && tab.id < 8  ? tab.bookName : check === 'eng'  && tab.id < 8  ? tab.bookName : check === 'ar'  && tab.id < 8 ? tab.bookName : null} bio={selectedTabIndex === `${tab.id}` && check === 'eng' ? tab.english_bio : check === 'fr' ? tab.french_bio : check === 'ar' ? tab.arabic_bio : null} idx={i} id={tab.id} index={i} handleClick={() => setSelectedTabIndex(`${tab.id}`)} imagePath={imagePath} />
                      </div>
                     )}
-                </div>
-                <div className={`w-[80%] mx-auto flex align-top gap-3  mt-3 ${check === 'ar' ? "flex-row-reverse" : "flex-row"}`}>
+                </div> */}
+                {/* <div className={`w-[80%] mx-auto flex align-top gap-3  mt-3 ${check === 'ar' ? "flex-row-reverse" : "flex-row"}`}>
                 <div className='w-[80%] float-start '>
 
                 <div  className='w-[100%] mx-auto  '>
@@ -279,7 +332,20 @@ console.log(hadeetData);
                         )
                     )}
                 </div>
+                </div> */}
+                <div className='w-[80%] mx-auto text-lightText flex flex-row justify-between my-5'>
+                {/* {options.map((option, i) => (
+                    <button key={i} onClick={() => {setHadeethsBook(option.value)}} className='bg-grayBg border border-lightText p-1 rounded-md'>{option.value}</button>
+                ))} */}
                 </div>
+                {/* {data?.hadiths.map((hadith, i) =>
+                    Object.entries(data?.metadata.sections).map((section, i) =>
+                    // <h3 key={i}>{hadith}</h3>
+                    {console.log(section[1])}
+                )
+                )} */}
+                {/* <h3>{data.hadiths[0]}</h3>
+                <p className='text-lightText text-center'>{data?.hadiths[0].text}</p> */}
 
 
             </div>
