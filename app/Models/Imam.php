@@ -20,7 +20,7 @@ public function books()
     return $this->hasMany(Book::class);
 }
 
-public function imam_bio()
+public function imams_bios()
 {
     return $this->hasOne(Imam_bio::class);
 }

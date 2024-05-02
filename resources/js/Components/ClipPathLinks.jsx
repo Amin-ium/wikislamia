@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   SiAdobe,
   SiApple,
@@ -13,6 +13,8 @@ import {
 } from "react-icons/si";
 import { useAnimate } from "framer-motion";
 import { Link } from "@inertiajs/react";
+import { useSearchBarContext } from "@/Context/SearchBarContext";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
 const  LinkComponent = ({value, href}) => {
   return (
@@ -25,8 +27,10 @@ const  LinkComponent = ({value, href}) => {
 };
 
 const ClipPathLinks = ({value, href}) => {
+    const { check, setCheck } = useSearchBarContext();
+    const { darkMode } = useContext(DarkModeContext);
   return (
-    <div className="divide-y divide-fuchsia-700  ">
+    <div className={`${darkMode ? "text-lightText" : "text-darkText"} divide-y divide-fuchsia-700 text-darkText rounded-[20px]  `}>
       <div className="text-center ">
       <LinkBox value={value} href={href} />
 
@@ -106,7 +110,7 @@ const LinkBox = ({ Icon, href, value }) => {
   };
 
   return (
-    <a
+    <Link
       href={href}
       onMouseEnter={(e) => {
         handleMouseEnter(e);
@@ -114,7 +118,7 @@ const LinkBox = ({ Icon, href, value }) => {
       onMouseLeave={(e) => {
         handleMouseLeave(e);
       }}
-      className="relative grid  w-full place-content-center "
+      className="relative grid  w-full place-content-center rounded-[20px] py-1 "
     >
       {value}
 
@@ -123,11 +127,11 @@ const LinkBox = ({ Icon, href, value }) => {
         style={{
           clipPath: BOTTOM_RIGHT_CLIP,
         }}
-        className="absolute inset-0 grid place-content-center bg-purple-900 text-white"
+        className="absolute inset-0 grid place-content-center bg-purple-900 text-white rounded-[20px] "
       >
         {value}
       </div>
-    </a>
+    </Link>
   );
 };
 

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Hadeet extends Model
 {
     use HasFactory;
-    protected $table = 'hadeets';
+    protected $table = 'hadeeths';
+    protected $fillable = ['imam_id', 'book_id', 'number_in_book', 'ar_hadith',  'fr_hadith', 'eng_hadith', 'grade', 'count'];
 
 
 //     public function chapiter()
@@ -16,12 +17,12 @@ class Hadeet extends Model
 //     return $this->belongsTo(Chapiter::class);
 // }
 
-public function book()
+public function books()
 {
     return $this->belongsTo(Book::class);
 }
 
-public function imam()
+public function imams()
 {
     return $this->belongsTo(Imam::class);
 }

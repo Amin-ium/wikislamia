@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayah;
+use App\Models\Book;
+use App\Models\Imam;
 use App\Models\Surah;
 use App\Models\VersesTest;
 use Illuminate\Http\Request;
@@ -20,39 +22,31 @@ class QuranSurahsController extends Controller
 
     public function saveAyahs()
 {
-    $verses = File::get(base_path() . '/public/ayahs.json');
+    $verses = File::get(base_path() . '/public/hadiths.json');
     $datas = json_decode($verses, true);
 
 
     foreach ($datas as $data) {
         Log::info('Processing data: ' . json_encode($data));
         // Check if 'surah_id' key exists in the current $data
-        if (array_key_exists('surah_id', $data)) {
+        if (array_key_exists('imam_id', $data) && array_key_exists('book_id', $data)) {
             // Check if Surah exists before inserting Ayah
-            $surah = Surah::find($data['surah_id']);
-
-
-            if ($surah) {
-                // $surah->ayahs()->update([
-                //     'content' => $data['content']
-
-                // ]);
-
+            $surah = Imam::find($data['imam_id']);
+            $surahh = Book::find($data['book_id']);
+            $counter = 0;
+            if ($surah && $surahh) {
                 // Insert Ayah using the relationship
-                $surah->ayahs()->create([
-
-
-
-
+                $surah->hadeeths()->create([
 
                     'id' => $data['id'],
-                    'surah_id' => $data['surah_id'],
-                    'content' => $data['content'],
-                    'englishContent' => $data['englishContent'],
-                    'frenshContent' => $data['frenshContent'],
-                    'verseNumber' => $data['verseNumber'],
-                    'audio' => $data['audio'],
-                    'revelationType' => $data['revelationType'],
+                    'imam_id' => $data['imam_id'],
+                    'book_id' => $data['book_id'],
+                    'number_in_book' => $data['number_in_book'],
+                    'ar_hadith' => $data['ar_hadith'],
+                    'fr_hadith' => $data['fr_hadith'],
+                    'eng_hadith' => $data['eng_hadith'],
+                    'grade' => 'Saheeh',
+                    'count' => $counter++
                 ]);
 
 
@@ -72,7 +66,7 @@ class QuranSurahsController extends Controller
 
 public function saveSurahs()
 {
-    $verses = File::get(base_path() . '/public/ayahs.json');
+    $verses = File::get(base_path() . '/public/hadiths.json');
     $datas = json_decode($verses, true);
 
 

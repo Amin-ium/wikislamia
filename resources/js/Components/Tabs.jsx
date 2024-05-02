@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaKaaba } from "react-icons/fa6";
+import imgPath from '../../../public/assets/publicImages/imams/round-badge-.png'
 
-const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, saheeh_name }) => {
+const Tabs = ({ tabs, id, index, bio, idx, handleClick, saheeh_name, indx, imamId }) => {
     const [selectedTabIndex, setSelectedTabIndex] = useState();
 
     useEffect(() => {
@@ -41,33 +42,15 @@ const Tabs = ({ tabs, imagePath, id, index, bio, idx, handleClick, saheeh_name }
 
         return formattedText;
     };
-    console.log(selectedTabIndex);
+
     return (
-        <div className="w-full flex flex-row justify-center">
-            <div onClick={handleClick} className="cursor-pointer bg-grayBg rounded-full h-[100px] w-[100px] flex flex-row justify-center mx-5 align-middle items-center  relative">
-
-
-
-
-                    <h2  className=" text-lightText text-md  absolute  text-center font-bold">{
-
-                            saheeh_name.split(" ").map(function(item, idx) {
-                                return (
-                                    <span className="protestFont" key={idx}>
-                                        {item}
-                                        <br/>
-                                    </span>
-                                 )
-                            })
-
-                    }</h2>
-
-            </div>
-
-
-
+        <div onClick={handleClick} className="relative flex justify-center align-middle items-center cursor-pointer">
+            <img src={imgPath} alt="" className="" />
+            <h2 className="text-lightText absolute font-bold " key={indx} >{saheeh_name}</h2>
         </div>
-    );
+    )
+
+
 };
 
 export default Tabs;
