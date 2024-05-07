@@ -26,7 +26,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
 
 
 
-            <div className={`${opened ? "w-[calc(100%-40px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300  xl:h-screen `}>
+            <div className={`${opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300  xl:h-screen `}>
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     {updateInfosPage && (<div className="p-4 sm:p-8 bg-grayBg  shadow sm:rounded-lg">
                         <UpdateProfileInformationForm

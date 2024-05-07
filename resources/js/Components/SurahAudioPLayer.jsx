@@ -79,7 +79,7 @@ console.log(duration);
 
 
   return (
-    <div className="card relative overflow-hidden bg-gray-800 text-white p-[5px] rounded-xl border-[1px] border-[rgba(255,255,255,0.1)] w-full">
+    <div className="card relative overflow-hidden bg-gray-800 text-white p-[10px] rounded-xl border-[1px] border-[rgba(255,255,255,0.1)] w-full">
         <input type="range" name="" min="0" max={duration} value={currentTime} onChange={handleSeek} className="w-[100%]" id="" />
         <audio ref={audioRef} src={audioSrc} ></audio>
         <div className="flex flex-row justify-between ">

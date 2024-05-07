@@ -48,9 +48,14 @@ Route::get('item', [QuranSurahsController::class, 'saveAyahs']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'Profile'])->name('Pages.Profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/logout', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('Pages.Dashborad');
+    // Route::post("/logout", function() {
+    //     dd("handle logout");
+    // });
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 });
 
 Route::get('/quran/{id}', [QuranController::class, 'show'])->name('Quran.IndividualQuran');
@@ -89,6 +94,10 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+    // Route::post('logout', [LogoutController::class, 'index']);
+    // Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    //             ->name('logout');
+
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
@@ -101,6 +110,8 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
 });
+
+
 
 
 

@@ -84,7 +84,7 @@ export default function Surah({ surah, next, previous }) {
                     }  `}
                 >
                     <button
-                        className={`absolute top-[100px] ${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"} border border-bg-lighText shadow-lg align-middle items-center flex shadow-violet-300 rounded-md p-1 h-[30px] font-bold `}
+                        className={` ${fully ? 'fixed  top-[100px]' : 'absolute top-[100px]'} ${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"} border border-bg-lighText shadow-lg align-middle items-center flex shadow-violet-300 rounded-md p-1 h-[30px] font-bold `}
                         onClick={handleFullScreen}
                     >
                         {fully}
@@ -102,9 +102,9 @@ export default function Surah({ surah, next, previous }) {
                               currentSurah?.englishNameTranslation
                             : null}
                     </h2>
-                    <div className="flex flex-row items-center gap-5 w-[80%] mx-auto justify-center ">
+                    <div className={`flex ${check === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center gap-5 w-[80%] mx-auto justify-center `}>
                         <Link href={`/quran/surah/${ surah.id === 1  ? 114 : surah.id - 1  }`}  className={`${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"}   border border-bg-lighText shadow-lg align-middle items-center flex shadow-violet-300 rounded-md p-1 h-[30px] font-bold`}>
-                            Previous
+                            {check === 'ar' ? "السابق" : check === 'eng' ? 'Previous' : check === 'fr' ? 'Précédent' : null}
                         </Link>
                         {/* <audio
                             className="w-50 mx-auto"
@@ -120,7 +120,7 @@ export default function Surah({ surah, next, previous }) {
                             </div>
                         </div>
                         <Link href={`/quran/surah/${ surah.id > 0 && surah.id < 114 ? surah.id +1 :  1  }`} className={`${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"}  border border-bg-lighText shadow-lg  px-[20px] flex align-middle  items-center shadow-violet-300 rounded-md p-1 h-[30px] font-bold`}>
-                            Next
+                        {check === 'ar' ? "التالي" : check === 'eng' ? 'Next' : check === 'fr' ? 'Suivant' : null}
                         </Link>
                     </div>
 
@@ -160,7 +160,7 @@ export default function Surah({ surah, next, previous }) {
                             {"]"}
                         </p>
                     </div>
-                    <p className={`text-center my-3 nabi font-bold text-lg underline ${darkMode ? "text-lightText" : "text-darkTExt"} `}>
+                    <p className={`text-center my-3 nabi font-bold text-lg underline ${darkMode ? "text-lightText" : "text-darkTExt"} ayahNumber `}>
                         {check === "ar" ?
                             currentSurah.id === 1 ? 'البسملة هي أول آية من سورة ٱلْفَاتِحَةِ' : currentSurah.id === 9 ? "سورة التَّوۡبَةِ لا تحتوي على البسملة" : "بِسمِ اللَّهِ الرَّحمـٰنِ الرَّحيمِ"
                             : check === "eng"
@@ -169,28 +169,27 @@ export default function Surah({ surah, next, previous }) {
                             ? currentSurah.id === 1 ? "Al-Basmalah est le premier verset de la sourate Al-Fatihah"  : currentSurah.id === 9 ? "Surat sourate Al-Tawbah ne contient pas al-basmala" : "Au nom d'Allah le plus miséricordieux le plus miséricordieux"
                             : null}
                     </p>
-                    <div className=" flex flex-col   nabi  gap-2">
+                    <div className=" flex flex-col   nabi  gap-2 shadow-2xl shadow-darkText rounded-[20px] p-4 my-5">
                         {currentSurah?.ayahs && currentSurah.ayahs?.map((ayah, i) => (
                             <div
-                                className={`flex ${
-                                    check === "ar"
-                                        ? "flex-row-reverse text-right"
-                                        : "flex-row"
-                                } border-b-[1px] border-[#00000020] gap-2  w-[80%] mx-auto font-semibold text-lg `}
+                                className={`flex flex-col justify-center items-center border-b-[1px] border-[#00000020] gap-2  w-[80%] mx-auto font-semibold text-lg  `}
                             >
-                                <div className=" flex flex-row  ">
-                                <p key={i} className={`${darkMode ? "text-lightText" : "text-darkText"}`}>
+
+
+                                    <p key={i} className={`${darkMode ? "text-lightText" : "text-darkText"} text-center`}>
                                     {check === "ar"
                                         ? ayah.content || 'No content available'
                                         : check === "fr"
                                         ? ayah.frenshContent || 'No content available'
                                         : check === "eng"
                                         ? ayah.englishContent || 'No content available'
-                                        : null}
-                                     <span className={`red ${darkMode ? "text-lightText" : "text-darkText"} ms-1`}>{ayah.verseNumber}</span>
-                                </p>
+                                        : null}</p>
+                                     <span className={` ${darkMode ? "text-lightText" : "text-darkText"} ayahNumber text-center ms-1`}>{ayah.verseNumber}</span>
 
-                                </div>
+
+
+
+
                                 {/* <div className="">
 
                                     <span className="red ">{ayah.verseNumber}</span>

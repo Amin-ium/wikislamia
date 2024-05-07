@@ -7,7 +7,7 @@ import DashboardSection from '@/Sections/DashboardSection';
 import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
-export default function Dashboard({ auth, posts, users }) {
+export default function Dashboard({ auth, posts, users, user, postsUser }) {
     const { check, setCheck } = useSearchBarContext();
     const [dashboardLink, setDashboardLink] = useState(false);
 
@@ -31,6 +31,11 @@ export default function Dashboard({ auth, posts, users }) {
             {!dashboardLink &&
                 <div className="py-12">
                 <DashboardSection posts={posts} users={users} />
+                </div>
+            }
+             {dashboardLink &&
+                <div className="py-12">
+                <DashboardSection postsUser={postsUser} user={user} />
                 </div>
             }
 

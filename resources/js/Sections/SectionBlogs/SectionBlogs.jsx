@@ -21,7 +21,7 @@ const SectionBlogs = ({items, user, sectionId, posts, Component}) => {
     const { darkMode } = useContext(DarkModeContext);
     const { sectionRefs } = useScroll();
 
-console.log(posts);
+console.log(items);
   return (
     <>
         <section ref={sectionRefs.section2} className={`${ darkMode ? "border-b-[1px] border-[#f1f1f125] " : "border-b-[1px] border-[#28282825]"} relative w-[100%] xl:w-[100%] mx-auto  h-auto   py-[50px] `}>

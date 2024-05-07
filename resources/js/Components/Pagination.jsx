@@ -188,7 +188,41 @@ const propertiess = () => {
                             arabicName={item.arabicName}
                             versetsLength={item.versesNumber}
                          /></Link>)
-                    } else if(item.hasOwnProperty('title')) {
+                    } else if(item.hasOwnProperty('title') && !document.location.pathname === '/dashboard') {
+                        return( <Component
+                            className={` relative`}
+                            key={item.id}
+                            title={item.title}
+                            id={item.id}
+                            description={item.description.substring(0, 70)+ ' ...'}
+                            name={item.user.name}
+                            tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                            tagId={item.tags.map(tag => tag.id)}
+                            category={item.category.name}
+                            categoryId={item.category.id}
+                            created_at={moment(item.created_at).fromNow()}
+                            postImgSrc={item.imagePath}
+                            darkMode={darkMode}
+                            userSrc={item.user.imagePath}
+                             />)
+                    }else if(document.location.pathname === '/dashboard') {
+                        return( <Component
+                            className={` relative`}
+                            key={item.id}
+                            title={item.title}
+                            id={item.id}
+                            description={item.description.substring(0, 70)+ ' ...'}
+
+                            tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                            tagId={item.tags.map(tag => tag.id)}
+                            category={item.category.name}
+                            categoryId={item.category.id}
+                            created_at={moment(item.created_at).fromNow()}
+                            postImgSrc={item.imagePath}
+                            darkMode={darkMode}
+                            userSrc={item.user.imagePath}
+                             />)
+                    }else if(item.hasOwnProperty('title') && document.location.pathname === '/blogs') {
                         return( <Component
                             className={` relative`}
                             key={item.id}
@@ -208,6 +242,7 @@ const propertiess = () => {
                     }
 
             })}
+
             </div>
             <ul className='flex flex-row justify-center gap-3 items-center my-3'>
                 <li>

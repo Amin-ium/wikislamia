@@ -50,6 +50,34 @@
 
 }
 
+.ayahNumber::after {
+
+    content: '﴿';
+
+    font-family: "Nabi";
+    font-size: 24px;
+    margin-left: 3px;
+
+}
+
+.ayahNumber::before {
+
+    content: '﴾';
+    font-family: "Nabi";
+    font-size: 24px;
+    margin-right: 3px;
+
+}
+
+
+.blogPara::before {
+
+    content: '\000027';
+    font-size: 30px;
+    font-family: "Nabi";
+
+}
+
 /* .para::after {
 
     content: url('../../public/assets/publicImages/rseparator.svg');
