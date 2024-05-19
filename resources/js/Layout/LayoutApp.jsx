@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 import { useState } from "react";
 
 import { useEffect } from "react";
-import Navbare from "@/Components/Navbare/Navbare";
+// import Navbare from "@/Components/Navbare/Navbare";
 import SubFooter from "@/Components/SubFooter/SubFooter";
 import { DarkModeContext } from "@/Context/DarkModeContext";
+import Navbar from "@/Components/Navbare/Navbar";
+
 
 const LayoutApp = ({ children }) => {
     const [fully, setFully] = useState(false);
@@ -70,16 +72,17 @@ const LayoutApp = ({ children }) => {
             <div
 
             >
-                {fully ? null : <Navbare />}
+                {fully ? null : <Navbar />}
+
 
                 <main className={`${
-                    darkMode && isFullscreen
+                    darkMode && isFullscreen && !window.location.pathname.match('dashboard') && !window.location.pathname.match('profile')
                         ? "text-lightText bg-darkText"
-                        : darkMode && !isFullscreen
+                        : darkMode && !isFullscreen && !window.location.pathname.match('dashboard') && !window.location.pathname.match('profile')
                         ? "text-lightText bg-darkText"
-                        : !darkMode && isFullscreen
+                        : !darkMode && isFullscreen && !window.location.pathname.match('dashboard') && !window.location.pathname.match('profile')
                         ? "text-darkText bg-lightBg"
-                        : !darkMode && !isFullscreen
+                        : !darkMode && !isFullscreen && !window.location.pathname.match('dashboard') && !window.location.pathname.match('profile')
                         ? "text-darkText bg-lightBg"
                         : null
                 } w-full overflow-y-hidden `}>{children}</main>

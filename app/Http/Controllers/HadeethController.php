@@ -33,7 +33,7 @@ class HadeethController extends Controller
     public function show($id)
     {
         $book = Book::with(['imam', 'hadeets'])->find($id);
-        dd($book);
+
         $imam_id = $book->imam()->first()->id;
         // $books = Book::find($imam_id);
         $books = Book::where('imam_id', $imam_id)->get();
@@ -58,7 +58,8 @@ class HadeethController extends Controller
     public function showImam($id)
     {
         $imam = Imam::with(['hadeets', 'imams_bios', 'books'])->find($id);
-        dd($imam);
+        $imams = Imam::with(['hadeets', 'imams_bios', 'books'])->get();
+
         // $imam_id = $book->imam()->first()->id;
         // // $books = Book::find($imam_id);
         // $books = Book::where('imam_id', $imam_id)->get();
@@ -77,6 +78,6 @@ class HadeethController extends Controller
 
 
 
-        // return Inertia::render('Hadeeth/Book', ['book' => $book, 'books' => $books]);
+        return Inertia::render('Hadeeth/Imam', ['imam' => $imam, 'imams' => $imams]);
     }
 }

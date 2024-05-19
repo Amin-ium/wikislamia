@@ -20,8 +20,17 @@ export default function Surah({ surah, next, previous }) {
     const [fully, setFully] = useState("Request Full Screen");
     const [currentSurah, setCurrentSurah] = useState(surah);
 
-    // console.log(surah.surahaudio.audio);
+    const audios = []
+    let link = 'https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/'
 
+    function audiosFun(){
+        for(let i = 0; i < 115; i++) {
+
+            audios.push(`https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${i}.mp3`)
+        }
+    }
+    audiosFun()
+    console.log(audios);
 
     const myDocument = document.getElementById("myFullScreen");
 

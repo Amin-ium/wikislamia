@@ -19,16 +19,19 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
     const { check, setCheck } = useSearchBarContext();
     const { updateInfosPage,  updatePasswordPage, deleteAccountPage} = useContext(CheckedLinksContext);
 
-    console.log(updateInfosPage);
+    console.log(updatePasswordPage);
+    console.log(updatePasswordPage);
+    console.log(deleteAccountPage);
     return (
 
 
 
 
 
-            <div className={`${opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300  xl:h-screen `}>
+            <div className={`${opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300  xl:h-screen mt-[50px] `}>
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    {updateInfosPage && (<div className="p-4 sm:p-8 bg-grayBg  shadow sm:rounded-lg">
+                    {updateInfosPage && (
+                    <div className="p-4 sm:p-8   shadow-2xl shadow-purple-700 sm:rounded-lg">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}

@@ -1,4 +1,4 @@
-import Navbare from '@/Components/Navbare/Navbare'
+
 import { DarkModeContext } from '@/Context/DarkModeContext'
 import { ScrollProvider } from '@/Context/ScrollContext'
 import LayoutApp from '@/Layout/LayoutApp'

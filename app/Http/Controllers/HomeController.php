@@ -62,7 +62,7 @@ class HomeController extends Controller
         $surahs = Surah::get();
         $ayahs = Ayah::get();
         $user = Auth::user();
-        $posts = Post::with('user', 'category', 'tags')->get();
+        $posts = Post::with('user', 'tags')->get();
         // $accordion = Accordion::get();
         $quiz = Quiz::get();
 

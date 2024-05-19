@@ -8,14 +8,14 @@ import QuranPageBanner from '@/Components/quran/quranPageBanner';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { DarkModeContext } from '@/Context/DarkModeContext';
 
-const QuranPage = ({surahs, items}) => {
+const QuranPage = ({surahs, items, surahAudios}) => {
 
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);
 
 
     const { resultPrayer } = usePage().props;
-
+console.log(Array(surahAudios));
 
   return (
     <>

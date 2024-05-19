@@ -6,11 +6,13 @@ import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeCont
 import PostCard from './PostCard/PostCard';
 import moment from 'moment';
 import { LuMoveRight } from 'react-icons/lu';
+import { useSearchBarContext } from '@/Context/SearchBarContext';
 
 
 export default function Pagination({ href, active, children,  items, Component }) {
 
     const {darkMode} = useContext(DarkModeContext);
+    const { check, setCheck } = useSearchBarContext();
     console.log(darkMode);
 
     const [data, setData] = useState([])
@@ -198,12 +200,10 @@ const propertiess = () => {
                             name={item.user.name}
                             tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
                             tagId={item.tags.map(tag => tag.id)}
-                            category={item.category.name}
-                            categoryId={item.category.id}
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
                             darkMode={darkMode}
-                            userSrc={item.user.imagePath}
+                            userSrc={item.user().imagePath}
                              />)
                     }else if(document.location.pathname === '/dashboard') {
                         return( <Component
@@ -212,11 +212,8 @@ const propertiess = () => {
                             title={item.title}
                             id={item.id}
                             description={item.description.substring(0, 70)+ ' ...'}
-
-                            tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                            tags={item.tags}
                             tagId={item.tags.map(tag => tag.id)}
-                            category={item.category.name}
-                            categoryId={item.category.id}
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
                             darkMode={darkMode}
@@ -232,12 +229,22 @@ const propertiess = () => {
                             name={item.user.name}
                             tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
                             tagId={item.tags.map(tag => tag.id)}
-                            category={item.category.name}
-                            categoryId={item.category.id}
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
                             darkMode={darkMode}
                             userSrc={item.user.imagePath}
+                             />)
+                    }else if(item.hasOwnProperty('ar_hadith') && document.location.pathname.match('/hadeeth')) {
+                        return( <Component
+                            className={` relative`}
+                            key={item.id}
+                            number_in_book={item.number_in_book}
+                            ar_hadith={item.ar_hadith}
+                            fr_hadith={item.fr_hadith}
+                            eng_hadith={item.eng_hadith}
+                            grade={item.grade}
+                            check={check}
+
                              />)
                     }
 

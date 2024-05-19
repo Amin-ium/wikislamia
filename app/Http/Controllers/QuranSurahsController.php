@@ -6,6 +6,7 @@ use App\Models\Ayah;
 use App\Models\Book;
 use App\Models\Imam;
 use App\Models\Surah;
+use App\Models\Surahaudio;
 use App\Models\VersesTest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -64,6 +65,51 @@ class QuranSurahsController extends Controller
     return 'Ayahs Updated Successfully';
 }
 
+public function saveAudio() {
+    $audiosJson = File::get(base_path() . '/public/storage/ayahs.json');
+    $datas = json_decode($audiosJson, true);
+
+    foreach ($datas as $data) {
+        Log::info('Processing data: ' . json_encode($data));
+        // Check if 'surah_id' key exists in the current $data
+        if (array_key_exists('surah_id', $data) && array_key_exists('audio', $data)) {
+            // Check if Surah exists before inserting Ayah
+            $surah = Surah::find($data['surah_id']);
+            $s_audio = Surahaudio::get();
+            // $surah = Surah::find($data['surah_id']);
+            // dd($s_audio);
+            if ($surah) {
+                // Insert Ayah using the relationship
+                $surah->surahaudio()->create([
+
+                    'id' => $data['id'],
+                    'surah_id' => $data['surah_id'],
+                    'audio' => $data['audio'],
+                    'created_at' => $data['created_at'],
+                    'updated_at' => $data['updated_at']
+                ]);
+
+
+
+
+
+            } else {
+                // Handle case where Surah doesn't exist
+                dd($s_audio) ;// Skip to the next iteration
+            }
+        } else {
+            // Handle case where 'surah_id' key is missing in $data
+            continue; // Skip to the next iteration
+        }
+    }
+
+
+
+
+
+
+}
+
 public function saveSurahs()
 {
     $verses = File::get(base_path() . '/public/hadiths.json');
@@ -83,9 +129,9 @@ public function saveSurahs()
                     'versesNumber' => $data['versesNumber'],
                     'numberInQuran' => $data['numberInQuran'],
                     'revelationType' => $data['revelationType'],
-                ]);
+        ]);
 
-        };
+    };
 
     return 'Surahs Created Successfully';
 }

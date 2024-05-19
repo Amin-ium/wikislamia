@@ -1,5 +1,6 @@
 import { ScrollProvider } from '@/Context/ScrollContext';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
+import { InertiaProgress } from '@inertiajs/progress';
 import LayoutApp from '@/Layout/LayoutApp';
 import SidebarLayout from '@/Layout/SidebarLayout';
 import DashboardSection from '@/Sections/DashboardSection';
@@ -10,7 +11,7 @@ import { useEffect, useState } from 'react';
 export default function Dashboard({ auth, posts, users, user, postsUser }) {
     const { check, setCheck } = useSearchBarContext();
     const [dashboardLink, setDashboardLink] = useState(false);
-
+    console.log(postsUser);
     useEffect(() => {
 
         if(document.location.pathname === '/dashboard') {
@@ -19,7 +20,7 @@ export default function Dashboard({ auth, posts, users, user, postsUser }) {
             setDashboardLink(false)
         }
     }, []);
-    console.log(posts);
+
     return (
         <LayoutApp
             user={auth.user}
@@ -29,12 +30,12 @@ export default function Dashboard({ auth, posts, users, user, postsUser }) {
             <SidebarLayout>
             {/* <Head title="Dashboard" /> */}
             {!dashboardLink &&
-                <div className="py-12">
+                <div className="">
                 <DashboardSection posts={posts} users={users} />
                 </div>
             }
              {dashboardLink &&
-                <div className="py-12">
+                <div className="">
                 <DashboardSection postsUser={postsUser} user={user} />
                 </div>
             }
@@ -44,3 +45,5 @@ export default function Dashboard({ auth, posts, users, user, postsUser }) {
         </LayoutApp>
     );
 }
+
+InertiaProgress.init({ color: '#4B5563' });

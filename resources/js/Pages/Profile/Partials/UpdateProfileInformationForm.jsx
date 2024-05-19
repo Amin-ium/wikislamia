@@ -6,10 +6,13 @@ import TextInput from '@/Components/TextInput';
 import { Link, usePage, useForm } from "@inertiajs/inertia-react";
 import { Transition } from '@headlessui/react';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
+import { useContext } from 'react';
+import { DarkModeContext } from '@/Context/DarkModeContext';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
     const { check, setCheck } = useSearchBarContext();
+    const { darkMode } = useContext(DarkModeContext);
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
@@ -23,13 +26,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     };
 
     return (
-        <section  className={` ${check === 'ar' ? "test-right" : "text-left"} bg-grayBg`}>
+        <section  className={` ${check === 'ar' ? "test-right" : "text-left"} `}>
             <header>
-                <h2 className="text-lg font-medium text-lightText">
+                <h2 className={`${darkMode ? "text-lightText" : "text-darkText"} text-lg font-medium`}>
                 {check === "eng" ? "Profile Information" : check === "fr" ? "Informations de profile" : check === "ar" ? "معلومات الصفحة الشخصية" : null}
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-400">
+                <p className={`${darkMode ? "text-lightText" : "text-darkText"} mt-1 text-sm `}>
 
                     {check === "eng" ? "Update your account's profile information and email address" : check === "fr" ? "Mis à jour des informations de profile et compte personnel" : check === "ar" ? "تحديث معلومات الصفحة الشخصية والحساب الشخصي" : null}
                 </p>
@@ -37,11 +40,11 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value={check === "eng" ? "Name" : check === "fr" ? "Nom" : check === "ar" ? "الاسم" : null} />
+                    <InputLabel className={`${darkMode ? "text-lightText" : "text-darkText"}  `} htmlFor="name" value={check === "eng" ? "Name" : check === "fr" ? "Nom" : check === "ar" ? "الاسم" : null} />
 
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full p-2 shadow-xl shadow-purple-500"
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
                         required
@@ -53,12 +56,12 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="email" value={check === "eng" ? "ُEmail" : check === "fr" ? "Email" : check === "ar" ? "البريد الالكتروني" : null} />
+                    <InputLabel className={`${darkMode ? "text-lightText" : "text-darkText"}  `} htmlFor="email" value={check === "eng" ? "ُEmail" : check === "fr" ? "Email" : check === "ar" ? "البريد الالكتروني" : null} />
 
                     <TextInput
                         id="email"
                         type="email"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full p-2 shadow-xl shadow-purple-500"
                         value={data.email}
                         onChange={(e) => setData('email', e.target.value)}
                         required

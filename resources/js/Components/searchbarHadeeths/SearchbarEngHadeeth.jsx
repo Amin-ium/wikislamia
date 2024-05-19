@@ -68,36 +68,36 @@ const SearchbarEngHadeeth = ({ hadeetData }) => {
 
                     <div className="dropdown absolute z-20  flex flex-col  bg-white max-h-[200px]  overflow-y-scroll rounded top-[43px]  w-full lg:w-[70%] left-[15%]">
                         {check === 'eng' && hadeetData && hadeetData.filter(item => {
-                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
+                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
 
 
-                            return searchTerm && searchItem.includes(searchTerm) && searchItem !== searchTerm
+                            return searchTerm && searchItem.startsWith(searchTerm) && searchItem !== searchTerm
                         })
                         .map((hadeet) => (
                             <Link href={`/hadeeth/${hadeet.id}`} className={`${darkMode ? "bg-darkText text-lightBg hover:bg-gray-950" : "bg-lightBg text-darkText hover:bg-gray-300"} px-3 py-[1px] border-b-gray-300 border-b-[1px] `}>{hadeet.eng_hadith.substr(0, 70)} ...</Link>
                         ))
                         }
                         {check === 'fr' && hadeetData && hadeetData.filter(item => {
-                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
+                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
 
 
-                            return searchTerm && searchItem.includes(searchTerm) && searchItem !== searchTerm
+                            return searchTerm && searchItem.startsWith(searchTerm) && searchItem !== searchTerm
                         })
                         .map((hadeet) => (
                             <Link href={`/hadeeth/${hadeet.id}`} className={`${darkMode ? "bg-darkText text-lightBg hover:bg-gray-950" : "bg-lightBg text-darkText hover:bg-gray-300"} px-3 py-[1px] border-b-gray-300 border-b-[1px] `}>{hadeet.fr_hadith.substr(0, 70)} ...</Link>
                         ))
                         }
                         {check === 'ar' && hadeetData && hadeetData.filter(item => {
-                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
-                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '')
+                            const searchTerm = value.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const content = item.eng_hadith.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
+                            const searchItem = content.replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g, '').toLowerCase()
 
 
-                            return searchTerm && searchItem.includes(searchTerm) && searchItem !== searchTerm
+                            return searchTerm && searchItem.startsWith(searchTerm) && searchItem !== searchTerm
                         })
                         .map((hadeet) => (
                             <Link href={`/hadeeth/${hadeet.id}`} className={`${darkMode ? "bg-darkText text-lightBg hover:bg-gray-950" : "bg-lightBg text-darkText hover:bg-gray-300"} px-3 py-[1px] border-b-gray-300 border-b-[1px] `}>{hadeet.ar_hadith.substr(0, 70)} ...</Link>

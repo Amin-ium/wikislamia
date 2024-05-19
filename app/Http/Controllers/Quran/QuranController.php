@@ -12,7 +12,7 @@ use App\Models\Surah;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\SourahAudio;
-
+use App\Models\Surahaudio;
 use Illuminate\Support\Facades\Input;
 use Symfony\Component\Console\Input\Input as InputInput;
 
@@ -27,6 +27,7 @@ class QuranController extends Controller
 
 public function QuranPage()
 {
+    $surahAudios = Surahaudio::get();
  $surahs = Surah::with('ayahs', 'surahaudio')->get();
 
 
@@ -34,7 +35,8 @@ public function QuranPage()
 
 
 
- return Inertia::render('Quran/QuranPage', ['surahs'=> $surahs]);
+
+ return Inertia::render('Quran/QuranPage', ['surahs'=> $surahs, 'surahAudios'=> $surahAudios]);
 }
 
 
@@ -60,7 +62,7 @@ public function QuranPage()
     {
         $ayah = Ayah::with('surah')->find($id);
         $surahs = Surah::get();
-        // dd($surahs);
+
         return Inertia::render('Quran/IndividualQuran', ['ayah' => $ayah, 'surahs' => $surahs]);
     }
 

@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 export const CheckedLinksContext = createContext();
 
 export const CheckedLinksContextProvider = ({ children }) => {
-  const [updateInfosPage, setUpdateInfosPage] = useState(true);
+  const [updateInfosPage, setUpdateInfosPage] = useState(false);
   const [updatePasswordPage, setUpdatePasswordPage] = useState(false);
   const [deleteAccountPage, setDeleteAccountPage] = useState(false);
 
@@ -83,8 +83,8 @@ export const CheckedLinksContextProvider = ({ children }) => {
 //   }, [updateInfosPage, updatePasswordPage, deleteAccountPage]);
 
   return (
-    <CheckedLinksContext.Provider value={{ updateInfosPage, toggleUpdateInfosPage, updatePasswordPage, toggleUpdatePasswordPage, deleteAccountPage, toggleDeleteAccountPage,
-    statisticsDashboard, toggleStatisticsDashboard, yourPosts, toggleYourPosts, createPost, toggleCreatePost, setting, toggleSetting, turnOffLinks }}>
+    <CheckedLinksContext.Provider value={{ updateInfosPage, setUpdateInfosPage, updatePasswordPage, setUpdatePasswordPage, deleteAccountPage, setDeleteAccountPage,
+    statisticsDashboard, setStatisticsDashboard, yourPosts, setYourPosts, createPost, setCreatePost, setting, setSetting, turnOffLinks }}>
       {children}
     </CheckedLinksContext.Provider>
   );

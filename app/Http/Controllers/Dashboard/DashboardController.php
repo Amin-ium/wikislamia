@@ -16,9 +16,13 @@ class DashboardController extends Controller
 
         $id = Auth::id();
         $user = User::find($id)->with('image_user')->find($id);
-        $postsUser = $user->posts()->with(['tags'])->get();
+
+
 
         $posts = Post::all();
+        $postsUser = Post::with(['tags', 'user'])->get();
+
+
 
 
 

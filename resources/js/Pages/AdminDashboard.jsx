@@ -18,7 +18,7 @@ export default function AdminDashboard({ auth, posts, users }) {
             console.log('not dashboard');
         }
     }, []);
-
+    console.log(posts);
     return (
         <LayoutApp
             user={auth.user}

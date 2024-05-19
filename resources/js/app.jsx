@@ -15,6 +15,7 @@ import { ToggleMenuContext } from "./Context/ToggleMenuContext";
 import { ScrollProvider } from "./Context/ScrollContext";
 import { SidebarContextProvider } from "./Context/SidebarContext";
 import { CheckedLinksContextProvider } from "./Context/CheckLinksContext";
+import { InertiaProgress } from "@inertiajs/progress";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Wikislamia";
@@ -113,3 +114,5 @@ createInertiaApp({
         render(<Component />, el);
     },
 });
+
+InertiaProgress.init({ color: '#FF00FF' });

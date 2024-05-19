@@ -4,7 +4,7 @@ import { Head, Link } from "@inertiajs/inertia-react";
 import { button } from "@material-tailwind/react";
 import React, { useContext, useEffect, useState } from "react";
 import bannerDark from "../../../../public/assets/publicImages/medd.png";
-import bannerLight from "../../../../public/assets/publicImages/meddd.png";
+import bannerLight from "../../../../public/assets/publicImages/medd2.png";
 import SearchbarEng from "@/Components/SearchBareQuran/SearchbarEng";
 import FilterBareHadeeths from "@/Components/searchbarHadeeths/FilterBareHadeeths";
 import ClipPathLinks from "@/Components/ClipPathLinks";
@@ -126,39 +126,36 @@ const HadeethPage = ({ hadeetData }) => {
                                 />
                             ))}
                         </div>
-                        <div className="w-full flex flex-row gap-5">
+                        <div className={`${check === 'ar' ? 'flex-row-reverse' : 'flex-row'} w-full flex  gap-5`}>
                         <div className="w-[80%] float-left">
                             <div className="">
                                 {data?.imams.map(
                                     (imam, i) =>
                                         imam.id === selectedTabIndex && (
-                                            <div className="my-[20px]">
-                                                <h2 className={`${darkMode ? "text-lightText" : "text-darkText"} text-3xl text-center mb-3 font-bold`}>{`${imam.imam_english_name}: The Imam of Hadith and Sunnah`}</h2>
+                                            <div className={`${check === 'ar' ? 'text-right' : 'text-left'} my-[20px]`}>
+                                                <h2 className={`${darkMode ? "text-lightText" : "text-darkText"} text-3xl text-center mb-3 font-bold`}>{check === 'eng' ? `${imam.imam_english_name}: The Imam of Hadith and Sunnah` : check === 'fr' ? `${imam.imam_frensh_name}: Imam de Hadith et Sunnah` : check === 'ar' ? `${imam.imam_arabic_name}: إمام الحديث والسنة` : null}</h2>
                                                 <p className={`${darkMode ? "text-gray-400" : "text-darkText"} text-lg mt-[40px]`}>
-                                                    {
-                                                        imam.imams_bios
-                                                            .eng_lineage
-                                                    }
+                                                    {check === 'eng' ? imam.imams_bios.eng_lineage : check === 'ar' ? imam.imams_bios.ar_lineage : check === 'fr' ? imam.imams_bios.fr_lineage : null}
                                                 </p>
-                                                <h3 className={`${darkMode ? "text-lightText" : "text-darkText"} text-xl mt-[40px]   font-bold`}>{`${imam.imam_english_name}’s birth and early life`}</h3>
+                                                <h3 className={`${darkMode ? "text-lightText" : "text-darkText"} text-xl mt-[40px]   font-bold`}>{check === 'eng' ? `His birth and early life` : check === 'fr' ? `Sa naissance et sa jeunesse` : check === 'ar' ? `ولادته وحياته المبكرة` : null}</h3>
+
                                                 <p className={`${darkMode ? "text-gray-400" : "text-darkText"} text-lg `}>
-                                                    {
-                                                        imam.imams_bios
-                                                            .eng_birth_life
-                                                    }
+
+                                                    {check === 'eng' ? imam.imams_bios.eng_birth_life : check === 'ar' ? imam.imams_bios.ar_birth_life : check === 'fr' ? imam.imams_bios.fr_birth_life : null}
                                                 </p>
-                                                <h3 className={`${darkMode ? "text-lightText" : "text-darkText"} text-xl mt-[40px]  font-bold`}>{`${imam.imam_english_name}’s pursuit of knowledge`}</h3>
+                                                <h3 className={`${darkMode ? "text-lightText" : "text-darkText"} text-xl mt-[40px]  font-bold`}>{check === 'eng' ? `His pursuit of knowledge` : check === 'fr' ? `Sa quête de connaissances` : check === 'ar' ? `سعيه إلى العلم` : null}</h3>
+
+
                                                 <p className={`${darkMode ? "text-gray-400" : "text-darkText"} text-lg `}>
-                                                    {
-                                                        imam.imams_bios
-                                                            .eng_pursuit_of_knowledge
-                                                    }
+
+                                                    {check === 'eng' ? imam.imams_bios.eng_pursuit_of_knowledge : check === 'ar' ? imam.imams_bios.ar_pursuit_of_knowledge : check === 'fr' ? imam.imams_bios.fr_pursuit_of_knowledge : null}
                                                 </p>
                                                 <h3 className={`${darkMode ? "text-lightText" : "text-darkText"} text-xl mt-[40px]   font-bold`}>
-                                                    His death
+                                                {check === 'eng' ? `His death` : check === 'fr' ? `Sa mort` : check === 'ar' ? `وفاته` : null}
                                                 </h3>
                                                 <p className={`${darkMode ? "text-gray-400" : "text-darkText"} text-lg `}>
-                                                    {imam.imams_bios.eng_death}
+
+                                                    {check === 'eng' ? imam.imams_bios.eng_death : check === 'ar' ? imam.imams_bios.ar_death : check === 'fr' ? imam.imams_bios.fr_death : null}
                                                 </p>
                                             </div>
                                         )
@@ -172,7 +169,7 @@ const HadeethPage = ({ hadeetData }) => {
                                     selectedTabIndex === imam.id &&
 
                                         <h2 key={i} className={`${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"} text-xl font-bold py-2 text-center shadow-md shadow-purple-900 rounded-[20px] mb-2`}>
-                                            {imam.eng_saheeh_name}
+                                            {check === 'eng' ? imam.eng_saheeh_name : check === 'ar' ? imam.ar_saheeh_name : check === 'fr' ? imam.fr_saheeh_name : null}
                                         </h2>
 
                             )}

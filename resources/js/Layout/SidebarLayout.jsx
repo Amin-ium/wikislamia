@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import { usePage } from '@inertiajs/inertia-react';
 import Sidebar from '@/Components/Sidebar';
 import { DarkModeContext } from '@/Context/DarkModeContext';
-import Navbare from '@/Components/Navbare/Navbare';
+
 import { SidebarContextProvider } from '@/Context/SidebarContext';
+import Navbar from '@/Components/Navbare/Navbar';
+
 
 const SidebarLayout = ({user, users,  children , toggleSidebar, postsTag, postsCategory, singleUser, categories}) => {
 
@@ -20,10 +22,10 @@ console.log(categories);
   return (
     <React.Fragment>
         <SidebarContextProvider>
-        {/* <Navbare/> */}
+        <Navbar />
           <Sidebar
              />
-        <main className={`${darkMode ? 'bg-darkBg' : 'bg-lightBg'} w-full md:h-auto `}>
+        <main className={`${darkMode ? 'bg-darkText' : 'bg-lightBg'} w-full md:h-auto `}>
           {children}
         </main>
         </SidebarContextProvider>

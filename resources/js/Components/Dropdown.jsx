@@ -2,7 +2,7 @@ import { useState, createContext, useContext, Fragment } from 'react';
 import { Link } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
-export const DropDownContext = createContext();
+const DropDownContext = createContext();
 
 const Dropdown = ({ children }) => {
     const [open, setOpen] = useState(false);
@@ -23,15 +23,14 @@ const Trigger = ({ children }) => {
 
     return (
         <>
-            <div className=' flex flex-row text-sm w-[140px] p-2 rounded-md absolute right-0 ' onClick={toggleOpen}>{children}</div>
-
+            <div onClick={toggleOpen}>{children}</div>
 
             {open && <div className="fixed inset-0 z-40" onClick={() => setOpen(false)}></div>}
         </>
     );
 };
 
-const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-white flex flex-col p-1', children }) => {
+const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-white flex flex-col', children }) => {
     const { open, setOpen } = useContext(DropDownContext);
 
     let alignmentClasses = 'origin-top';

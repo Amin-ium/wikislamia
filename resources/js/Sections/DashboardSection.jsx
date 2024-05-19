@@ -23,7 +23,7 @@ const DashboardSection = ({posts, users, user, postsUser}) => {
             setDashboardLink(false)
         }
     }, []);
-console.log('Users : '+users);
+
 
   return (
 
@@ -32,7 +32,7 @@ console.log('Users : '+users);
     <div className={`${opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"} ${check === 'ar' ? "float-start text-right" : "float-end text-left"} px-3 duration-300 flex flex-col    `}>
         {/* {check === "ar" ? "لوحة التحكم" : check === "fr" ? "Tableau de Board" : check === "eng" ? "Dashboard" : '' } */}
         {!dashboardLink &&
-                <div className="py-12">
+                <div className="">
                {/* <ChartDashboard posts={posts} users={users} />
         {statisticsDashboard && (<StatisticsDashboard posts={posts} />)}
         {yourPosts && (<YourPosts posts={posts} />)}
@@ -42,7 +42,7 @@ console.log('Users : '+users);
                 </div>
             }
         {dashboardLink &&
-                <div className="py-12">
+                <div className="">
                     user
         {yourPosts && (<YourPosts postsUser={postsUser} />)}
         {createPost && (<CreatePost  />)}
