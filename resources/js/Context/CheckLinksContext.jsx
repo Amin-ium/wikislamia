@@ -11,6 +11,7 @@ export const CheckedLinksContextProvider = ({ children }) => {
   const [yourPosts, setYourPosts] = useState(false);
   const [createPost, setCreatePost] = useState(false);
   const [setting, setSetting] = useState(false);
+  const [modal, setModal] = useState(false)
 
 
   // Profile Links
@@ -84,7 +85,7 @@ export const CheckedLinksContextProvider = ({ children }) => {
 
   return (
     <CheckedLinksContext.Provider value={{ updateInfosPage, setUpdateInfosPage, updatePasswordPage, setUpdatePasswordPage, deleteAccountPage, setDeleteAccountPage,
-    statisticsDashboard, setStatisticsDashboard, yourPosts, setYourPosts, createPost, setCreatePost, setting, setSetting, turnOffLinks }}>
+    statisticsDashboard, setStatisticsDashboard, yourPosts, setYourPosts, createPost, setCreatePost, setting, setSetting, turnOffLinks, modal, setModal }}>
       {children}
     </CheckedLinksContext.Provider>
   );

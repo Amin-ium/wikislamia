@@ -25,7 +25,7 @@ console.log(categories);
         <Navbar />
           <Sidebar
              />
-        <main className={`${darkMode ? 'bg-darkText' : 'bg-lightBg'} w-full md:h-auto `}>
+        <main className={` w-full md:h-auto `}>
           {children}
         </main>
         </SidebarContextProvider>

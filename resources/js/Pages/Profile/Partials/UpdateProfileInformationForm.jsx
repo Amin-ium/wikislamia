@@ -8,6 +8,7 @@ import { Transition } from '@headlessui/react';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { useContext } from 'react';
 import { DarkModeContext } from '@/Context/DarkModeContext';
+import EditImg from '@/Components/EditImg';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
@@ -15,6 +16,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     const { darkMode } = useContext(DarkModeContext);
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+        imagePath: user.imagePath,
         name: user.name,
         email: user.email,
     });
@@ -24,6 +26,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
         patch(route('profile.update'));
     };
+
+    console.log(data);
 
     return (
         <section  className={` ${check === 'ar' ? "test-right" : "text-left"} `}>
@@ -38,7 +42,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </p>
             </header>
 
+            <EditImg user={user} />
+
             <form onSubmit={submit} className="mt-6 space-y-6">
+                 {/*<div className='flex flex-col gap-3'>
+                     <img src={user.imagePath} className='h-20 w-20' alt=""  />
+                    <input type="file" name="imagePath" id="imagePath"   onChange={(e) => setData('imagePath', e.target.value)} />
+                </div> */}
                 <div>
                     <InputLabel className={`${darkMode ? "text-lightText" : "text-darkText"}  `} htmlFor="name" value={check === "eng" ? "Name" : check === "fr" ? "Nom" : check === "ar" ? "الاسم" : null} />
 

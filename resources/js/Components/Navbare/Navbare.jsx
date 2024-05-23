@@ -47,12 +47,12 @@ const Navbare = () => {
 
 
     useEffect(() => {
-        if(window.location.pathname.match('dashboard')) {
+        if(window.location.pathname.includes('dashboard')) {
             setDashboard(true)
         }else{
             setDashboard(false)
         }
-        if(window.location.pathname.match('profile')) {
+        if(window.location.pathname.includes('profile')) {
             setProfile(true)
         }else{
             setProfile(false)

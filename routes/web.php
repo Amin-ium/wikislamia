@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -47,6 +48,7 @@ Route::get('item', [QuranSurahsController::class, 'saveAudio']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'Profile'])->name('Pages.Profile');
+    Route::post('/profile', [ProfileController::class, 'updateImg'])->name('Pages.Profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/logout', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -56,6 +58,11 @@ Route::middleware('auth')->group(function () {
     // });
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+    Route::get('/posts/{id}', [BlogsController::class, 'destroy'])->name('posts.destroy');
+    Route::get('/dashboard/posts/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
+
+
 });
 
 Route::get('/quran/{id}', [QuranController::class, 'show'])->name('Quran.IndividualQuran');

@@ -8,10 +8,11 @@ import DashboardSection from '@/Sections/DashboardSection';
 import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
-export default function Dashboard({ auth, posts, users, user, postsUser }) {
+
+export default function Dashboard({ auth, posts, users, user, postsUser, singlePost }) {
     const { check, setCheck } = useSearchBarContext();
     const [dashboardLink, setDashboardLink] = useState(false);
-    console.log(postsUser);
+
     useEffect(() => {
 
         if(document.location.pathname === '/dashboard') {
@@ -20,6 +21,8 @@ export default function Dashboard({ auth, posts, users, user, postsUser }) {
             setDashboardLink(false)
         }
     }, []);
+
+    console.log(singlePost);
 
     return (
         <LayoutApp
@@ -31,14 +34,16 @@ export default function Dashboard({ auth, posts, users, user, postsUser }) {
             {/* <Head title="Dashboard" /> */}
             {!dashboardLink &&
                 <div className="">
-                <DashboardSection posts={posts} users={users} />
+                <DashboardSection posts={posts} users={users}  />
                 </div>
             }
              {dashboardLink &&
                 <div className="">
-                <DashboardSection postsUser={postsUser} user={user} />
+                <DashboardSection postsUser={postsUser} user={user} singlePost={singlePost}   />
                 </div>
             }
+
+
 
             </SidebarLayout>
             </ScrollProvider>

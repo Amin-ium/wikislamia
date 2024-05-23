@@ -45,7 +45,7 @@ const Navbar = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
-        if (window.location.pathname.match("dashboard")) {
+        if (window.location.pathname.includes("dashboard")) {
             setDashboard(true);
         } else {
             setDashboard(false);
@@ -63,6 +63,7 @@ const Navbar = () => {
     // }, [mobileMenu]);
 
     const { auth } = usePage().props;
+    console.log(auth.user);
 
     const { scrollToSection, showTopButton, showBottomButton, sectionRefs } =
         useScroll();
@@ -328,7 +329,7 @@ const Navbar = () => {
                                 <Dropdown.Trigger>
                                     <div className="relative">
                                         <img
-                                            src={auth.user.imagePath}
+                                            src={'/imageusers/'+ auth.user.imagePath}
                                             className="h-8 w-8 rounded-full border border-lightText"
                                             alt=""
                                         />

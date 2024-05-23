@@ -67,6 +67,10 @@ const Sidebar = () => {
             setProfile(false)
             setDashboard(false)
             setAdminDashboard(true)
+        }else if(window.location.pathname.includes('dashboard')){
+            setProfile(false)
+            setDashboard(true)
+            setAdminDashboard(false)
         }
 
 

@@ -147,9 +147,8 @@ const SearchbarEng = ({ verses, surahs }) => {
                             ref={inputRef}
                             autocomplete="false"
                             onClick={handleInputClick}
-                            className={`relative z-auto bg-lightBg sm:bg-lightBg md:bg-lightBg lg:bg-lightBg xl:bg-lightBg rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
-                              rounded-r-lg border-l-gray-50 border-l-2 border
-                               border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sm xl:placeholder:text-xl placeholder:text-darkText  `}
+                            className={`relative z-13 bg-[#EBE4F3] shadow-2xl shadow-purple-950 rounded-l-lg h-[30px] w-[100%] sm:h-[100%] sm:w-[100%] md:h-[100%] md:w-[100%] lg:h-[100%] lg:w-[100%] xl:h-[100%] xl:w-[100%] py-[15px] text-sm text-gray-900
+                              rounded-r-lg  border-l-2  focus:outline-purple-700 placeholder:text-sm xl:placeholder:text-lg placeholder:text-darkText  px-2  `}
                             placeholder={
                                 check === "eng"
                                     ? "Search by Word or Verse"
@@ -173,7 +172,7 @@ const SearchbarEng = ({ verses, surahs }) => {
 
                         <button
                             type="submit"
-                            class={`${
+                            class={`w-[24px] ${
                                 check === "ar"
                                     ? "right-[10px] top-[10px] sm:left-[10px] sm:top-[10px] md:left-[10px] md:top-[10px] lg:left-[10px] lg:top-[10px] xl:left-[10px] xl:top-[10px]"
                                     : check === "eng" || check === "fr"
@@ -183,7 +182,7 @@ const SearchbarEng = ({ verses, surahs }) => {
                         >
                             <FaSearch
                                 size={24}
-                                className="  text-gray-900  z-14 "
+                                className=" w-[24px]  text-gray-900 z-20  "
                             />
                         </button>
 
@@ -233,30 +232,19 @@ const SearchbarEng = ({ verses, surahs }) => {
                             {check === "ar" &&
                                 verses &&
                                 verses
-                                    .filter((item) => {
-                                        const searchTerm = value.replace(
-                                            /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-                                            ""
-                                        );
-                                        const content = item.content.replace(
-                                            /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-                                            ""
-                                        );
-                                        // console.log(content);
+                                .filter((item) => {
+                                    const searchTerm = value.toLowerCase();
+                                    const lowerCaseSearchTerm =
+                                        searchTerm.toLowerCase();
+                                    const searchContent =
+                                        item.content.toLowerCase();
 
-                                        const searchItem = content.replace(
-                                            /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-                                            ""
-                                        );
-
-                                        if (searchItem.includes(searchTerm)) {
-                                            return searchItem;
-                                        }
-                                        // return (
-                                        //     searchTerm &&
-                                        //     searchItem.includes(searchTerm) &&
-                                        //     searchItem !== searchTerm
-                                        // );
+                                    return (
+                                        lowerCaseSearchTerm &&
+                                        searchContent.includes(
+                                            lowerCaseSearchTerm
+                                        )
+                                    );
                                     })
                                     .map(
                                         (verse, i) =>
