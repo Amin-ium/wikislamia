@@ -21,6 +21,7 @@ const SectionBlogs = ({items, user, sectionId, posts, Component}) => {
     const { darkMode } = useContext(DarkModeContext);
     const { sectionRefs } = useScroll();
 
+
 console.log(items);
   return (
     <>
@@ -30,6 +31,7 @@ console.log(items);
 
             <img src={illustration1} alt="" className='absolute   right-0 top-[10px]  xl:-right-[30px] xl:-top-[50px]' />
             <img src={illustration2} alt="" className='absolute  top-[750px] -left-[70px]  xl:-left-[130px] z-5 ' />
+
                 <Pagination Component={PostCard} items={items} user={user}  />
 
 

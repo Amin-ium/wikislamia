@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,12 +44,13 @@ class DashboardController extends Controller
         $id = Auth::id();
         $user = User::find($id)->with('image_user', 'posts')->find($id);
         $posts = Post::all();
-        $postsUser = $user->posts()->with('tags')->get();
+        $tags = Tag::all();
+        $postsUser = $user->posts()->with('tags', 'user')->get();
 
 
 
 
-        return Inertia::render('Dashboard',  ['user' => $user, 'postsUser' => $postsUser, 'posts' => $posts  ]);
+        return Inertia::render('Dashboard',  ['user' => $user, 'postsUser' => $postsUser, 'posts' => $posts, 'tags' => $tags   ]);
     }
 
     public function show($id)

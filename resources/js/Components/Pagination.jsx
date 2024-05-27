@@ -7,13 +7,16 @@ import PostCard from './PostCard/PostCard';
 import moment from 'moment';
 import { LuMoveRight } from 'react-icons/lu';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
+import { SidebarContext } from '@/Context/SidebarContext';
 
 
-export default function Pagination({ href, active, children,  items, Component }) {
+export default function Pagination({ href, active, children,  items, Component, imagePath }) {
 
     const {darkMode} = useContext(DarkModeContext);
     const { check, setCheck } = useSearchBarContext();
-    console.log(darkMode);
+    const { opened } = useContext(SidebarContext);
+
+
 
     const [data, setData] = useState([])
 
@@ -174,7 +177,16 @@ const propertiess = () => {
     //    console.log(data.map(post => Object.values(post.tags).map(tag => tag).map(tg => tg.name)));
        return (
 
-        <div className='flex flex-col relative z-9'>
+<div
+                className={`${
+                    opened ? "w-[calc(100%-240px)] mx-auto" : "w-[calc(100%-40px)] mx-auto"
+                } ${
+                    check === "ar"
+                        ? "float-start text-right"
+                        : "float-end text-left"
+                } px-3 duration-300 flex flex-col gap-5  mb-[70px] relative z-9  `}
+            >
+
             <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center mx-auto gap-5 my-1 relative '>
             {data.map((item) => {
 
@@ -190,7 +202,7 @@ const propertiess = () => {
                             arabicName={item.arabicName}
                             versetsLength={item.versesNumber}
                          /></Link>)
-                    } else if(item.hasOwnProperty('title') && !document.location.pathname === '/dashboard') {
+                    } else if(item.hasOwnProperty('title') && !window.location.pathname.includes("dashboard")) {
                         return( <Component
                             className={` relative`}
                             key={item.id}
@@ -203,9 +215,9 @@ const propertiess = () => {
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
                             darkMode={darkMode}
-                            userSrc={item.user().imagePath}
+                            userSrc={'/imageusers/'+item.user.imagePath}
                              />)
-                    }else if(document.location.pathname === '/dashboard') {
+                    }else if(window.location.pathname.includes("dashboard")) {
                         return( <Component
                             className={` relative`}
                             key={item.id}
@@ -215,9 +227,9 @@ const propertiess = () => {
                             tags={item.tags}
                             tagId={item.tags.map(tag => tag.id)}
                             created_at={moment(item.created_at).fromNow()}
-                            postImgSrc={item.imagePath}
+                            imagePath={imagePath}
                             darkMode={darkMode}
-                            userSrc={item.user.imagePath}
+                            userSrc={imagePath}
                              />)
                     }else if(item.hasOwnProperty('title') && document.location.pathname === '/blogs') {
                         return( <Component
@@ -226,13 +238,13 @@ const propertiess = () => {
                             title={item.title}
                             id={item.id}
                             description={item.description.substring(0, 70)+ ' ...'}
-                            name={item.user.name}
+                            // name={item}
                             tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
                             tagId={item.tags.map(tag => tag.id)}
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
                             darkMode={darkMode}
-                            userSrc={item.user.imagePath}
+                            userSrc={imagePath}
                              />)
                     }else if(item.hasOwnProperty('ar_hadith') && document.location.pathname.match('/hadeeth')) {
                         return( <Component

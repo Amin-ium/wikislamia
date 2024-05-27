@@ -63,6 +63,7 @@ class HomeController extends Controller
         $ayahs = Ayah::get();
         $user = Auth::user();
         $posts = Post::with('user', 'tags')->get();
+        // dd($posts);
         // $accordion = Accordion::get();
         $quiz = Quiz::get();
 

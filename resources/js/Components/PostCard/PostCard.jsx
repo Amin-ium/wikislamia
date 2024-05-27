@@ -46,15 +46,20 @@ const PostCard = ({title, description, name, created_at, userSrc, category,tags,
 
             </div>
             <div class="glass"></div>
+
             <div class="content">
+                <div className='-mt-[40px] mb-3 flex flex-row items-center gap-3'>
+                    <img src={userSrc} alt="user" className='w-10 h-10 rounded-full' />
+                    <h3>{name}</h3>
+                </div>
                 <span class="title">{title}</span>
                 <span class="text">{description}</span>
             </div>
-            <div class="bottom flex flex-col gap-2">
+            <div class="bottom flex flex-row justify-between gap-2">
                 <div className=''>
                     {tags.map((tag,i) => (
                         <Link className='bg-purple-950 text-gray-50 rounded-md font-semibold text-sm px-1' key={i}>{tag.name}</Link>
-                    ))};
+                    ))}
 
                 </div>
                 <div className='flex flex-row w-full'>

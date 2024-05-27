@@ -42,12 +42,17 @@ const Sidebar = () => {
             setStatisticsDashboard,
             yourPosts, setYourPosts,
             createPost, setCreatePost,
-            setting, setSetting, turnOffLinks } = useContext(CheckedLinksContext);
+            setting, setSetting, turnOffLinks,
+            toggleStatisticsDashboard, toggleYourPosts, toggleCreatePost, toggleSetting } = useContext(CheckedLinksContext);
 
     const { auth } = usePage().props
     const { toggle, darkMode } = useContext(DarkModeContext);
     const [dashboardLink, setDashboardLink] = useState(false);
     const [adminDashboardLink, setAdminDashboardLink] = useState(false);
+
+    console.log(createPost);
+    console.log(yourPosts);
+
 
 
 
@@ -96,33 +101,7 @@ const Sidebar = () => {
 
       // Dashboard Links
 
-      const toggleStatisticsDashboard = () => {
-        setStatisticsDashboard(true)
-        setYourPosts(false);
-        setCreatePost(false);
-        setSetting(false);
-      };
 
-      const toggleYourPosts = () => {
-        setStatisticsDashboard(false)
-        setYourPosts(true);
-        setCreatePost(false);
-        setSetting(false);
-      };
-
-      const toggleCreatePost= () => {
-        setStatisticsDashboard(false)
-        setYourPosts(false);
-        setCreatePost(true);
-        setSetting(false);
-      };
-
-      const toggleSetting= () => {
-        setStatisticsDashboard(false)
-        setYourPosts(false);
-        setCreatePost(false);
-        setSetting(true);
-      };
 
       useEffect(() => {
         if(updateInfosPage) {
@@ -164,10 +143,10 @@ const Sidebar = () => {
 
 
 
-console.log(updateInfosPage);
+
   return (
 
-    <div className={`${opened ? "w-[240px]" : "w-[40px] xl:items-center"} ${check === 'ar' ? "fixed right-0 " : "fixed left-0 "}  h-screen bg-darkText duration-300 text-lightText xl:flex xl:flex-col flex flex-col `}>
+    <div className={`${opened ? "w-[240px]" : "w-[40px] xl:items-center"} ${check === 'ar' ? "fixed right-0 " : "fixed left-0 "}  h-screen bg-darkText duration-300 text-lightText xl:flex xl:flex-col flex flex-col z-20 `}>
         <div>
 
                 <Link href="/" className=" ">

@@ -111,7 +111,7 @@
 .dropMenu {
     overflow-y: hidden;
 }
-imam
+
 .righteous-regular {
     font-family: "Righteous", sans-serif;
     font-weight: 400;
@@ -363,6 +363,10 @@ body{
     font-family: "Nabi";
     color: #00081F;
 
+}
+
+.dropdown{
+    width: 100%;
 }
 
 

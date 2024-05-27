@@ -24,6 +24,7 @@ export const SidebarContextProvider = ({children}) => {
 
     return (
         <SidebarContext.Provider value={{opened, setOpened, handleSidebar}}>
+
             {children}
         </SidebarContext.Provider>
     )

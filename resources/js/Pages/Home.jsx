@@ -15,6 +15,9 @@ const Home = ({posts, user, quiz, verses, fatihah, surahs, items}) => {
 
 
 
+
+
+
   return (
     <>
 

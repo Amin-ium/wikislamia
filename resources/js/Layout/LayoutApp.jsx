@@ -85,7 +85,7 @@ const LayoutApp = ({ children }) => {
                         : !darkMode && !isFullscreen && !window.location.pathname.match('dashboard') && !window.location.pathname.match('profile')
                         ? "text-darkText bg-lightBg"
                         : null
-                } w-full overflow-y-hidden `}>{children}</main>
+                }  overflow-y-hidden `}>{children}</main>
                 {/* <SubFooter /> */}
                 {fully ? null : <SubFooter />}
             </div>

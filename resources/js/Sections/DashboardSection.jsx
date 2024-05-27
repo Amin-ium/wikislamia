@@ -17,11 +17,17 @@ import { Link } from "@inertiajs/inertia-react";
 import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 
-const DashboardSection = ({ posts, users, user, postsUser, singlePost }) => {
+const DashboardSection = ({ posts, users, user, postsUser, singlePost, tags }) => {
     const { opened } = useContext(SidebarContext);
     const { check, setCheck } = useSearchBarContext();
-    const { statisticsDashboard, yourPosts, createPost, setting, modal, setModal } =
-        useContext(CheckedLinksContext);
+    const {
+        statisticsDashboard,
+        yourPosts,
+        createPost,
+        setting,
+        modal,
+        setModal,
+    } = useContext(CheckedLinksContext);
     const { darkMode } = useContext(DarkModeContext);
 
     const [dashboardLink, setDashboardLink] = useState(false);
@@ -41,40 +47,38 @@ const DashboardSection = ({ posts, users, user, postsUser, singlePost }) => {
 
     // }
 
-
-
     const viewPost = (id) => {
-        Inertia.get(`/posts/${id}`, {}, {
-          onSuccess: (page) => {
-            if (singlePost) {
-                setSelectedPost(page.props.singlePost);
-            setModal(true);
-            console.log(page.props.singlePost);
-              } else {
-                console.error('Error: singlePost is undefined');
-              }
+        Inertia.get(
+            `/posts/${id}`,
+            {},
+            {
+                onSuccess: (page) => {
+                    if (singlePost) {
+                        setSelectedPost(page.props.singlePost);
+                        setModal(true);
+                        console.log(page.props.singlePost);
+                    } else {
+                        console.error("Error: singlePost is undefined");
+                    }
+                },
+                onError: (error) => {
+                    console.error("Error fetching post:", error);
+                },
+            }
+        );
+    };
 
-          },
-          onError: (error) => {
-            console.error('Error fetching post:', error);
-          }
-        });
-      };
+    const handlePost = (id) => {
+        setModal(true);
+        viewPost(id);
+    };
+console.log(tags);
 
-
-
-
-      const handlePost = (id) => {
-        setModal(true)
-        viewPost(id)
-      }
-
-console.log(selectedPost);
     return (
         <SidebarContextProvider>
             <div
                 className={`${
-                    opened ? "w-[calc(100%-240px)]" : "w-[calc(100%-40px)]"
+                    opened ? "w-[calc(100%-240px)] mx-auto" : "w-[calc(100%-40px)] mx-auto"
                 } ${
                     check === "ar"
                         ? "float-start text-right"
@@ -83,7 +87,7 @@ console.log(selectedPost);
             >
                 {/* {check === "ar" ? "لوحة التحكم" : check === "fr" ? "Tableau de Board" : check === "eng" ? "Dashboard" : '' } */}
                 {!dashboardLink && (
-                    <div className="">
+                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                         {/* <ChartDashboard posts={posts} users={users} />
         {statisticsDashboard && (<StatisticsDashboard posts={posts} />)}
         {yourPosts && (<YourPosts posts={posts} />)}
@@ -91,7 +95,7 @@ console.log(selectedPost);
         {setting && (<Setting posts={posts} />)} */}
                     </div>
                 )}
-                {dashboardLink &&  (
+                {dashboardLink && !yourPosts && !createPost && (
                     <div className="mt-[100px]">
                         {/* <Pannel  />  */}
                         <div
@@ -221,8 +225,8 @@ console.log(selectedPost);
           </div>
         </td> */}
                                             <td class="px-4 py-2 border-b border-blue-gray-50 flex flex-row align-middle items-center justify-center gap-3 -mb-1">
-                                                <Link href={`/dashboard/posts/${post.id}`}
-
+                                                <Link
+                                                    href={`/dashboard/posts/${post.id}`}
                                                     class="relative align-middle select-none font-sans font-medium text-center  transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20 pt-3"
                                                 >
                                                     <span class=" transform -translate-x-1/2  bg-green-700 text-lightText rounded-md p-1">
@@ -244,7 +248,7 @@ console.log(selectedPost);
                             </table>
                         </div>
 
-                            {/* {myPostPage && (
+                        {/* {myPostPage && (
                                  <div
                                  id="default-modal"
                                  tabindex="-1"
@@ -328,15 +332,23 @@ console.log(selectedPost);
                              </div>
                             )} */}
 
-
-
                         {/*  */}
-                        {yourPosts && <YourPosts postsUser={postsUser} />}
+                        {/* {yourPosts && !!createPost && <YourPosts postsUser={postsUser} imagePath={user.imagePath} />}
                         {createPost && <CreatePost />}
-                        {setting && <Setting />}
+                        {setting && <Setting />} */}
                     </div>
                 )}
             </div>
+            <div className="w-[80%] float-end">
+            {yourPosts ? (
+                <YourPosts postsUser={postsUser} imagePath={user.imagePath} />
+            ) : createPost && ! yourPosts  ? (
+                <CreatePost tags={tags} />
+            ) : setting ? (
+                <Setting />
+            ) : null}
+            </div>
+
         </SidebarContextProvider>
     );
 };

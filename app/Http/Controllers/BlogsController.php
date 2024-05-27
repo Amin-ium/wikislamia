@@ -10,7 +10,7 @@ class BlogsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user', 'category', 'tags')->get();
+        $posts = Post::with('user',  'tags')->get();
 
         return Inertia::render('Blogs/BlogsPage', ['posts' => $posts]);
     }

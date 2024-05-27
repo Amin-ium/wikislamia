@@ -9,7 +9,7 @@ import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 
-export default function Dashboard({ auth, posts, users, user, postsUser, singlePost }) {
+export default function Dashboard({ auth, posts, users, user, postsUser, singlePost, tags }) {
     const { check, setCheck } = useSearchBarContext();
     const [dashboardLink, setDashboardLink] = useState(false);
 
@@ -22,7 +22,7 @@ export default function Dashboard({ auth, posts, users, user, postsUser, singleP
         }
     }, []);
 
-    console.log(singlePost);
+    console.log(tags);
 
     return (
         <LayoutApp
@@ -39,7 +39,7 @@ export default function Dashboard({ auth, posts, users, user, postsUser, singleP
             }
              {dashboardLink &&
                 <div className="">
-                <DashboardSection postsUser={postsUser} user={user} singlePost={singlePost}   />
+                <DashboardSection postsUser={postsUser} user={user} singlePost={singlePost} tags={tags}   />
                 </div>
             }
 

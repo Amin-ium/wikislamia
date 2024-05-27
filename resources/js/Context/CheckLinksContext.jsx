@@ -17,9 +17,9 @@ export const CheckedLinksContextProvider = ({ children }) => {
   // Profile Links
 
   const toggleUpdateInfosPage = () => {
-    setUpdateInfosPage(true);
-    setUpdatePasswordPage(false);
-    setDeleteAccountPage(false);
+    setUpdateInfosPage(!yourPosts);
+    setUpdatePasswordPage(updatePasswordPage);
+    setDeleteAccountPage(deleteAccountPage);
   };
 
   const toggleUpdatePasswordPage = () => {
@@ -37,17 +37,17 @@ export const CheckedLinksContextProvider = ({ children }) => {
   // Dashboard Links
 
   const toggleStatisticsDashboard = () => {
-    setStatisticsDashboard(true)
-    setYourPosts(false);
-    setCreatePost(false);
-    setSetting(false);
+    setStatisticsDashboard(!statisticsDashboard)
+    setYourPosts(yourPosts);
+    setCreatePost(createPost);
+    setSetting(setting);
   };
 
   const toggleYourPosts = () => {
-    setStatisticsDashboard(false)
-    setYourPosts(true);
-    setCreatePost(false);
-    setSetting(false);
+    setStatisticsDashboard(statisticsDashboard)
+    setYourPosts(!yourPosts);
+    setCreatePost(createPost);
+    setSetting(setting);
   };
 
   const toggleCreatePost= () => {
@@ -59,9 +59,9 @@ export const CheckedLinksContextProvider = ({ children }) => {
 
   const toggleSetting= () => {
     setStatisticsDashboard(false)
-    setYourPosts(false);
-    setCreatePost(false);
-    setSetting(true);
+    setYourPosts(yourPosts);
+    setCreatePost(createPost);
+    setSetting(!setting);
   };
 
   const turnOffLinks= () => {
@@ -85,7 +85,8 @@ export const CheckedLinksContextProvider = ({ children }) => {
 
   return (
     <CheckedLinksContext.Provider value={{ updateInfosPage, setUpdateInfosPage, updatePasswordPage, setUpdatePasswordPage, deleteAccountPage, setDeleteAccountPage,
-    statisticsDashboard, setStatisticsDashboard, yourPosts, setYourPosts, createPost, setCreatePost, setting, setSetting, turnOffLinks, modal, setModal }}>
+    statisticsDashboard, setStatisticsDashboard, yourPosts, setYourPosts, createPost, setCreatePost, setting, setSetting, turnOffLinks, modal, setModal,
+    toggleStatisticsDashboard, toggleYourPosts, toggleCreatePost, toggleSetting }}>
       {children}
     </CheckedLinksContext.Provider>
   );
