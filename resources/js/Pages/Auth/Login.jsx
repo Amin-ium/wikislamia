@@ -12,7 +12,8 @@ import Checkbox from "@/Components/Checkbox";
 import Guest from "@/Layouts/GuestLayout";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import LoginBanner from "@/Components/LoginBanner";
-
+import { motion } from "framer-motion";
+import EncryptedButton from "@/Components/EcryptedButton";
 
 export default function Login({ status, canResetPassword }) {
     const { darkMode } = useContext(DarkModeContext);
@@ -88,7 +89,7 @@ export default function Login({ status, canResetPassword }) {
                                         type="text"
                                         name="email"
                                         value={data.email}
-                                        className="mt-1 block w-full"
+                                        className="mt-1 block w-full p-2"
                                         autoComplete="username"
                                         isFocused={true}
                                         handleChange={onHandleChange}
@@ -105,7 +106,7 @@ export default function Login({ status, canResetPassword }) {
                                         type="password"
                                         name="password"
                                         value={data.password}
-                                        className="mt-1 block w-full"
+                                        className="mt-1 block w-full p-2"
                                         autoComplete="current-password"
                                         handleChange={onHandleChange}
                                     />
@@ -143,12 +144,12 @@ export default function Login({ status, canResetPassword }) {
                                         )}
                                     </div>
 
-                                    <button
-                                        className="bg-darkText text-lightText font-bold p-2 rounded "
-                                        processing={processing}
-                                    >
-                                        Log in
-                                    </button>
+                                        <div className="mt-2">
+                                        <EncryptedButton targetText='Login' processing={processing} />
+                                        </div>
+
+
+
                                 </div>
                             </form>
                             </div>

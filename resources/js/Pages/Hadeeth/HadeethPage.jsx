@@ -2,7 +2,7 @@ import Tabs from "@/Components/Tabs";
 import LayoutApp from "@/Layout/LayoutApp";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { button } from "@material-tailwind/react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import bannerDark from "../../../../public/assets/publicImages/medd.png";
 import bannerLight from "../../../../public/assets/publicImages/medd2.png";
 import SearchbarEng from "@/Components/SearchBareQuran/SearchbarEng";
@@ -114,7 +114,9 @@ const HadeethPage = ({ hadeetData }) => {
                     />
                     <FilterBareHadeeths hadeetData={hadeetData} />
                     <div className="w-[80%] mx-auto  my-[50px]  ">
+                    <Suspense fallback={<div>Loading ...</div>}>
                         <div className="w-full flex flex-row justify-between ">
+
                             {data?.imams.map((imam, i) => (
                                 <Tabs
                                     imgPath={imam.imam_imagePath}
@@ -126,6 +128,7 @@ const HadeethPage = ({ hadeetData }) => {
                                 />
                             ))}
                         </div>
+                        </Suspense>
                         <div className={`${check === 'ar' ? 'flex-row-reverse' : 'flex-row'} w-full flex  gap-5`}>
                         <div className="w-[80%] float-left">
                             <div className="">

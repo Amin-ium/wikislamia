@@ -15,7 +15,7 @@ const SidbarDashboardLayout = ({user, users,  children , toggleSidebar, postsTag
 
 
 
-console.log(categories);
+
 
   return (
     <React.Fragment>

@@ -42,7 +42,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'Home'])->name('Pages.Home');
 
-Route::get('item', [QuranSurahsController::class, 'saveAudio']);
+// Route::get('item', [QuranSurahsController::class, 'saveAudio']);
 
 
 
@@ -61,6 +61,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/posts/{id}', [BlogsController::class, 'destroy'])->name('posts.destroy');
     Route::get('/dashboard/posts/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
+
+    Route::get('/dashboard/PostTag/{id}', [DashboardController::class, 'PostTag'])->name('Blogs.PostTag');
+
+    // Route::get('/dashboard/posts/create', [BlogsController::class, 'create'])->name('dashboard.posts.create');
+    Route::post('/posts', [BlogsController::class, 'store'])->name('posts.store');
 
 
 });
@@ -86,7 +91,7 @@ Route::get('/hadeeth/{id}', [HadeethController::class, 'show'])->name('Hadeeth.B
 Route::get('/imams/{id}', [HadeethController::class, 'showImam'])->name('Imam');
 
 Route::group(['middleware' => ['auth', 'is_admin']], function () {
-    Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('Pages.AdminDashboard');
+    Route::get('/posts/{id}', [BlogsController::class, 'show'])->name('Pages.MyPost');
 
 });
 

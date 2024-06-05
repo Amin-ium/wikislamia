@@ -7,15 +7,15 @@ import PostCard from './PostCard/PostCard';
 import moment from 'moment';
 import { LuMoveRight } from 'react-icons/lu';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
-import { SidebarContext } from '@/Context/SidebarContext';
+import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 
 
-export default function Pagination({ href, active, children,  items, Component, imagePath }) {
+export default function Pagination({ href, active, children,  items, Component, imagePath, englishName, id, key }) {
 
     const {darkMode} = useContext(DarkModeContext);
     const { check, setCheck } = useSearchBarContext();
     const { opened } = useContext(SidebarContext);
-
+console.log(opened);
 
 
     const [data, setData] = useState([])
@@ -177,17 +177,14 @@ const propertiess = () => {
     //    console.log(data.map(post => Object.values(post.tags).map(tag => tag).map(tg => tg.name)));
        return (
 
-<div
-                className={`${
-                    opened ? "w-[calc(100%-240px)] mx-auto" : "w-[calc(100%-40px)] mx-auto"
-                } ${
-                    check === "ar"
-                        ? "float-start text-right"
-                        : "float-end text-left"
-                } px-3 duration-300 flex flex-col gap-5  mb-[70px] relative z-9  `}
-            >
+        <SidebarContextProvider>
 
-            <div className='w-full grid grid-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center mx-auto gap-5 my-1 relative '>
+<div>
+
+            <div className={`${
+                    opened ? "w-[calc(full-240px)] mx-auto" : "w-[calc(full-40px)] mx-auto"
+                }  `}>
+                    <div className='w-[100%] grid grid-cols-3  gap-5 my-1 relative '>
             {data.map((item) => {
 
 
@@ -227,13 +224,13 @@ const propertiess = () => {
                             tags={item.tags}
                             tagId={item.tags.map(tag => tag.id)}
                             created_at={moment(item.created_at).fromNow()}
-                            imagePath={imagePath}
+                            postImgSrc={item.imagePath}
                             darkMode={darkMode}
-                            userSrc={imagePath}
+                            userSrc={'/imageusers/'+imagePath}
                              />)
                     }else if(item.hasOwnProperty('title') && document.location.pathname === '/blogs') {
                         return( <Component
-                            className={` relative`}
+                            className={` relative `}
                             key={item.id}
                             title={item.title}
                             id={item.id}
@@ -242,7 +239,7 @@ const propertiess = () => {
                             tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
                             tagId={item.tags.map(tag => tag.id)}
                             created_at={moment(item.created_at).fromNow()}
-                            postImgSrc={item.imagePath}
+                            postImgSrc={'/imageusers/'+item.imagePath}
                             darkMode={darkMode}
                             userSrc={imagePath}
                              />)
@@ -258,9 +255,19 @@ const propertiess = () => {
                             check={check}
 
                              />)
+                    }else if(item.hasOwnProperty('englishName') && document.location.pathname.match('/quran')) {
+                        return( <Component
+                            className={` relative`}
+                            key={key}
+                            id={item.id}
+                            englishName={item.englishName}
+                            check={check}
+
+                             />)
                     }
 
             })}
+            </div>
 
             </div>
             <ul className='flex flex-row justify-center gap-3 items-center my-3'>
@@ -310,7 +317,7 @@ const propertiess = () => {
             </div>
 
         </div>
-
+        </SidebarContextProvider>
        )
     }
 

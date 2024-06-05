@@ -38,7 +38,7 @@ export default function Dashboard({ auth, posts, users, user, postsUser, singleP
                 </div>
             }
              {dashboardLink &&
-                <div className="">
+                <div className="min-h-screen ">
                 <DashboardSection postsUser={postsUser} user={user} singlePost={singlePost} tags={tags}   />
                 </div>
             }

@@ -1,6 +1,6 @@
 import ChartDashboard from "@/Components/ChartDashboard";
 import CreatePost from "@/Components/Dashboard/CreatePost";
-
+import { Suspense } from 'react';
 import Setting from "@/Components/Dashboard/Setting";
 import StatisticsDashboard from "@/Components/Dashboard/StatisticsDashboard";
 import YourPosts from "@/Components/Dashboard/YourPosts";
@@ -83,7 +83,7 @@ console.log(tags);
                     check === "ar"
                         ? "float-start text-right"
                         : "float-end text-left"
-                } px-3 duration-300 flex flex-col  mb-[70px]  `}
+                } px-3 duration-300 flex flex-col    `}
             >
                 {/* {check === "ar" ? "لوحة التحكم" : check === "fr" ? "Tableau de Board" : check === "eng" ? "Dashboard" : '' } */}
                 {!dashboardLink && (
@@ -96,7 +96,8 @@ console.log(tags);
                     </div>
                 )}
                 {dashboardLink && !yourPosts && !createPost && (
-                    <div className="mt-[100px]">
+                    <Suspense fallback={<div>Loading ...</div>}>
+                    <div className="pt-[100px] ">
                         {/* <Pannel  />  */}
                         <div
                             className={`${
@@ -162,7 +163,7 @@ console.log(tags);
                                             <td className="px-4 py-1 border-b border-blue-gray-50">
                                                 <div className="flex items-center gap-3">
                                                     <img
-                                                        src={post.imagePath}
+                                                        src={'/imageusers/'+post.imagePath}
                                                         alt="Spotify"
                                                         className="inline-block relative object-center w-12 h-12 rounded-lg border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
                                                     />
@@ -190,11 +191,11 @@ console.log(tags);
                                                                 tag.name
                                                                     .length >
                                                                 0 ? (
-                                                                    <p className="bg-green-500/20 text-lightg p-1 rounded-md">
+                                                                    <Link key={i} href={`/dashboard/PostTag/${tag.id}`} className=" bg-green-500/20 text-lightg p-1 rounded-md">
                                                                         {
                                                                             tag.name
                                                                         }
-                                                                    </p>
+                                                                    </Link>
                                                                 ) : (
                                                                     <p className="bg-green-500/20 text-lightg p-1 rounded-md">
                                                                         no tags
@@ -337,18 +338,21 @@ console.log(tags);
                         {createPost && <CreatePost />}
                         {setting && <Setting />} */}
                     </div>
+                    </Suspense>
                 )}
-            </div>
-            <div className="w-[80%] float-end">
+
+            <div className="w-[100%] mx-auto">
             {yourPosts ? (
-                <YourPosts postsUser={postsUser} imagePath={user.imagePath} />
+                <Suspense fallback={<div>Loading ...</div>}>
+                <YourPosts postsUser={postsUser} />
+                </Suspense>
             ) : createPost && ! yourPosts  ? (
-                <CreatePost tags={tags} />
+                <CreatePost datas={tags} user={user} />
             ) : setting ? (
                 <Setting />
             ) : null}
             </div>
-
+            </div>
         </SidebarContextProvider>
     );
 };

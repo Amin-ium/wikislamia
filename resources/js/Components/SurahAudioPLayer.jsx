@@ -76,7 +76,8 @@ useEffect(() => {
 
 
 
-
+console.log(currentTime);
+console.log(duration);
 
   return (
     <div className="card relative overflow-hidden bg-gray-800 text-white p-[10px] rounded-xl border-[1px] border-[rgba(255,255,255,0.1)] w-full">
@@ -85,7 +86,7 @@ useEffect(() => {
         <div className="flex flex-row justify-between ">
             <p className="text-xs">{formatDuration(currentTime)}</p>
             <button onClick={handlePlayPause}>
-                {isPlaying ? <FaPause /> : <FaPlay />}
+                {!isPlaying || duration === currentTime ? <FaPlay /> : <FaPause />}
             </button>
             <p className="text-xs">{formatDuration(duration)}</p>
         </div>

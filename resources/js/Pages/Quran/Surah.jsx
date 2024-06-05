@@ -88,9 +88,9 @@ export default function Surah({ surah, next, previous }) {
             <LayoutApp>
                 <div
                     id="myFullScreen"
-                    className={`w-[100%] md:w-[80%] h-auto mx-auto mt-20 rounded-lg  p-[40px] ${
+                    className={` w-[100%] md:w-[80%] h-auto mx-auto mt-20 rounded-lg  p-[40px] ${
                         isFullscreen ? "overflow-hidden " : "overflow-scroll "
-                    }  `}
+                    } ${darkMode ? 'elementDark' : "elementLight"}  `}
                 >
                     <button
                         className={` ${fully ? 'fixed  top-[100px]' : 'absolute top-[100px]'} ${darkMode ? "text-lightText bg-darkText" : "text-darkText bg-lightBg"} border border-bg-lighText shadow-lg align-middle items-center flex shadow-violet-300 rounded-md p-1 h-[30px] font-bold `}

@@ -10,14 +10,12 @@ import { DarkModeContext } from "@/Context/DarkModeContext";
 import { Link } from "@inertiajs/inertia-react";
 import moment from "moment";
 
-export default function MyPost({
-
-}) {
+export default function Post({singlePost}) {
     const { check, setCheck } = useSearchBarContext();
     const [dashboardLink, setDashboardLink] = useState(false);
     const { darkMode } = useContext(DarkModeContext);
 
-    console.log(singlePost);
+
 
     useEffect(() => {
         if (
@@ -73,3 +71,4 @@ export default function MyPost({
 }
 
 InertiaProgress.init({ color: "#4B5563" });
+

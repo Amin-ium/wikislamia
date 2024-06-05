@@ -3,7 +3,8 @@ import "../css/app.css";
 import React, { useContext } from "react";
 import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import {
     DarkModeContext,
@@ -91,6 +92,7 @@ createInertiaApp({
                                                                         <App
                                                                             {...props}
                                                                         />
+                                                                        <ToastContainer />
                                                                     </div>
                                                                 );
                                                             }

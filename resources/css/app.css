@@ -241,6 +241,16 @@ body{
   }
 
 
+.elementDark:fullscreen {
+    background-color: #220027;
+    color: #f1f1f1;
+  }
+  .elementLight:fullscreen {
+    background-color: #f1f1f1;
+    color: #220027;
+  }
+
+
 
   /* .borderGradientLeft::after {
     content: url('../../public/assets/publicImages/border.svg');
@@ -305,7 +315,7 @@ body{
     content: '﴾';
     font-family: "Nabi";
     color: #f1f1f1;
-    font-size: 16px;
+    font-size: 20px;
     margin: 0 5px;
   }
 
@@ -315,7 +325,7 @@ body{
 
     font-family: "Nabi";
     color: #f1f1f1;
-    font-size: 16px;
+    font-size: 20px;
     margin: 0 5px;
 
 }
@@ -346,7 +356,7 @@ body{
 .playing {
     background-color: bisque;
 }
-
+quranPara
 .imam::after {
 
     content: '﴿';
