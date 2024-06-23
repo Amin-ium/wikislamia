@@ -1,10 +1,9 @@
+import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
 import React, { useContext, useEffect, useRef } from "react";
-import Alpine from "alpinejs";
-import { BsGithub } from "react-icons/bs";
-import { FaGlobe, FaSearch, FaTimes } from "react-icons/fa";
-import { usePage, Link } from "@inertiajs/inertia-react";
+
 import { useState } from "react";
-import { DarkModeContext, DarkModeContextProvider } from "@/context/DarkModeContext";
+
+
 
 
 const Searchbarfr = ({ verses, ayahs, checked, quranData }) => {

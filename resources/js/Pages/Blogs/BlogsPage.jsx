@@ -2,12 +2,13 @@ import LayoutApp from '@/Layout/LayoutApp'
 import { Head } from '@inertiajs/inertia-react'
 import React, { useState } from 'react'
 import blogsBanner from '../../../../public/assets/publicImages/quranBanner.png'
-import { FaQuoteLeft } from "react-icons/fa";
+
 import Pagination from '@/Components/Pagination'
 import PostCard from '@/Components/PostCard/PostCard'
 import SectionTitle from '@/Components/SectionTitle';
-import { useSearchBarContext } from '@/Context/SearchBarContext';
-import Loader from '@/Components/Loader';
+import { useSearchBarContext } from '@/Context/SearchBarContext'
+
+
 
 const BlogsPage = ({posts}) => {
 

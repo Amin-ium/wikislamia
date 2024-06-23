@@ -3,6 +3,7 @@ import quranBanner from '../../../../public/assets/publicImages/quranBanner.svg'
 import separator from '../../../../public/assets/publicImages/rseparator.png'
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { DarkModeContext } from '@/Context/DarkModeContext';
+
 const QuranPageBanner = ({text}) => {
     const { check, setCheck } = useSearchBarContext();
     const { toggle, darkMode } = useContext(DarkModeContext);

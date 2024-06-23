@@ -4,9 +4,11 @@ import { useState } from "react";
 
 import { useEffect } from "react";
 // import Navbare from "@/Components/Navbare/Navbare";
-import SubFooter from "@/Components/SubFooter/SubFooter";
+
+
 import { DarkModeContext } from "@/Context/DarkModeContext";
 import Navbar from "@/Components/Navbare/Navbar";
+import SubFooter from "@/Components/SubFooter/SubFooter";
 
 
 const LayoutApp = ({ children }) => {

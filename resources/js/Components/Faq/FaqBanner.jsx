@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import faqBanner from '../../../../public/assets/publicImages/faqBanner.svg'
-import { DarkModeContext } from '@/Context/DarkModeContext';
+
 import { Link } from '@inertiajs/react';
+import { DarkModeContext } from '@/Context/DarkModeContext';
 
 const FaqBanner = () => {
     const { darkMode } = useContext(DarkModeContext);

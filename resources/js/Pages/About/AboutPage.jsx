@@ -7,6 +7,7 @@ import { TiSocialLinkedinCircular } from 'react-icons/ti'
 import { DarkModeContext } from '@/Context/DarkModeContext'
 import { useSearchBarContext } from '@/Context/SearchBarContext'
 
+
 const AboutPage = () => {
     const { darkMode } = useContext(DarkModeContext);
     const { check } = useSearchBarContext();

@@ -1,11 +1,12 @@
-import { DarkModeContext } from "@/Context/DarkModeContext";
+
 import LayoutApp from "@/Layout/LayoutApp";
 import { Head } from "@inertiajs/inertia-react";
 import React, { useContext } from "react";
 import ContactForm from "./ContactForm";
-import ApplicationLogo from "@/Components/ApplicationLogo";
+
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import contactBanner from '../../../../public/assets/publicImages/contactBanner.png'
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
 const ContactPage = () => {
     const {darkMode} = useContext(DarkModeContext);

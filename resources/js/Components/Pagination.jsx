@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from '@inertiajs/inertia-react';
-// import BlogsCard from './BlogsCard';
-// import moment from 'moment';
-import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeContext';
+
 import PostCard from './PostCard/PostCard';
 import moment from 'moment';
-import { LuMoveRight } from 'react-icons/lu';
+
+
+
+import { DarkModeContext } from '@/Context/DarkModeContext';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 

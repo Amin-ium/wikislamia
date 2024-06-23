@@ -1,10 +1,7 @@
 import React, { useContext, useEffect } from "react";
 
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import {
-    DarkModeContext,
-    DarkModeContextProvider,
-} from "@/Context/DarkModeContext";
+
 import ValidationErrors from "@/Components/ValidationErrors";
 import Label from "@/Components/Label";
 import Input from "@/Components/Input";
@@ -14,6 +11,7 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import LoginBanner from "@/Components/LoginBanner";
 import { motion } from "framer-motion";
 import EncryptedButton from "@/Components/EcryptedButton";
+import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
 
 export default function Login({ status, canResetPassword }) {
     const { darkMode } = useContext(DarkModeContext);

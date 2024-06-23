@@ -5,8 +5,9 @@ import TextInput from '@/Components/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
 import { useContext, useEffect, useState } from 'react';
-import { DarkModeContext, DarkModeContextProvider } from '@/context/DarkModeContext';
+
 import { Inertia } from '@inertiajs/inertia';
+import { DarkModeContext, DarkModeContextProvider } from '@/Context/DarkModeContext';
 
 
 

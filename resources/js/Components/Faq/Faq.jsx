@@ -1,7 +1,8 @@
 import { Fragment, useContext, useState } from "react";
 import { Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
-
 import { DarkModeContext } from "@/Context/DarkModeContext";
+
+
 
 
 const Accordionn = ({ quiz }) => {

@@ -1,4 +1,5 @@
-import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
+
+import { DarkModeContext } from "@/Context/DarkModeContext";
 import { Link } from "@inertiajs/react";
 import React, { useContext, useEffect, useState } from "react";
 

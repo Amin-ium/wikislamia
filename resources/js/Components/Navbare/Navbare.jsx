@@ -8,13 +8,14 @@ import logoDark from "../../../../public/assets/publicImages/logoDark.svg";
 import prayerIcon from "../../../../public/assets/publicImages/prayerTimesIcon.png";
 import Alpine from "alpinejs";
 import Select from "react-select";
-import { DarkModeContext } from "@/Context/DarkModeContext";
+
 import { ToggleMenuContext } from "@/Context/ToggleMenuContext";
 
 import { useScroll } from "@/Context/ScrollContext";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
 import { FaPowerOff } from "react-icons/fa6";
 import { BiSolidDownArrow } from "react-icons/bi";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
 
 

@@ -4,9 +4,10 @@ import React, { useContext, useEffect, useRef } from "react";
 import { FaTimes, FaSearch } from "react-icons/fa";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
-import { DarkModeContext } from "@/Context/DarkModeContext";
+
 import { useSearchBarContext } from "@/Context/SearchBarContext";
 import { Inertia } from "@inertiajs/inertia";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 // import { DarkModeContext, DarkModeContextProvider } from "@/context/DarkModeContext";
 
 const SearchbarEng = ({ verses, surahs }) => {

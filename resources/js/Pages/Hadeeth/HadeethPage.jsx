@@ -13,6 +13,7 @@ import { DarkModeContext } from "@/Context/DarkModeContext";
 
 
 
+
 const HadeethPage = ({ hadeetData }) => {
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);

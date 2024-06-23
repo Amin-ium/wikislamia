@@ -1,17 +1,13 @@
 import Tabs from "@/Components/Tabs";
+import { DarkModeContext } from "@/Context/DarkModeContext";
+import { useSearchBarContext } from "@/Context/SearchBarContext";
 import LayoutApp from "@/Layout/LayoutApp";
 import { Head, Link } from "@inertiajs/inertia-react";
-import { button } from "@material-tailwind/react";
+
 import React, { useContext, useEffect, useState } from "react";
-import banner from "../../../../public/assets/publicImages/medd.png";
-import SearchbarEng from "@/Components/SearchBareQuran/SearchbarEng";
-import SearchbarEngHadeeth from "@/Components/searchbarHadeeths/SearchbarEngHadeeth";
-import ClipPathLinks from "@/Components/ClipPathLinks";
-import { useSearchBarContext } from "@/Context/SearchBarContext";
-import { DarkModeContext } from "@/Context/DarkModeContext";
-import img from '../../../../public/assets/publicImages/banner.png'
-import Pagination from "@/Components/Pagination";
-import HadithPara from "@/Components/HadithPara";
+
+
+
 
 const SingleHadeeth = ({ hadeeth, nextHadeeth, previousHadeeth }) => {
     const { check, setCheck } = useSearchBarContext();

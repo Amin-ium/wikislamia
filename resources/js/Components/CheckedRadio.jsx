@@ -1,3 +1,4 @@
+
 import { DarkModeContext } from '@/Context/DarkModeContext';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import React, { useEffect } from 'react'

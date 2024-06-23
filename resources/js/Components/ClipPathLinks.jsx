@@ -13,8 +13,9 @@ import {
 } from "react-icons/si";
 import { useAnimate } from "framer-motion";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
-import { DarkModeContext } from "@/Context/DarkModeContext";
+
 import { Link } from "@inertiajs/inertia-react";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
 const  LinkComponent = ({value, href}) => {
   return (

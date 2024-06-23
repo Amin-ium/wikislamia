@@ -1,25 +1,19 @@
-import ChartDashboard from "@/Components/ChartDashboard";
-import CreatePost from "@/Components/Dashboard/CreatePost";
-import { Suspense } from 'react';
-import Setting from "@/Components/Dashboard/Setting";
-import StatisticsDashboard from "@/Components/Dashboard/StatisticsDashboard";
-import YourPosts from "@/Components/Dashboard/YourPosts";
+
 import { CheckedLinksContext } from "@/Context/CheckLinksContext";
-import { DarkModeContext } from "@/Context/DarkModeContext";
-import { useSearchBarContext } from "@/Context/SearchBarContext";
+
 import {
     SidebarContext,
     SidebarContextProvider,
 } from "@/Context/SidebarContext";
 import LayoutApp from "@/Layout/LayoutApp";
-import { Inertia } from "@inertiajs/inertia";
-import { Link } from "@inertiajs/inertia-react";
-import moment from "moment";
+
 import React, { useContext, useEffect, useState } from "react";
 import { ScrollProvider } from "@/Context/ScrollContext";
 import SidebarLayout from "@/Layout/SidebarLayout";
 import Pagination from "@/Components/Pagination";
 import PostCard from "@/Components/PostCard/PostCard";
+import { useSearchBarContext } from "@/Context/SearchBarContext";
+import { DarkModeContext } from "@/Context/DarkModeContext";
 
 const DashboardSection = ({ postsTag }) => {
     const { opened } = useContext(SidebarContext);

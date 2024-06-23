@@ -2,8 +2,6 @@ import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 import { usePage } from '@inertiajs/inertia-react';
 import logoLight from "../../../public/assets/publicImages/logoLight.svg";
-import logoDark from "../../../public/assets/publicImages/logoDark.svg";
-import darkLogo from "../../../public/assets/publicImages/favicon-dark.svg";
 import lightLogo from "../../../public/assets/publicImages/Group144444.svg";
 import { Link} from "@inertiajs/inertia-react";
 import React, { useContext, useEffect, useState } from 'react'
@@ -22,6 +20,7 @@ import { BsPostcardFill } from "react-icons/bs";
 import { RiImageEditFill } from "react-icons/ri";
 import { CheckedLinksContext } from '@/Context/CheckLinksContext';
 import { DarkModeContext } from '@/Context/DarkModeContext';
+
 
 const Sidebar = () => {
     const { opened, handleSidebar, setOpened } = useContext(SidebarContext);

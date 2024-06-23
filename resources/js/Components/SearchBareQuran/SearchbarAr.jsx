@@ -4,8 +4,9 @@ import { BsGithub } from "react-icons/bs";
 import { FaGlobe, FaSearch, FaTimes } from "react-icons/fa";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
-import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
+
 import { useSearchBarContext } from "@/Context/SearchBarContext";
+import { DarkModeContext, DarkModeContextProvider } from "@/Context/DarkModeContext";
 
 // import QuranDef from "../../Pages/Quran/QuranDef";
 

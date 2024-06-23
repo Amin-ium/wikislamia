@@ -12,6 +12,6 @@ export default defineConfig({
         react(),
     ],
     build: {
-        outDir: 'build',
+        outDir: 'dist',
     }
 });

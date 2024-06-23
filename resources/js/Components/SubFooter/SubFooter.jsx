@@ -1,4 +1,4 @@
-import { DarkModeContext } from '@/Context/DarkModeContext';
+
 import React, { useContext } from 'react'
 import lightLogo from '../../../../public/assets/publicImages/logoLight.svg'
 import darkLogo from '../../../../public/assets/publicImages/logoDark.svg'
@@ -8,6 +8,7 @@ import { FaGithub } from "react-icons/fa6";
 
 import { Link } from '@inertiajs/react';
 import { SidebarContext } from '@/Context/SidebarContext';
+import { DarkModeContext } from '@/Context/DarkModeContext';
 
 const SubFooter = () => {
     const { darkMode } = useContext(DarkModeContext);

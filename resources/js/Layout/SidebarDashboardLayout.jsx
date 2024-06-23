@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { usePage } from '@inertiajs/inertia-react';
-import Sidebar from '@/Components/Sidebar';
-import { DarkModeContext } from '@/Context/DarkModeContext';
-import Navbare from '@/Components/Navbare/Navbare';
+
+
 import { SidebarContextProvider } from '@/Context/SidebarContext';
+import { DarkModeContext } from '@/Context/DarkModeContext';
+import Sidebar from '@/Components/Sidebar';
+
 
 const SidbarDashboardLayout = ({user, users,  children , toggleSidebar, postsTag, postsCategory, singleUser, categories}) => {
 

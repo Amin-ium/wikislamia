@@ -11,6 +11,7 @@ import { useSearchBarContext } from '@/Context/SearchBarContext'
 import { useContext } from 'react'
 import { DarkModeContext } from '@/Context/DarkModeContext'
 
+
 const CardsBanner = () => {
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
