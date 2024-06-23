@@ -7,7 +7,7 @@ import DashboardSection from '@/Sections/DashboardSection';
 import { Head } from '@inertiajs/react';
 import { useEffect } from 'react';
 
-export default function AdminDashboard({ auth, posts, users }) {
+export default function AdminDashboard({ auth, posts, users, adminUser }) {
     const { check, setCheck } = useSearchBarContext();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function AdminDashboard({ auth, posts, users }) {
             {/* <Head title="Dashboard" /> */}
 
             <div className="py-12">
-            <DashboardSection posts={posts} users={users} />
+            <DashboardSection posts={posts} users={users} adminUser={adminUser}  />
             </div>
             </SidebarLayout>
             </ScrollProvider>

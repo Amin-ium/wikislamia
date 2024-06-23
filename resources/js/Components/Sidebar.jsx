@@ -48,6 +48,7 @@ const Sidebar = () => {
     const { auth } = usePage().props
     const { toggle, darkMode } = useContext(DarkModeContext);
     const [dashboardLink, setDashboardLink] = useState(false);
+    const [checkedLink, setCheckedLink] = useState('');
     const [adminDashboardLink, setAdminDashboardLink] = useState(false);
 
     console.log(createPost);
@@ -85,18 +86,21 @@ const Sidebar = () => {
         setUpdateInfosPage(true);
         setUpdatePasswordPage(false);
         setDeleteAccountPage(false);
+        setCheckedLink('updateInfosPage')
       };
 
       const toggleUpdatePasswordPage = () => {
         setUpdateInfosPage(false);
         setUpdatePasswordPage(true);
         setDeleteAccountPage(false);
+        setCheckedLink('updatePasswordPage')
       };
 
       const toggleDeleteAccountPage = () => {
         setUpdateInfosPage(false);
         setUpdatePasswordPage(false);
         setDeleteAccountPage(true);
+        setCheckedLink('deleteAccountPage')
       };
 
       // Dashboard Links
@@ -120,10 +124,10 @@ const Sidebar = () => {
     }, []);
 
       const profileLinks = [
-        {linkEng: "Update Infos", linkFr: "ُEdit Infos", linkAr: "تحديث المعلومات", href: "href01", icon:<LuClipboardEdit size={opened ? 18 : 22} className={`${updateInfosPage ? " border-b-4 border-purple-500 " : "border-0 "} text-lightText cursor-pointer`} onClick={toggleUpdateInfosPage} />, method: toggleUpdateInfosPage, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "} ${updateInfosPage ? " border-b-4 border-purple-500 " : "border-0 "}  ${updateInfosLink ? " text-purple-500 " : "text-lightText "} `}>{check === 'ar' ? "تحديث المعلومات" : check === 'eng' ? "Update Infos" : check === 'fr' ? "Edit Infos" : null}</p>},
-        {linkEng: "Update Password", linkFr: "Edit Mot de passe", linkAr: "تغيير كلمة السر",  href: "href02", icon:<RiLockPasswordFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleUpdatePasswordPage}  />, method: toggleUpdatePasswordPage, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? " text-purple-500 " : "border-b-4 border-purple-500"} `}>{check === 'ar' ? "تغيير كلمة السر" : check === 'eng' ? "Update Password" : check === 'fr' ? "Editer Mot de passe" : null}</p>},
-        {linkEng: "Delete account", linkFr: "Supprimer le compte", linkAr: "حذف الحساب",  href: "href03", icon:<MdDeleteForever size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleDeleteAccountPage}  />, method: toggleDeleteAccountPage, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? " text-purple-500 " : "border-b-4 border-purple-500"} `}>{check === 'ar' ? "حذف الحساب" : check === 'eng' ? "Delete Account" : check === 'fr' ? "Suprimer le compte" : null}</p>},
-        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`}  />, method: null, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? " text-purple-500 " : "border-b-4 border-purple-500"} `}>{check === 'ar' ? "إعدادات" : check === 'eng' ? "Setting" : check === 'fr' ? "Paramtres" : null}</p>},
+        {linkEng: "Update Infos", linkFr: "ُEdit Infos", linkAr: "تحديث المعلومات", href: "href01", icon:<LuClipboardEdit size={opened ? 18 : 22} className={`${checkedLink === 'updateInfosPage' ? "text-lightText" : ' text-gray-500'}  cursor-pointer`} onClick={toggleUpdateInfosPage} />, method: toggleUpdateInfosPage, linkElementAr: <p className={`${checkedLink === 'updateInfosPage' ? "text-lightText" : ' text-gray-500'} ${check === 'ar' ? "text-right" : "text-left "}  `}>{check === 'ar' ? "تحديث المعلومات" : check === 'eng' ? "Update Infos" : check === 'fr' ? "Edit Infos" : null}</p>},
+        {linkEng: "Update Password", linkFr: "Edit Mot de passe", linkAr: "تغيير كلمة السر",  href: "href02", icon:<RiLockPasswordFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleUpdatePasswordPage}  />, method: toggleUpdatePasswordPage, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? "  " : ""} `}>{check === 'ar' ? "تغيير كلمة السر" : check === 'eng' ? "Update Password" : check === 'fr' ? "Editer Mot de passe" : null}</p>},
+        {linkEng: "Delete account", linkFr: "Supprimer le compte", linkAr: "حذف الحساب",  href: "href03", icon:<MdDeleteForever size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleDeleteAccountPage}  />, method: toggleDeleteAccountPage, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? "  " : ""} `}>{check === 'ar' ? "حذف الحساب" : check === 'eng' ? "Delete Account" : check === 'fr' ? "Suprimer le compte" : null}</p>},
+        {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`}  />, method: null, linkElementAr: <p className={`${check === 'ar' ? "text-right" : "text-left "}  ${updateInfosLink ? "  " : ""} `}>{check === 'ar' ? "إعدادات" : check === 'eng' ? "Setting" : check === 'fr' ? "Paramtres" : null}</p>},
     ];
 
     const dashboardLinks = [
@@ -136,13 +140,13 @@ const Sidebar = () => {
     const adminDashboardLinks = [
         {linkEng: "Statistics", linkFr: "Statistiques", linkAr: "إحصائيات", href: "href01", icon:<FaChartLine size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleStatisticsDashboard}  />, method: toggleStatisticsDashboard},
         {linkEng: "All Posts", linkFr: "Tous les Posts", linkAr: "جميع المقالات",  href: "href02", icon:<BsPostcardFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleYourPosts}  />, method: toggleYourPosts},
-        {linkEng: "Create Post", linkFr: "Créer un Post", linkAr: "أنشر مقالا",  href: "href03", icon:<RiImageEditFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleCreatePost}  />, method: toggleCreatePost},
+        {linkEng: "All Tags", linkFr: "Tous les Tags", linkAr: "أنشر مقالا",  href: "href03", icon:<RiImageEditFill size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleCreatePost}  />, method: toggleCreatePost},
         {linkEng: "Setting", linkFr: "Paramtres", linkAr: "إعدادات",  href: "href04", icon:<IoIosSettings size={opened ? 18 : 22} className={` text-lightText cursor-pointer`} onClick={toggleSetting}  />, method: toggleSetting},
     ]
 
 
 
-
+console.log(checkedLink);
 
   return (
 
@@ -273,7 +277,7 @@ const Sidebar = () => {
                     <div className={`flex ${check === 'ar' ? "flex-row-reverse" : "flex-row"} items-center gap-1 mb-[20px]`}>
                          <ul className={`flex items-center  gap-1 ${check === "ar" ? "flex-row-reverse" : "flex-row"} ${opened ? "" : "justify-center"} `}>
                     {dashboardLink.icon}
-                    {opened || !opened &&
+                    {opened  &&
                         (check === "ar" ? (
                             <li className={`${check === 'ar' ? "text-right" : "text-left "} cursor-pointer`} key={i} onClick={dashboardLink.method}  >{dashboardLink.linkAr}</li>
                         ) : check === 'eng' ? (

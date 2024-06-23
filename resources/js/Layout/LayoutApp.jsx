@@ -87,7 +87,7 @@ const LayoutApp = ({ children }) => {
                         : null
                 }  overflow-y-hidden `}>{children}</main>
                 {/* <SubFooter /> */}
-                {fully ? null : <SubFooter />}
+                {fully || document.location.pathname.match('/profile') || document.location.pathname.match('/dashboard') ? null : <SubFooter />}
             </div>
         </React.Fragment>
     );

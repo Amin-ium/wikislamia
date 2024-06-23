@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'imagePath'
+        'imagePath',
+        'status',
+        'last_seen'
     ];
 
     public function posts()
@@ -37,6 +40,10 @@ class User extends Authenticatable
 
 public function tags() {
     return $this->belongsToMany(Tag::class);
+}
+
+public function status() {
+    return Cache::has('status'.$this->id);
 }
 
 

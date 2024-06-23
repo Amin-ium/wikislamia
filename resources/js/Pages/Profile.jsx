@@ -12,19 +12,19 @@ export default function Profile({ auth }) {
 
 
 
-      const reorderedArray = myarray.map(item => ({
-        id: item.id,
-        surah_id: item.surah_id,
-        content: item.content,
-        englishContent: item.englishContent,
-        frenshContent: item.frenshContent,
-        verseNumber: item.verseNumber,
-        audio: item.audio,
-        revelationType: item.revelationType
-      }));
+    //   const reorderedArray = myarray.map(item => ({
+    //     id: item.id,
+    //     surah_id: item.surah_id,
+    //     content: item.content,
+    //     englishContent: item.englishContent,
+    //     frenshContent: item.frenshContent,
+    //     verseNumber: item.verseNumber,
+    //     audio: item.audio,
+    //     revelationType: item.revelationType
+    //   }));
 
-      const jsonString = JSON.stringify(reorderedArray, null, 2); // The third parameter (2) is for indentation to make it more readable
-        console.log(jsonString);
+    //   const jsonString = JSON.stringify(reorderedArray, null, 2); // The third parameter (2) is for indentation to make it more readable
+    //     console.log(jsonString);
 
 
 

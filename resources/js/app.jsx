@@ -1,6 +1,6 @@
 import "./bootstrap";
 import "../css/app.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { ToastContainer } from 'react-toastify';
@@ -17,6 +17,7 @@ import { ScrollProvider } from "./Context/ScrollContext";
 import { SidebarContextProvider } from "./Context/SidebarContext";
 import { CheckedLinksContextProvider } from "./Context/CheckLinksContext";
 import { InertiaProgress } from "@inertiajs/progress";
+import { LoadingContext, LoadingProvider } from "./Context/LoadingContext";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Wikislamia";
@@ -35,7 +36,13 @@ createInertiaApp({
         const Component = () => {
             // Using ToggleMenuContext with useContext hook
 
+
+
+
+
+
             return (
+                <LoadingProvider>
                 <ScrollProvider>
                     <ToggleMenuContextProvider>
                         <DarkModeContextProvider>
@@ -44,6 +51,8 @@ createInertiaApp({
                                     <CheckedLinksContextProvider>
                                         {/* Move useContext inside the ToggleMenuContextProvider */}
                                         <ToggleMenuContext.Consumer>
+
+
                                             {({
                                                 toggleMenu,
                                                 toggleMenuFun,
@@ -69,6 +78,7 @@ createInertiaApp({
                                                         "auto";
                                                 }
 
+
                                                 return (
                                                     <DarkModeContext.Consumer>
                                                         {({ darkMode }) => {
@@ -77,9 +87,12 @@ createInertiaApp({
                                                                     <div
                                                                         className={` h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird `}
                                                                     >
-                                                                        <App
+
+                                                                            <App
                                                                             {...props}
                                                                         />
+
+
                                                                     </div>
                                                                 );
                                                             } else if (
@@ -89,9 +102,11 @@ createInertiaApp({
                                                                     <div
                                                                         className={` h-full lightBg `}
                                                                     >
-                                                                        <App
+
+                                                                            <App
                                                                             {...props}
                                                                         />
+
                                                                         <ToastContainer />
                                                                     </div>
                                                                 );
@@ -102,6 +117,7 @@ createInertiaApp({
                                                     </DarkModeContext.Consumer>
                                                 );
                                             }}
+
                                         </ToggleMenuContext.Consumer>
                                     </CheckedLinksContextProvider>
                                 </SidebarContextProvider>
@@ -109,6 +125,7 @@ createInertiaApp({
                         </DarkModeContextProvider>
                     </ToggleMenuContextProvider>
                 </ScrollProvider>
+                </LoadingProvider>
             );
         };
 
@@ -117,4 +134,4 @@ createInertiaApp({
     },
 });
 
-InertiaProgress.init({ color: '#FF00FF' });
+InertiaProgress.init({ color: '#FF00FF', showSpinner: true, includeCSS: false });

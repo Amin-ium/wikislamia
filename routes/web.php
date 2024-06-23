@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/PostTag/{id}', [DashboardController::class, 'PostTag'])->name('Blogs.PostTag');
 
+
+
     // Route::get('/dashboard/posts/create', [BlogsController::class, 'create'])->name('dashboard.posts.create');
     Route::post('/posts', [BlogsController::class, 'store'])->name('posts.store');
 
@@ -86,14 +88,18 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.aboutPage')
 Route::post('/quran', [QuranController::class, 'index'])->name('quran.searchResults');
 Route::get('/quran/surah/{id}', [QuranController::class, 'Surah'])->name('Quran.Surah');
 
-Route::get('/hadeeth/{id}', [HadeethController::class, 'show'])->name('Hadeeth.Book');
+Route::get('/hadeeth/book/{id}', [HadeethController::class, 'showBook'])->name('Hadeeth.Book');
+
+Route::get('/hadeeth/{id}', [HadeethController::class, 'showHadeeth'])->name('Hadeeth.SingleHadeeth');
 
 Route::get('/imams/{id}', [HadeethController::class, 'showImam'])->name('Imam');
 
-Route::group(['middleware' => ['auth', 'is_admin']], function () {
-    Route::get('/posts/{id}', [BlogsController::class, 'show'])->name('Pages.MyPost');
 
-});
+    Route::get('/blogs/{id}', [BlogsController::class, 'show'])->name('Pages.Post');
+    Route::get('/post-tag/{id}', [BlogsController::class, 'PostsTag'])->name('Pages.PostsTag');
+    Route::get('/user/{id}', [BlogsController::class, 'getUser'])->name('Pages.UserPage');
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -121,6 +127,10 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
+});
+
+Route::middleware('auth', 'is_admin')->group(function () {
+    Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('AdminDashboard');
 });
 
 

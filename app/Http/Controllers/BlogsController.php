@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -23,10 +26,64 @@ class BlogsController extends Controller
         // $mypost = Post::find($id);
 
         $mypost = Post::with('user', 'tags')->find($id);
+        $posts = Post::with('user', 'tags')->orderBy('id', 'desc')->take(8)->get();
 
 
-        return Inertia::render('MyPost', ['mypost' => $mypost]);
+
+        return Inertia::render('Post', ['mypost' => $mypost, 'posts' => $posts]);
     }
+
+    public function getUser($id)
+    {
+
+        try {
+            $user = User::with('posts')->find($id);
+            return Inertia::render('UserPage', ['user' => $user ]);
+        } catch (\Exception $e) {
+            // Handle the exception here
+            // You can log the error or return an error response
+            Log::error($e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function PostsTag($id)
+    {
+        // $user_id = Auth::id();
+        // $user = User::find($user_id)->with('image_user')->find($user_id);
+        $tag = Tag::with('posts')->find($id);
+        $user = Auth::user();
+
+
+
+
+
+    try {
+
+        if (!$tag) {
+            throw new \Exception("Tag not found"); // Throw an exception if the category is not found
+        }
+
+        $posts = $tag->posts;
+
+        $posts->load('user',  'tags');
+
+
+        $postsTag = [
+            'tag' => $tag,
+            'posts' => $posts,
+
+        ];
+
+
+        return Inertia::render('PostsTag', ['postsTag' => $postsTag, 'user' => $user ]);
+    } catch (\Exception $e) {
+        // Handle the exception here
+        // You can log the error or return an error response
+        Log::error($e->getMessage());
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
 
 

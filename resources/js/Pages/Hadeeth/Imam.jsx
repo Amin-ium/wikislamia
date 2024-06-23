@@ -23,7 +23,8 @@ const books = ({ imam, imams }) => {
         <>
             <LayoutApp>
                 <Head>
-                    <title>Book Page</title>
+
+                    <title>{imam.eng_saheeh_name}</title>
                 </Head>
 
                 <div className="w-[100%] mx-auto  flex flex-col justify-center ">
@@ -56,15 +57,15 @@ const books = ({ imam, imams }) => {
 
                         <div className="w-full flex flex-row gap-3 ">
                             <div className="w-[80%] float-start flex flex-col">
-                            <h3 className="text-center text-2xl text-bold mb-5">
+                            <h3 className="text-center text-2xl text-bold mb-5 rounded-full shadow-xl shadow-purple-900 w-1/3 mx-auto py-1 border-[1px]">
                                 {imam.eng_saheeh_name}
                             </h3>
                             <div className="grid grid-cols-3 gap-3 ">
                                 {imam?.books.map((book, i) => (
-                                    <div className="border  p-1 flex justify-center align-middle items-center ">
+                                    <div className={`border ${darkMode ? 'border-lightText' : 'border-darkText'} shadow-md shadow-purple-900 p-1 flex justify-center align-middle items-center `}>
                                         <div className=" text-center flex justify-center align-middle items-center">
                                             <Link
-                                                className="text-lightBg font-semibold text-center"
+                                                className={`${darkMode ? 'text-lightText' : 'text-darkRext'} font-semibold text-center`}
                                                 key={i}
                                             >
                                                 {check === 'eng' ? book.book_english_name :
@@ -91,10 +92,10 @@ const books = ({ imam, imams }) => {
 
 
 
-                                        {imams.map((imam, x) => (
+                                        {imams?.map((imam, x) => (
                                             //   <Link className='text-darkText text-center px-3 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]' key={x}>{check === "eng" ? book.book_english_name : check === "fr" ? book.book_french_name : check === "ar" ? book.book_arabic_name : null}</Link>
                                             <ClipPathLinks
-                                                href={`/hadeeth/${imam.id}`}
+                                                href={`/imams/${imam.id}`}
                                                 value={
                                                     check === "eng"
                                                         ? imam.imam_english_name

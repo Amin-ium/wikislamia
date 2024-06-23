@@ -9,7 +9,7 @@ class Hadeet extends Model
 {
     use HasFactory;
     protected $table = 'hadeeths';
-    protected $fillable = ['imam_id', 'book_id', 'number_in_book', 'ar_hadith',  'fr_hadith', 'eng_hadith', 'grade', 'count'];
+    protected $fillable = ['id', 'imam_id', 'book_id', 'number_in_book', 'ar_hadith',  'fr_hadith', 'eng_hadith', 'grade', 'count'];
 
 
 //     public function chapiter()
@@ -19,11 +19,11 @@ class Hadeet extends Model
 
 public function books()
 {
-    return $this->belongsTo(Book::class);
+    return $this->belongsTo(Book::class, 'book_id');
 }
 
 public function imams()
 {
-    return $this->belongsTo(Imam::class);
+    return $this->belongsTo(Imam::class, 'imam_id');
 }
 }

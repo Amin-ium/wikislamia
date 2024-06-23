@@ -8,21 +8,24 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
     public function index()
     {
+
         $users = User::with('image_user', 'posts')->get();
         $id = Auth::id();
         $user = User::find($id)->with('image_user', 'posts')->find($id);
         $posts = Post::with( 'user')->get();
-
-        // $postsUser = $users->posts()->with(['tags'])->get();
-
+        $adminUser = Auth::user();
 
 
-        return Inertia::render('AdminDashboard',  ['users' => $users, 'user' => $user, 'posts' => $posts]);
+
+
+
+        return Inertia::render('AdminDashboard',  ['users' => $users, 'user' => $user, 'posts' => $posts, 'adminUser' => $adminUser]);
     }
 }

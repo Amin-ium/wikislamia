@@ -4,8 +4,8 @@ import { useState } from "react";
 import LayoutApp from "@/Layout/LayoutApp";
 import { useSearchBarContext } from "@/Context/SearchBarContext";
 import { DarkModeContext } from "@/Context/DarkModeContext";
-import SurahAudioPlayer from "@/Components/surahAudioPLayer";
-import List from "@/Components/List";
+
+
 
 export default function Surah({ surah, next, previous }) {
 

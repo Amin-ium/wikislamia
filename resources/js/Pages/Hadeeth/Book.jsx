@@ -87,7 +87,7 @@ const books = ({ book, books }) => {
                                         {books.map((book, x) => (
                                             //   <Link className='text-darkText text-center px-3 shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]' key={x}>{check === "eng" ? book.book_english_name : check === "fr" ? book.book_french_name : check === "ar" ? book.book_arabic_name : null}</Link>
                                             <ClipPathLinks
-                                                href={`/hadeeth/${book.id}`}
+                                                href={`/hadeeth/book/${book.id}`}
                                                 value={
                                                     check === "eng"
                                                         ? book.book_english_name

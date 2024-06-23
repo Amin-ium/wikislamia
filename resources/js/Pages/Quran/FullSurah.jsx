@@ -1,17 +1,16 @@
 import React from 'react';
 
-import SidbarLayout from '@/Layout/SidbarLayout';
+
 import { Head, Link, usePage  } from '@inertiajs/inertia-react';
-import { Inertia } from '@inertiajs/inertia';
 
 
-import moment from "moment";
 
-import { useState } from 'react';
-import SidbarDashboardLayout from '@/Layout/SidebarDashboardLayout';
 
-import AudioPlayer from '@/Components/audioPlayer/AudioPlayer';
+
+
+
 import LayoutApp from '@/Layout/LayoutApp';
+import AudioPlayer from '@/Components/AudioPlayer';
 
 
 export default function Posts({fullSurah}) {

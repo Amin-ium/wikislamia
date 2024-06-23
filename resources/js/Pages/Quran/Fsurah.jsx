@@ -2,14 +2,16 @@ import React, { Fragment, useContext } from 'react'
 
 import { Head, Link } from '@inertiajs/inertia-react';
 
-import { DarkModeContext } from '@/context/DarkModeContext';
-import { useSearchBarContext } from '@/context/SearchBarContext';
+
+
 import { FaGalacticRepublic } from 'react-icons/fa';
 // import asset from '../../../css/imgs/asset.png';
 import { FaKaaba } from "react-icons/fa";
 // import SubFooter from '@/Components/SubFooter';
 import LayoutApp from '@/Layout/LayoutApp';
 import SubFooter from '@/Components/SubFooter/SubFooter';
+import { DarkModeContext } from '@/Context/DarkModeContext';
+import { useSearchBarContext } from '@/Context/SearchBarContext';
 
 const Fsurah = ({surah}) => {
 

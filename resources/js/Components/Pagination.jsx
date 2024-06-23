@@ -10,7 +10,7 @@ import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 
 
-export default function Pagination({ href, active, children,  items, Component, imagePath, englishName, id, key }) {
+export default function Pagination({ href, active, children,  items, Component, imagePath, englishName, id, key, userItem, postTags, tagId, user }) {
 
     const {darkMode} = useContext(DarkModeContext);
     const { check, setCheck } = useSearchBarContext();
@@ -156,7 +156,6 @@ const propertiess = () => {
 
 
 
-
     // let pageIncrementBtn = null;
     const [pageIncrementBtn, setPageIncrementBtn] = useState(null)
     const [pageDecrementBtn, setPageDecrementBtn] = useState(null)
@@ -185,12 +184,12 @@ const propertiess = () => {
                     opened ? "w-[calc(full-240px)] mx-auto" : "w-[calc(full-40px)] mx-auto"
                 }  `}>
                     <div className='w-[100%] grid grid-cols-3  gap-5 my-1 relative '>
-            {data.map((item) => {
+            {data.map((item, i) => {
 
 
 
 
-                     if (item.hasOwnProperty('englishName')) {
+                     if (item.hasOwnProperty('englishName') && window.location.pathname.includes("quran")) {
                         return( <Link href={`/quran/surah/${item.id}`}><Component
                         className={` relative`}
                             surahNumber={item.numberInQuran}
@@ -199,15 +198,17 @@ const propertiess = () => {
                             arabicName={item.arabicName}
                             versetsLength={item.versesNumber}
                          /></Link>)
-                    } else if(item.hasOwnProperty('title') && !window.location.pathname.includes("dashboard")) {
+                    } else if(item.hasOwnProperty('title') && !window.location.pathname.includes("dashboard") && !window.location.pathname.includes('user')) {
                         return( <Component
                             className={` relative`}
+                            last_seen={item.user.last_seen}
                             key={item.id}
                             title={item.title}
                             id={item.id}
+                            href={`/blogs/${item.id}`}
                             description={item.description.substring(0, 70)+ ' ...'}
                             name={item.user.name}
-                            tags={Object.values(item.tags).map(tag => tag).map(tg => tg.name)}
+                            tags={item.tags?.map(tag => tag)}
                             tagId={item.tags.map(tag => tag.id)}
                             created_at={moment(item.created_at).fromNow()}
                             postImgSrc={item.imagePath}
@@ -243,7 +244,7 @@ const propertiess = () => {
                             darkMode={darkMode}
                             userSrc={imagePath}
                              />)
-                    }else if(item.hasOwnProperty('ar_hadith') && document.location.pathname.match('/hadeeth')) {
+                    }else if(item.hasOwnProperty('ar_hadith') && document.location.pathname.match('/hadeet')) {
                         return( <Component
                             className={` relative`}
                             key={item.id}
@@ -252,16 +253,25 @@ const propertiess = () => {
                             fr_hadith={item.fr_hadith}
                             eng_hadith={item.eng_hadith}
                             grade={item.grade}
+                            hadithHref={`/hadeeth/${item.id}`}
                             check={check}
 
                              />)
-                    }else if(item.hasOwnProperty('englishName') && document.location.pathname.match('/quran')) {
+                    }else if(item.hasOwnProperty('description') && document.location.pathname.match('/user')) {
                         return( <Component
-                            className={` relative`}
-                            key={key}
-                            id={item.id}
-                            englishName={item.englishName}
-                            check={check}
+
+
+
+                        title={item.title}
+                        username={userItem.name}
+                        postHref={`/blogs/${item.id}`}
+                        userHref={`/user/${userItem?.id}`}
+                        description={item.description.substring(0, 70)+ ' ...'}
+                        postTags={postTags}
+                        created_at={moment(item.created_at).fromNow()}
+                        imagePath={"/imageusers/"+item.imagePath}
+                        tagId={tagId}
+
 
                              />)
                     }

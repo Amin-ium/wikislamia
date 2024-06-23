@@ -4,9 +4,10 @@ import LayoutApp from '@/Layout/LayoutApp'
 import { Head, Link, usePage } from "@inertiajs/inertia-react";
 
 import React, { useContext, useEffect } from 'react'
-import QuranPageBanner from '@/Components/quran/quranPageBanner';
+
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 import { DarkModeContext } from '@/Context/DarkModeContext';
+import QuranPageBanner from '@/Components/quran/QuranPageBanner';
 
 const QuranPage = ({surahs, items, surahAudios}) => {
 

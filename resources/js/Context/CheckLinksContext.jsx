@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 export const CheckedLinksContext = createContext();
 
 export const CheckedLinksContextProvider = ({ children }) => {
-  const [updateInfosPage, setUpdateInfosPage] = useState(false);
+  const [updateInfosPage, setUpdateInfosPage] = useState(true);
   const [updatePasswordPage, setUpdatePasswordPage] = useState(false);
   const [deleteAccountPage, setDeleteAccountPage] = useState(false);
 

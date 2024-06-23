@@ -1,24 +1,34 @@
 import { DarkModeContext } from '@/Context/DarkModeContext';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 const UsersTable = ({users}) => {
     const { check, setCheck } = useSearchBarContext();
     const { darkMode } = useContext(DarkModeContext);
+    const [isOnline, set_isOnline] = useState(true);
+
+    useEffect(() => {
+
+        if(navigator.onLine === true) {
+            set_isOnline(true)
+        } else {
+            set_isOnline(false)
+        }
+    }, [isOnline]);
 
     // const list = document.querySelectorAll('x193iq5w');
     // if (list[0].lastChild) {
     //     for (let i = 0; i < list.length; i++) {
     //         if (list[i].ariaLabel.match("Suivre")) {
-              
+
     //           list[i].click()
-              
+
     //         }
     //     }
     // }
 
-  
-    
+
+
   return (
     <div class="mb-[40px]">
         <h2 className='text-center text-lightText text-2xl my-5'>{check === 'eng' ? 'List of Users' : check === 'ar' ? 'لائحة المستخدمين' : check === 'fr' ? 'List des Utilisateurs' : null}</h2>
@@ -92,7 +102,7 @@ const UsersTable = ({users}) => {
         </td>
         <td class={`px-6 py-3 text-sm ${darkMode ? "text-lightText" : "text-darkText"}`}>
           <label class="relative cursor-pointer">
-            <input type="checkbox" class="sr-only peer" />
+            <input type="checkbox" checked={user.last_seen != null ? true : false } class="sr-only peer" />
             <div
               class="w-11 h-6 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#007bff]">
             </div>

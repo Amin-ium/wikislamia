@@ -4,7 +4,7 @@ import Pagination from '../Pagination';
 import { SidebarContext, SidebarContextProvider } from '@/Context/SidebarContext';
 import { useSearchBarContext } from '@/Context/SearchBarContext';
 
-const YourPosts = ({postsUser}) => {
+const YourPosts = ({postsUser, user}) => {
     const [records, setRecords] = useState([])
 
     const { opened } = useContext(SidebarContext);
@@ -29,7 +29,7 @@ const YourPosts = ({postsUser}) => {
                 } px-3 duration-300 flex flex-col justify-center   mb-[70px]  `}>
 
         <div className='max-w-7xl flex flex-col justify-center   mx-auto sm:px-6 lg:px-8 space-y-6 mt-[70px]'>
-        <Pagination className="" Component={PostCard} items={postsUser}   />
+        <Pagination className="" Component={PostCard} items={postsUser} user={user}   />
         </div>
     </div>
     </SidebarContextProvider>
