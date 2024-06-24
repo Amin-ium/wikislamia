@@ -1,6 +1,4 @@
-import "./bootstrap";
-import "../css/app.css";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { ToastContainer } from 'react-toastify';
@@ -34,13 +32,6 @@ createInertiaApp({
     setup({ el, App, props }) {
         // Wrap the Inertia app with DarkModeContextProvider
         const Component = () => {
-            // Using ToggleMenuContext with useContext hook
-
-
-
-
-
-
             return (
                 <LoadingProvider>
                 <ScrollProvider>
@@ -49,75 +40,42 @@ createInertiaApp({
                             <SearchContext>
                                 <SidebarContextProvider>
                                     <CheckedLinksContextProvider>
-                                        {/* Move useContext inside the ToggleMenuContextProvider */}
                                         <ToggleMenuContext.Consumer>
-
-
                                             {({
                                                 toggleMenu,
                                                 toggleMenuFun,
                                             }) => {
-                                                console.log(
-                                                    "toggleMenu:",
-                                                    toggleMenu
-                                                ); // Add this line to log the value
-                                                if (
-                                                    toggleMenu &&
-                                                    window.innerWidth < 1024
-                                                ) {
-                                                    body.style.overflow =
-                                                        "hidden";
-                                                } else if (
-                                                    toggleMenu &&
-                                                    window.innerWidth > 1024
-                                                ) {
-                                                    body.style.overflow =
-                                                        "hidden";
+                                                console.log("toggleMenu:", toggleMenu); // Debugging line
+                                                if (toggleMenu && window.innerWidth < 1024) {
+                                                    body.style.overflow = "hidden";
+                                                } else if (toggleMenu && window.innerWidth > 1024) {
+                                                    body.style.overflow = "hidden";
                                                 } else {
-                                                    body.style.overflow =
-                                                        "auto";
+                                                    body.style.overflow = "auto";
                                                 }
-
 
                                                 return (
                                                     <DarkModeContext.Consumer>
                                                         {({ darkMode }) => {
+                                                            console.log("darkMode:", darkMode); // Debugging line
                                                             if (darkMode) {
                                                                 return (
-                                                                    <div
-                                                                        className={` h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird `}
-                                                                    >
-
-                                                                            <App
-                                                                            {...props}
-                                                                        />
-
-
+                                                                    <div className={`h-full bg-gradient-to-r from-darkPrimary via-darkSecondary to-darkThird`}>
+                                                                        <App {...props} />
                                                                     </div>
                                                                 );
-                                                            } else if (
-                                                                !darkMode
-                                                            ) {
+                                                            } else if (!darkMode) {
                                                                 return (
-                                                                    <div
-                                                                        className={` h-full lightBg `}
-                                                                    >
-
-                                                                            <App
-                                                                            {...props}
-                                                                        />
-
+                                                                    <div className={`h-full lightBg`}>
+                                                                        <App {...props} />
                                                                         <ToastContainer />
                                                                     </div>
                                                                 );
                                                             }
-                                                            // Add your logic based on darkMode value
-                                                            // ...
                                                         }}
                                                     </DarkModeContext.Consumer>
                                                 );
                                             }}
-
                                         </ToggleMenuContext.Consumer>
                                     </CheckedLinksContextProvider>
                                 </SidebarContextProvider>
@@ -129,7 +87,6 @@ createInertiaApp({
             );
         };
 
-        // Use ReactDOM to render the component
         render(<Component />, el);
     },
 });

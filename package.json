@@ -1,11 +1,12 @@
 {
     "private": true,
     "type": "module",
+    "homepage":"https://wikislamia.vercel.app" ,
     "scripts": {
-        "dev": "vite",
-        "prebuild": "rimraf dist",
-        "build": "vite build && vite build --ssr"
-    },
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
         "@inertiajs/react": "^1.0.0",
