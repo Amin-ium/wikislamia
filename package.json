@@ -1,12 +1,12 @@
 {
     "private": true,
     "type": "module",
-    "homepage":"https://wikislamia.vercel.app" ,
+    "homepage": "https://wikislamia.vercel.app",
     "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview"
+    },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
         "@inertiajs/react": "^1.0.0",
@@ -43,6 +43,10 @@
         "react-select": "^5.8.0",
         "react-toastify": "^10.0.5",
         "recharts": "^2.11.0",
-        "tw-elements": "^2.0.0"
+        "tw-elements": "^2.0.0",
+        "vercel-php": "^0.3.6"
+    },
+    "engines": {
+        "node": "20.x"
     }
 }
